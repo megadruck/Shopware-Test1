@@ -1,0 +1,2 @@
+//{namespace name="backend/viison_ups_free_form_labels/main"}
+Ext.define("Shopware.apps.ViisonUPSFreeFormLabels.view.Window",{ extend:"Shopware.apps.ViisonShippingCommonFreeFormLabels.view.Window",xtype:"viison-ups-free-form-labels-window",shippingLabelStoreClass:"Shopware.apps.ViisonUPSOrder.store.ShippingLabel",title:'{s name=window/title}{/s}',constructor:function(){ this.packagingTypeStore=Ext.create("Shopware.apps.ViisonUPSShipping.store.PackagingType").load();this.callParent(arguments)}});

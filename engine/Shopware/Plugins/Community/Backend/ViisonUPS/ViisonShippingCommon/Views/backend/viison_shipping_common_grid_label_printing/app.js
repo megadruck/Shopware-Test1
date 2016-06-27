@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonShippingCommonGridLabelPrinting",{ extend:"Enlight.app.SubApplication",name:"Shopware.apps.ViisonShippingCommonGridLabelPrinting",bulkLoad:true,loadPath:'{url controller="ViisonShippingCommonGridLabelPrinting" action=load}',controllers:[],stores:[],models:["GridLabelTemplate"],views:["TemplateChooser"]});

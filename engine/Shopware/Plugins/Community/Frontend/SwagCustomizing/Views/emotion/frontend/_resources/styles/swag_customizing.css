@@ -1,0 +1,876 @@
+/*------------------------------------------------------------------
+
+ Shopware 4.0
+ Copyright © 2013 shopware AG
+
+ According to our dual licensing model, this program can be used either
+ under the terms of the GNU Affero General Public License, version 3,
+ or under a proprietary license.
+
+ The texts of the GNU Affero General Public License with an additional
+ permission and of our proprietary license can be found at and
+ in the LICENSE file you have received along with this program.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU Affero General Public License for more details.
+
+ "Shopware" is a registered trademark of shopware AG.
+ The licensing of the program under the AGPLv3 does not imply a
+ trademark license. Therefore any rights, title and interest in
+ our trademarks remain entirely with us.
+
+ Shopware SwagCustomizing Plugin - Styles
+
+ @category  Shopware
+ @package   Shopware\Plugins\SwagCustomizing
+ @copyright Copyright (c) 2013, shopware AG (http://www.shopware.de)
+
+ IE 7 specific styles are using the star hack:
+ http://net.tutsplus.com/tutorials/html-css-techniques/quick-tip-how-to-target-ie6-ie7-and-ie8-uniquely-with-4-characters/
+
+-------------------------------------------------------------------*/
+
+/* images styling checkout cart */
+#basket .customizing-image-option-name {
+    padding-top: 15px;
+}
+
+#confirm .customizing-image-option-name {
+    padding-left: 15px;
+}
+#basket .customizing-image-container {
+    float: left;
+    padding: 12px 0 5px 0px;
+}
+
+#finished .customizing-basket_details {
+    padding-left: 94px;
+}
+
+#confirm .customizing-image-container {
+    float: left;
+    padding: 12px 0 5px 15px;
+}
+
+#basket .customizing-basket_details {
+    position: relative;
+    left: 95px;
+}
+
+.customizing-checkout-single-image {
+    padding-bottom: 10px;
+}
+.customizing-checkout-single-image img{
+    display: block;
+}
+
+.customizing-field-wrapper .option-reset {
+    width: 8%;
+    float: right;
+    text-align: center;
+}
+
+/** Basic styling */
+.customizing-fieldset,
+.customizing-field-wrapper,
+.customizing-legend {
+    width: 100%;
+}
+
+.customizing-legend {
+    border-top: 1px solid #f7d5c5;
+    display: block;
+    padding: 8px 0 4px;
+    margin: 1em 0 1em;
+}
+
+.customizing-description {
+    color: #999999;
+    font-style: italic;
+}
+
+.customizing-description span {
+    float: none !important;
+    width: 100% !important;
+}
+
+.customizing-field-wrapper input,
+.customizing-field-wrapper textarea {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 285px;
+
+    /** Inline box shadow */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+    /** Transition primary the border color  */
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.customizing-field-wrapper input:focus,
+.customizing-field-wrapper textarea:focus {
+    color: #232323;
+}
+
+.customizing-field-wrapper .option_label {
+    color: #333333;
+    float: none !important;
+    clear: both;
+}
+
+/** Clearing the floating after each field */
+.customizing-field-wrapper {
+    display: inline-block;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.customizing-field-wrapper:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+/** Normal text fields */
+.customizing-field-wrapper .option_values_text_field input,
+.customizing-field-wrapper .option_values_color_field input,
+.customizing-field-wrapper .option_values_date input,
+.customizing-field-wrapper .option_values_date_time input {
+    padding: 4px 6px;
+    color: #666666;
+}
+
+/** Text area fields */
+.customizing-field-wrapper .option_values_text_area textarea {
+    padding: 4px 6px;
+    max-width: 285px;
+    min-width: 285px;
+    min-height: 50px;
+    height: 75px;
+    max-height: 125px;
+}
+
+/** Color fields */
+.customizing-field-wrapper .option_values_color_field input {
+    padding: 4px 6px 4px 4px;
+    width: 261px;
+}
+
+.customizing-field-wrapper .option_values_color_field .inline-content,
+.customizing-field-wrapper .option_values_color_field .color-field-preview {
+    height: 22px;
+    line-height: 22px;
+    top: 21px;
+    width: 22px;
+    text-align: center;
+    position: absolute;
+}
+
+.customizing-field-wrapper .option_values_color_field .inline-content {
+    left: 0;
+    border-right: 1px solid #dfdfdf;
+    top: 22px;
+}
+
+.customizing-field-wrapper .option_values_color_field .color-field-preview {
+    border: 1px solid #bbbbbb;
+    position: absolute;
+    top: 21px;
+    right: 0;
+    background: url(../images/jquery.minicolors.png) -80px 0;
+}
+
+/** Date fields */
+.customizing-field-wrapper .option_values_date {
+    position: relative;
+}
+
+.customizing-field-wrapper .option_values_date .ui-datepicker-trigger,
+.customizing-field-wrapper .option_values_date_time .ui-datepicker-trigger {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 1px;
+    right: 4px;
+    border: 0 none;
+    border-left: 1px solid #bbbbbb;
+    display: block;
+    background: #f1f1f1;
+    background: -moz-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f1f1f1), color-stop(100%, #e2e2e2));
+    background: -webkit-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -o-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -ms-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: linear-gradient(to bottom, #f1f1f1 0%, #e2e2e2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e2e2e2', GradientType=0);
+}
+
+/** Date picker ui */
+.ui-datepicker {
+    margin-top: 10px;
+    background: #ffffff;
+    border-color: #a6a6a6;
+    padding: 5px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    -o-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.ui-datepicker:before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 14px;
+    height: 7px;
+    margin-left: -7px;
+    background: url("../images/arrow-top.png") no-repeat;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    padding: 5px 0;
+    border: 1px solid #9f9f9f;
+    border-bottom: 0 none;
+    text-shadow: 0 1px 0 #ffffff;
+    background: #f1f1f1;
+    background: -moz-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f1f1f1), color-stop(100%, #e2e2e2));
+    background: -webkit-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -o-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: -ms-linear-gradient(top, #f1f1f1 0%, #e2e2e2 100%);
+    background: linear-gradient(to bottom, #f1f1f1 0%, #e2e2e2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e2e2e2', GradientType=0);
+
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.ui-datepicker-prev {
+    background: url("../images/datepicker-prev.png") no-repeat;
+    height: 9px;
+    width: 7px;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.ui-datepicker-next {
+    background: url("../images/datepicker-next.png") no-repeat;
+    height: 9px;
+    width: 7px;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+    display: none
+}
+
+.ui-datepicker-calendar {
+    border-top: 1px solid #9f9f9f;
+}
+
+.ui-datepicker thead {
+    line-height: 20px;
+    border-top: 1px solid #ffffff;
+}
+
+.ui-datepicker th {
+    width: 19px;
+    color: #4d4d4d;
+    text-shadow: 0 1px 0 #ffffff;
+    font-weight: normal;
+}
+
+/** Time fields */
+.customizing-field-wrapper .option_values_time,
+.customizing-field-wrapper .option_values_date_time {
+    position: relative;
+}
+
+.customizing-field-wrapper .option_values_time select,
+.customizing-field-wrapper .option_values_date_time select {
+    width: 132px !important;
+}
+
+/** Date and time fields */
+.customizing-field-wrapper .option_values_date_time input {
+    margin-bottom: 4px;
+}
+
+/** Color select */
+.customizing-field-wrapper .option_values_color_select {
+    position: relative;
+}
+
+.customizing-field-wrapper .option_values_color_select input {
+    width: 260px;
+}
+
+.customizing-field-wrapper .minicolors-swatch {
+    display: block;
+    border: 1px solid #bbbbbb;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: -27px;
+    top: 0;
+}
+
+.customizing-field-wrapper .option_values_color_select .color-select-swatch {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url("../images/bg_swatch.png") no-repeat;
+    float: left;
+    margin: 2px 5px;
+
+    /** Transition primary the border color  */
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.customizing-field-wrapper .option_values_color_select .is-active {
+    -webkit-box-shadow: 0 0 6px 1px rgba(225, 84, 15, 0.9);
+    -moz-box-shadow: 0 0 6px 1px rgba(225, 84, 15, 0.9);
+    box-shadow: 0 0 6px 1px rgba(225, 84, 15, 0.9);
+}
+
+/** Radio boxes */
+.customizing-field-wrapper .radio-wrapper,
+.customizing-field-wrapper .check-wrapper {
+    margin: 0 0 6px;
+}
+
+.customizing-field-wrapper input[type=radio],
+.customizing-field-wrapper input[type=checkbox] {
+    display: block;
+    float: left;
+    width: 20px;
+}
+
+#buybox .ajax_loader.swag-customizing {
+    display: block;
+    position: relative;
+    right: -315px;
+    top: -28px;
+    margin-bottom: -10px;
+}
+
+#buybox .customizing-field-wrapper .radio-wrapper label,
+#buybox .customizing-field-wrapper .check-wrapper label {
+    display: block;
+    padding-top: 4px;
+    color: #434343;
+    font-weight: bold;
+
+    float: none;
+    margin: 0px;
+    position: static;
+    width: auto;
+}
+
+/** Multiple select boxes */
+.customizing-field-wrapper .option_values_multiple select {
+    width: 100% !important;
+}
+
+/** File uploads */
+.customizing-field-wrapper .fileupload-dropzone {
+    background: #fcfcfc url("../images/bg_dropzone.png") repeat;
+    border: 1px solid #c7c7c7;
+    height: 100px;
+    width: 100%;
+    margin: 0 0 8px;
+    position: relative;
+
+    /** Inline box shadow */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+    /** Transition primary the border color  */
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /** Border radius */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.customizing-field-wrapper .fileupload-dropzone .inline-text {
+    display: block;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    color: #888888;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    width: 300px;
+
+    /** Transition primary the border color  */
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.customizing-field-wrapper .fileupload-dropzone:hover,
+.customizing-field-wrapper .fileupload-dropzone.drop-active {
+    border-color: #e1540f;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(225, 84, 15, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(225, 84, 15, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(225, 84, 15, 0.6);
+}
+
+.customizing-field-wrapper .fileupload-dropzone:hover .inline-text,
+.customizing-field-wrapper .drop-active .inline-text {
+    color: #e1540f
+}
+
+@-webkit-keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@-moz-keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@-ms-keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@-o-keyframes progress-bar-stripes {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 40px 0;
+    }
+}
+
+@keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+.customizing-fieldset .progress {
+    height: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    background-image: -moz-linear-gradient(top, #f5f5f5, #f9f9f9);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#f9f9f9));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f9f9f9);
+    background-image: -o-linear-gradient(top, #f5f5f5, #f9f9f9);
+    background-image: linear-gradient(to bottom, #f5f5f5, #f9f9f9);
+    background-repeat: repeat-x;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.customizing-fieldset .progress .bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #0e90d2;
+    background-image: -moz-linear-gradient(top, #149bdf, #0480be);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#149bdf), to(#0480be));
+    background-image: -webkit-linear-gradient(top, #149bdf, #0480be);
+    background-image: -o-linear-gradient(top, #149bdf, #0480be);
+    background-image: linear-gradient(to bottom, #149bdf, #0480be);
+    background-repeat: repeat-x;
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff149bdf', endColorstr='#ff0480be', GradientType=0);*/
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: width 0.6s ease;
+    -moz-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease;
+}
+
+.customizing-fieldset .progress .bar + .bar {
+    -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.customizing-fieldset .progress-striped .bar {
+    background-color: #149bdf;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    -webkit-background-size: 40px 40px;
+    -moz-background-size: 40px 40px;
+    -o-background-size: 40px 40px;
+    background-size: 40px 40px;
+}
+
+* + .customizing-fieldset .progress-striped .bar {
+    background: url("../images/loading.png") repeat center center;
+}
+
+.customizing-fieldset .progress.active .bar {
+    -webkit-animation: progress-bar-stripes 2s linear infinite;
+    -moz-animation: progress-bar-stripes 2s linear infinite;
+    -ms-animation: progress-bar-stripes 2s linear infinite;
+    -o-animation: progress-bar-stripes 2s linear infinite;
+    animation: progress-bar-stripes 2s linear infinite;
+}
+
+/** TIP TIP */
+.swag-customizing-tip-tip {
+    position: absolute;
+    display: none;
+    padding: 3px 12px;
+    color: #ffffff;
+    background: #000000;
+    background: rgba(0, 0, 0, .8);
+    font-size: 11px;
+    font-weight: bold;
+
+    /** Border radius */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/** IMAGE SELECTION */
+.image-selection-wrapper {
+    border: 1px solid #dfdfdf;
+    background: #ffffff;
+    padding: 2px;
+    position: relative;
+    display: block;
+    float: left;
+    width: 130px;
+    margin: 7px;
+
+    /** Border radius */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.image-selection-wrapper.is-active,
+.image-selection-wrapper.is-active .checkbox-selection-wrapper {
+    border-color: #e1540f;
+}
+
+.image-selection-wrapper img {
+    display: inline;
+    vertical-align: middle;
+    max-width: 100%;
+    -ms-interpolation-mode: bicubic;
+}
+
+.image-selection-wrapper .checkbox-selection-wrapper {
+    border: 1px solid #dfdfdf;
+    background: #ffffff;
+    padding: 2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    border-top: 0;
+    border-right: 0;
+
+    /** Border radius */
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.image-selection-wrapper .checkbox-selection-wrapper input {
+    margin: 0;
+    top: 0;
+    display: inline-block;
+}
+
+/** Thumbnail preview */
+.option_values_upload_image .thumbnail-wrapper,
+.option_values_upload_file .thumbnail-wrapper {
+    margin: 1.5em 0 0 !important;
+    border: 1px solid #dfdfdf;
+    padding: 8px;
+    background: #f7f7f7;
+    position: relative;
+    text-shadow: 0 1px 0 #ffffff;
+    color: #434343;
+}
+
+.option_values_upload_image .thumbnail-wrapper img,
+.option_values_upload_file .thumbnail-wrapper img {
+    width: 100px;
+    float: left;
+    -ms-interpolation-mode: bicubic;
+    border: 1px solid #c7c7c7;
+    margin: 0 8px 0 0;
+}
+
+.option_values_upload_image .thumbnail-wrapper .remove-item,
+.option_values_upload_file .thumbnail-wrapper .remove-item {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 93px;
+    background: #ffffff;
+    font-size: 10px;
+    width: 15px;
+    text-align: center;
+    font-weight: bold;
+    /** Border radius */
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #dfdfdf;
+    border-top: 0 none;
+    border-right: 0 none;
+}
+
+.option_values_upload_file .item-box {
+    background: #ffffff url("../images/icn_box.png") no-repeat center center;
+    width: 98px;
+    height: 68px;
+    padding: 2px;
+    border: 1px solid #c7c7c7;
+    float: left;
+    margin: 0 8px 0 0;
+}
+
+.basketform .error {
+    width: auto;
+}
+
+/** CHECKOUT */
+.table .table_row .customizing_checkout .basket_details {
+    position: relative;
+    display: inline-block;
+    left:30px;
+    padding-bottom: 20px;
+}
+.table .table_row a.thumb_image {
+    float: left;
+}
+
+.customizing_checkout dl {
+    margin: 0;
+}
+
+.table .table_row a.link-edit-item {
+    color: #e1540f;
+    padding: 0 6px 0 15px;
+    background: url("../images/ico_listing-next-active.png") no-repeat left center;
+}
+
+.table .table_row a.link-edit-item:hover {
+    text-decoration: underline !important;
+}
+
+.table .table_row dd {
+    margin-bottom: 1em;
+    color: #999999;
+}
+
+#basket form  dl dd {
+    margin-left: 0;
+}
+
+
+.customizing-fieldset .icn-info {
+    background: url("../images/icn_info-sprite.png") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.customizing-fieldset .icn-info:hover, .customizing-fieldset .icn-info.active {
+    background-position: left bottom;
+}
+
+.customizing-charges-popup {
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #d7d7d7;
+    box-shadow: 0 2px 3px #d6d6d6;
+    padding: 15px 15px 20px;
+    position: absolute;
+    width: 210px;
+    z-index: 30;
+    display: none;
+}
+
+.customizing-charges-popup-headline {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.customizing-charges-popup .arrow {
+    background: url("../images/arrow-right.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 20px;
+    position: absolute;
+    right: -19px;
+    top: 20px;
+    width: 20px;
+}
+
+.customizing-charges-popup table {
+    width: 200px;
+    margin: 0;
+    word-break: break-all;
+    overflow: hidden;
+}
+.customizing-charges-popup td, .customizing-charges-popup th {
+    color: #333333;
+    width: 100px;
+}
+
+#buybox .customizing-fieldset label {
+    width: 210px;
+}
+
+.customizing-ajax-modal-box-price {
+    top:0px;
+    color: #999999;
+    position: absolute;
+    left: 305px;
+}
+
+.customizing-ajax-modal-box-row {
+    position:relative;
+    left: 90px;
+    width: 70%;
+}
+
+.customizing-ajax-modal-box-container {
+    margin-top: 10px;
+}
+
+.customizing-ajax-modal-box-name {
+    color: #999999;
+    position: absolute;
+    left: 100px;
+}
+
+.customizing-ajax-modal-box-heading {
+    position: absolute;
+    left: 100px;
+    top: 80px;
+    color: #999999;
+}
+
+#swagCustomProductsNoImageMessageBox {
+    margin-top:10px;
+    border:1px solid #E1540F;
+    padding:5px;
+    text-align: center;
+    background: #FDF6F3
+}
+
+#swagCustomProductsNoImageMessageBox > p {
+    margin: 0;
+    padding: 0;
+}
+
+#content .inner #confirm .outer-confirm-container .table .small_quantities {
+    padding:10px 0;
+}
+.customizingSurcharge {
+    margin: 20px 0 0;
+}
+.customizingSurcharge tfoot {
+    border: none;
+    background: #fff;
+}
+.customizingSurcharge tfoot #customizingTotal {
+    border-top: 1px dashed #DFDFDF;
+}
+
+.article_details_bottom .customizingSurcharge tfoot #customizingTotal {
+    border-top:2px solid #DFDFDF;
+}
+
+.article_details_bottom .customizingSurcharge tfoot #customizingTotal > td {
+    font-weight: bolder;
+}
+
+.customizing-charges-popup .select-image-surcharge {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.customizing-checkout-image-selector {
+    max-height: 80px;
+    max-width: 80px;
+}

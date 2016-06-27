@@ -1,0 +1,22 @@
+<div style="padding-bottom:30px;color:999;font-style:italic;">
+<h2>Product information "Custom Products"</h2>
+A coffee cup with your name on it? A t-shirt with a custom image printed on it?
+For Shopware, this is no problem at all. You are now able to provide your customers with the opportunity to add their own personal touch by being able to customize your products prior to purchasing them. This is thanks to the new, highly-praised Shopware Premium Plugin - Custom Products.<br>
+<br>
+<b>Supported functions:</b>
+<br>
+<ul>
+    <li>Optional: own positions per option </li>
+    <li> Issuing customers their own options as a separate shopping cart item in order to not affect the default pricing </li>
+    <li>Subshop support </li>
+    <li>Assigning options groups without attributes directly into the basic information </li>
+    <li>Multilingual capabilities (Translatable fields/ descriptions/ values) </li>
+    <li>Supports configurator articles, graduated prices and other surcharges and rebates</li>
+    <li>Compatible with Bundles / Live Shopping / Subscriptions and other Premium modules </li>
+    <li>Supports delivery time in shopping carts </li>
+    <li>Surcharges and rebates according to selected options </li>
+</ul>
+<br><br>
+Offer your customers the personal freedom they need – with Custom Products
+<br>
+</div>

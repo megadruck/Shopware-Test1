@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonShippingCommonDailyClosing",{ extend:"Enlight.app.SubApplication",name:"Shopware.apps.ViisonShippingCommonDailyClosing",bulkLoad:true,loadPath:'{url action=load}',controllers:["Main"],stores:["Shop"],models:["Shop"],views:["main.Window"],launch:function(){ var i=this,n=i.getController("Main");return n.mainWindow}});

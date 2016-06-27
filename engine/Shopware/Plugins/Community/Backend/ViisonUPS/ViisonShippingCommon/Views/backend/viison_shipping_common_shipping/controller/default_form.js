@@ -1,0 +1,2 @@
+//{namespace name="backend/viison_shipping_common_shipping/shipping"}
+Ext.define("Shopware.apps.ViisonShippingCommonShipping.controller.DefaultForm",{ override:"Shopware.apps.Shipping.controller.DefaultForm",addDispatchServiceProviderControllerClass:function(i){ this.dispatchServiceProviderControllers=this.dispatchServiceProviderControllers||[];this.dispatchServiceProviderControllers.push(this.subApplication.getController(i))}});

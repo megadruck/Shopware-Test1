@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonUPSFreeFormLabels",{ extend:"Enlight.app.SubApplication",requires:"Shopware.apps.ViisonShippingCommonFreeFormLabels",name:"Shopware.apps.ViisonUPSFreeFormLabels",bulkLoad:true,loadPath:'{url controller="ViisonUPSFreeFormLabels" action=load}',controllers:["Main"],views:["LabelConfirm","Shopware.apps.ViisonUPSFreeFormLabels.view.Window"]});

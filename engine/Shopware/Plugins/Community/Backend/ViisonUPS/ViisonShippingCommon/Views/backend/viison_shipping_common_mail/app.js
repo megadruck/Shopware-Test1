@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonShippingCommonMail",{ extend:"Enlight.app.SubApplication",name:"Shopware.apps.ViisonShippingCommonMail",bulkLoad:true,loadPath:'{url controller="ViisonShippingCommonMail" action=load}',controllers:[],stores:[],models:[],views:["Mail","MailWindow"]});

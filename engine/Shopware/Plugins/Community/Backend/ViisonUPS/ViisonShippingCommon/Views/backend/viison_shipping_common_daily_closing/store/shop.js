@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonShippingCommonDailyClosing.store.Shop",{ extend:"Ext.data.Store",model:"Shopware.apps.ViisonShippingCommonDailyClosing.model.Shop",storeId:"shop",proxy:{ type:"ajax",api:{ read:'{url controller="ViisonShippingCommonDailyClosing" action="getShops"}'},reader:{ type:"json",root:"data",totalProperty:"total"}}});

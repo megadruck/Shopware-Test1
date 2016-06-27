@@ -1,0 +1,36 @@
+.ticketsystem--form-content {
+
+	.forms--content { margin: 0; }
+
+	.forms--headline {
+		margin-bottom: 0;
+		border: 0 none;
+	}
+}
+
+.is--ctl-ticket .ticketsystem--index-sidebar { display: block; }
+
+@media screen and (min-width: @tabletViewportWidth) {
+
+	.is--ctl-ticket {
+
+		&.is--act-request {
+			.categories--headline,
+			.categories--navigation,
+			.shop-sites--headline,
+			.shop-sites--navigation,
+			.shop-sites--container,
+			.logo--trusted-shops {
+				display: none;
+			}
+		}
+	}
+
+	.ticketsystem--form-content {
+
+		.forms--content {
+			.unitize-margin(20, 0, 0, 20);
+			width: 65%;
+		}
+	}
+}

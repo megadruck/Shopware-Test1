@@ -1,0 +1,436 @@
+.swag-customizing-loader {
+  .unitize-width(18);
+  .unitize-height(18);
+  .border-radius(100%);
+  .unitize(right, 6);
+  .unitize(top, 2);
+  .unitize-margin(8, 5, 8, 5);
+  .animation(keyframe--spin 1s linear infinite);
+  border: 2px solid @border-color;
+  border-top: 2px solid darken(@border-color, 50%);
+  display: block;
+  position: absolute;
+}
+
+/* customizing styles mobile */
+.customizing--data-wrapper {
+	.unitize-margin(0, 0, 20, 0);
+
+	.customizing--description {
+		color: @customizingDescriptionColor;
+		font-style: italic;
+	}
+}
+
+.customizing--select-input option.select-input--empty-text {
+	color: @customizingDescriptionColor;
+}
+
+.js--fancy-select select option.customizing--disabled {
+	color: @customizingDescriptionColor;
+}
+
+.customizing--field-wrapper {
+	.unitize-margin(0, 0, 20, 0);
+	position: relative;
+
+	.ui-datepicker-trigger {
+		.unitize-width(20);
+		.unitize-height(20);
+		.unitize-margin(10, 0, 0, -30);
+		display: inline;
+		border: 0;
+		background: transparent;
+		text-align: center;
+		color: @text-color;
+		padding: 0;
+	}
+}
+
+.customizing--panel-img {
+	width: 100%;
+}
+
+.customizing--is-description {
+	color: @customizingDescriptionColor;
+	font-style: italic;
+	.unitize(12, 16, font-size);
+}
+
+/* color select section */
+.customizing--option-values-color-select {
+	.is-active {
+		@colorSelectBoxShadowColor: rgba(red(@colorSelectBoxShadowBackgroundColor), green(@colorSelectBoxShadowBackgroundColor), blue(@colorSelectBoxShadowBackgroundColor), @colorSelectBoxShadowOpacity);
+		.box-shadow(0 0 6px 1px @colorSelectBoxShadowColor);
+	}
+}
+
+.customizing--color-select-swatch {
+	.unitize-width(32);
+	.unitize-height(32);
+	.unitize-margin(2, 5, 2, 5);
+	.transition();
+	background: url("../../img/bg_swatch.png") no-repeat;
+	float: left;
+}
+
+.minicolors-swatch {
+    .unitize-width(31);
+    .unitize-height(31);
+    .unitize(-36, 16, right);
+	display: block;
+	border: 1px solid #bbb;
+	position: absolute;
+	top: 0;
+}
+
+.minicolors-swatch span {
+    .box-shadow(inset 0 9px 0 rgba(255, 255, 255, .1));
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: none;
+	display: inline-block;
+}
+
+/* date and date time section */
+.customizing--option-values-date,
+.customizing--option-values-date-time {
+	.customizing--date-picker-text {
+		.unitize-margin(0, 0, 10, 0);
+	}
+}
+
+/* date time selection */
+.customizing--option-values-date-time {
+	.customizing--date-time-picker-separator {
+        .unitize(15, 16, bottom);
+        position: relative;
+	}
+}
+
+/* time selection */
+.customizing--option-values-time {
+	.customizing--time-picker-separator {
+        .unitize(15, 16, bottom);
+        position: relative;
+	}
+}
+
+/* image selection */
+.customizing--image-selection-wrapper {
+	.unitize-width(115);
+	.unitize-margin(7, 7, 7, 7);
+	.unitize-padding(2, 2, 2, 2);
+	.border-radius(3);
+	border: 1px solid #dfdfdf;
+	position: relative;
+	display: block;
+	float: left;
+}
+
+.is-active,
+.customizing--checkbox-selection-wrapper {
+	border-color: #E1540F;
+}
+
+.customizing--checkbox-selection-wrapper {
+	.unitize(0, 16, top);
+	.unitize(0, 16, right);
+	.unitize-padding(2, 2, 2, 2);
+	position: absolute;
+	text-align: center;
+	border-top: 0;
+	border-right: 0;
+}
+
+.customizing--image-select-image {
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+	max-width: 100%;
+}
+
+/* select selection */
+.customizing--option-values-select {
+	.js--fancy-select {
+		width: 90%;
+	}
+
+	.option--reset {
+		.unitize-height(42);
+		.unitize(line-height, 42);
+
+		float: right;
+		padding-top: 0;
+	}
+
+	.customizing--select-input {
+		z-index: 99;
+	}
+}
+
+.required .customizing--option-values-select .js--fancy-select {
+	width: 100%;
+}
+
+/* text area selection */
+.customizing--text-area {
+	.unitize-height(100);
+}
+
+.customizing--charges-popup .table-head--quantity,
+.customizing--charges-popup .table-head--value,
+.customizing--row-quantity,
+.customizing--row-name,
+.customizing--table-row-value {
+    width: 50%;
+}
+
+.customizing--charges-popup {
+    text-align: center;
+
+    .customizing--image-surcharge-image {
+        .unitize(max-width, 50);
+        .unitize(max-height, 50);
+    }
+}
+
+.customizing--charges-popup-icon {
+    float: right;
+}
+
+.customizing--data-wrapper .js--fancy-select select {
+    z-index: 1;
+}
+
+.customizing--charges-popup-icon:hover {
+    color: @brand-primary;
+    cursor: pointer;
+}
+
+.customizing--charges-popup.panel.has--border {
+    .unitize(10, 16, margin-bottom);
+}
+
+.error-container--error-field {
+    .unitize(14, 16, font-size);
+}
+
+.customizing--error-container {
+    .unitize(10, 16, margin);
+}
+
+.error-container--error-headline {
+    .unitize(10, 16, margin-bottom);
+}
+
+.error-container--error-field {
+    .unitize(5, 16, margin-bottom);
+}
+
+.error-container--close-btn {
+    .unitize(10, 16, margin-bottom);
+    float: right;
+}
+
+.required {
+    .customizing--text-area,
+    .customizing--text-field {
+        border-color: #FF0000;
+
+        &:focus {
+            border-color: #FF0000;
+        }
+    }
+}
+
+/** TIP TIP */
+.swag-customizing--tip-tip {
+    .unitize-padding(3, 12);
+    .unitize(11, 16, font-size);
+    .border-radius(3);
+
+    position: absolute;
+    display: none;
+    color: #fff;
+    background: #000;
+    opacity: 0.8;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.customizing--fileupload-input {
+    display: none;
+}
+
+.customizing--option-values-date,
+.customizing--option-values-date-time {
+    position: relative;
+}
+
+
+.customizing--option-values-date-time .js--fancy-select,
+.customizing--option-values-time .js--fancy-select {
+    .unitize-width(94);
+}
+
+.minicolors .customizing--color-field-input,
+.customizing--text-area,
+.customizing--multi-select,
+.customizing--option-values-text-field .customizing--text-field,
+.customizing--option-values-text-html .customizing--wysiwyg,
+.customizing--option-values-text-html .wysiwyg,
+.customizing--option-values-date .customizing--date-picker-text,
+.customizing--option-values-date-time .customizing--date-time-picker-text {
+    width: 100%;
+}
+
+.customizing--fileupload-dropzone {
+    display: none;
+}
+
+.customizing--thumbnail-wrapper {
+    .unitize-margin(10, 0);
+    .clearfix();
+}
+
+.customizing--img-container {
+    position: relative;
+    border: 1px solid @border-color;
+    display: inline-block;
+    float: left;
+
+    .customizing--remove-item {
+        .unitize(3, 16, top);
+        .unitize(3, 16, right);
+        .unitize-height(20);
+        .unitize-width(20);
+        .unitize(16, 16, line-height);
+        text-align: center;
+        padding: 0;
+        position: absolute;
+    }
+}
+
+.customizing--link-edit {
+    .unitize(5, 16, margin-left);
+    color: @brand-secondary;
+
+    &:hover {
+        color: @brand-primary;
+    }
+}
+
+.customizing--item-box {
+    .unitize-height(60);
+    .unitize-width(80);
+
+    background: url('../../img/icn_box.png') no-repeat center center;
+}
+
+.customizing--file-name,
+.customizing--image-name {
+    .unitize(5, 16, left);
+    position: relative;
+    float: left;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.check-wrapper--description {
+	.unitize(10, 16, font-size);
+	font-style: italic;
+	color: @customizingDescriptionColor;
+}
+
+.customizing--option-values-date-time .customizing--date-time-picker-text {
+	.unitize(5, 16, margin-bottom);
+}
+
+.customizing-checkout-single-image {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.customizing-checkout-single-image p{
+  word-wrap: break-word;
+}
+
+.customizing--option-values-date-time .js--fancy-select,
+.customizing--option-values-time .js--fancy-select {
+    width: 48%;
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+
+    .customizing--fileupload-dropzone {
+        .unitize-height(100);
+        .unitize-margin(0, 0, 8);
+        .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+        .transition();
+        .border-radius(3);
+        display: block;
+        background: #fcfcfc url("../../img/bg_dropzone.png") repeat;
+        border: 1px solid #c7c7c7;
+        width: 100%;
+        position: relative;
+
+        .customizing--inline-text {
+            .unitize(-10, 16, margin-top);
+            .unitize-width(250);
+            .transition();
+            display: block;
+            text-align: center;
+            text-shadow: 0 1px 0 #fff;
+            color: @dropZoneInlineColor;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+        }
+
+        &:hover,
+        &.drop-active {
+            .box-shadow(0 0 6px rgba(225, 84, 15, 0.6));
+            border-color: @dropZoneColor;
+
+            .customizing--inline-text {
+                color: @dropZoneColor;
+            }
+        }
+    }
+
+    .customizing--option-values {
+        width: 100%;
+    }
+
+    .customizing--option-values-date-time .js--fancy-select,
+    .customizing--option-values-time .js--fancy-select {
+        width: 49%;
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+  .customizing--option-values-date-time .js--fancy-select,
+  .customizing--option-values-time .js--fancy-select {
+    width: 48%;
+  }
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    .customizing--option-values-time .js--fancy-select {
+        width: 48%;
+    }
+}
+.minicolors {
+    display: block;
+}
+.minicolors-panel {
+    left: 0px;
+}
+.minicolors-swatch {
+    .unitize-width(40);
+    .unitize-height(40);
+    position: absolute;
+    right: 0;
+}

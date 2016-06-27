@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonUPSConfig.store.UPS",{ extend:"Ext.data.Store",model:"Shopware.apps.ViisonUPSConfig.model.UPS",storeId:"viison-ups-config-store",proxy:{ type:"ajax",url:'{url controller="ViisonUPSConfig" action="getAllConfigurations"}',reader:{ type:"json",root:"data",totalProperty:"total"}}});

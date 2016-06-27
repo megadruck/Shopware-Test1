@@ -1,0 +1,188 @@
+/*
+  Warenkorb Upload - Version 2.1.0
+  CSS Shopware 5 Responsive Template
+  28.05.2015
+*/
+
+/* shopware 5 - responsive template */
+
+/* detail page */
+.uploadDetailInfo {
+  border-color: #DFDFDF;
+  border-style: solid none solid none;
+  border-width: 1px 0 1px 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* cart - confirm page */
+
+#selector {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px 0px 10px;
+  li {
+    margin-right: 10px;
+  }
+}
+
+.product--table {
+
+  // Product image
+  .column--upload {
+    padding-left: 0;
+    width: 100%;
+    float: right;
+    height: auto;
+  }
+  .qq-upload-extra-drop-area {
+    display:none;
+  }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+  .product--table {
+    .column--upload {
+      width: 100%;
+    }
+    .qq-upload-extra-drop-area {
+      display:none;
+    }
+  }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+  .product--table {
+    .column--upload {
+      width: 43%;
+    }
+    .qq-upload-extra-drop-area {
+      display:block;
+    }
+  }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+  .product--table {
+    .column--upload {
+      width: 58%;
+    }
+    .qq-upload-extra-drop-area {
+      display:block;
+    }
+  }
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+  .product--table {
+    .column--upload {
+      width: 65%;
+    }
+    .qq-upload-extra-drop-area {
+      display:block;
+    }
+  }
+}
+
+/* fine uploader 5.1.2 */
+
+.qq-uploader {
+  position: relative;
+  min-height: inherit;
+  max-height: none;
+  overflow-y: hidden;
+  width: inherit;
+  border-radius: 0;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.qq-uploader:before {
+  content: '';
+  position: absolute;
+  font-size: 200%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  top: 45%;
+  opacity: 0;
+}
+
+.qq-upload-spinner {
+  background: url(../images/loading.gif);
+}
+
+.qq-drop-processing-spinner {
+  background: url(../images/processing.gif);
+}
+
+.qq-edit-filename-icon {
+  background: url(../images/edit.gif);
+}
+
+.qq-upload-list {
+  max-height: none;
+  li {
+    font-size: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 0px;
+    line-height: 30px;
+    color: inherit;
+    a:hover {
+      color: #000000;
+      text-decoration: underline !important;
+    }
+  }
+  li:first-child {
+    border-top:1px solid #dfdfdf;
+  }
+  li.qq-upload-success {
+    color: #ffffff;
+    background-color: #72a425;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 1px;
+  }
+}
+
+.qq-progress-bar {
+  background: -moz-linear-gradient(top, #72a425 0%, #628c1f 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #72a425), color-stop(100%, #628c1f));
+  background: -webkit-linear-gradient(top, #72a425 0%, #628c1f 100%);
+  background: -o-linear-gradient(top, #72a425 0%, #628c1f 100%);
+  background: -ms-linear-gradient(top, #72a4250 0%, #628c1f 100%);
+  background: linear-gradient(to bottom, #72a425 0%, #628c1f 100%);
+  border-radius: 0;
+}
+
+.qq-upload-extra-drop-area:before {
+  content: attr(qq-drop-area-text) " ";
+  opacity: 0.25;
+}
+
+.qq-upload-extra-drop-area {
+  width: 150px;
+  height: 50px;
+  margin-top: 10px;
+  padding-top: 13px;
+  font-weight: bold;
+}
+.qq-upload-file {
+  height:auto;
+}
+.qq-upload-size, .qq-upload-cancel, .qq-upload-retry, .qq-upload-delete {
+  background-color:transparent;
+  color: inherit;
+  text-shadow: none;
+  border:0;
+  cursor: auto;
+}
+
+/* dropbox */
+.dropbox-dropin-btn, .dropbox-dropin-btn:link, .dropbox-dropin-btn:hover {
+  font-weight: normal !important;
+  height: auto !important;
+  width: 65px;
+  text-align: center;
+}

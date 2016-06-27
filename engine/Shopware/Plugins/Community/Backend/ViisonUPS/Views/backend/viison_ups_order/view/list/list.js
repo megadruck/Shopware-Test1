@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonUPSOrder.view.list.List",{ override:"Shopware.apps.Order.view.list.List",constructor:function(){ var i=this;i.viisonShippingCommon.hasDispatchServiceProvider=true;i.callParent(arguments)}});

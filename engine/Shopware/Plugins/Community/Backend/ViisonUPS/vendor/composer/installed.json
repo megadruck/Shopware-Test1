@@ -1,0 +1,201 @@
+[
+    {
+        "name": "phenx/php-svg-lib",
+        "version": "0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PhenX/php-svg-lib.git",
+            "reference": "b419766515b3426c6da74b0e29e93d71c4f17099"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/b419766515b3426c6da74b0e29e93d71c4f17099",
+            "reference": "b419766515b3426c6da74b0e29e93d71c4f17099",
+            "shasum": ""
+        },
+        "time": "2015-05-06 18:49:49",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Svg\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Ménager",
+                "email": "fabien.menager@gmail.com"
+            }
+        ],
+        "description": "A library to read, parse and export to PDF SVG files.",
+        "homepage": "https://github.com/PhenX/php-svg-lib"
+    },
+    {
+        "name": "phenx/php-font-lib",
+        "version": "0.4",
+        "version_normalized": "0.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PhenX/php-font-lib.git",
+            "reference": "b8af0cacdc3cbf1e41a586fcb78f506f4121a088"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/b8af0cacdc3cbf1e41a586fcb78f506f4121a088",
+            "reference": "b8af0cacdc3cbf1e41a586fcb78f506f4121a088",
+            "shasum": ""
+        },
+        "time": "2015-05-06 20:02:39",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "FontLib\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Ménager",
+                "email": "fabien.menager@gmail.com"
+            }
+        ],
+        "description": "A library to read, parse, export and make subsets of different types of font files.",
+        "homepage": "https://github.com/PhenX/php-font-lib"
+    },
+    {
+        "name": "dompdf/dompdf",
+        "version": "dev-set-media-box",
+        "version_normalized": "dev-set-media-box",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/VIISON/dompdf.git",
+            "reference": "fbacca4df7fbaabf321213e48a0822c3be32dcfb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/VIISON/dompdf/zipball/fbacca4df7fbaabf321213e48a0822c3be32dcfb",
+            "reference": "fbacca4df7fbaabf321213e48a0822c3be32dcfb",
+            "shasum": ""
+        },
+        "require": {
+            "ext-dom": "*",
+            "ext-gd": "*",
+            "ext-mbstring": "*",
+            "phenx/php-font-lib": "0.4.*",
+            "phenx/php-svg-lib": "0.1.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2015-11-20 14:59:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.7-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Dompdf\\": "src/"
+            },
+            "classmap": [
+                "lib/"
+            ]
+        },
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Ménager",
+                "email": "fabien.menager@gmail.com"
+            },
+            {
+                "name": "Brian Sweeney",
+                "email": "eclecticgeek@gmail.com"
+            },
+            {
+                "name": "Gabriel Bull",
+                "email": "me@gabrielbull.com"
+            }
+        ],
+        "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+        "homepage": "https://github.com/dompdf/dompdf",
+        "support": {
+            "source": "https://github.com/VIISON/dompdf/tree/set-media-box"
+        }
+    },
+    {
+        "name": "viison/address-splitter",
+        "version": "0.2.2",
+        "version_normalized": "0.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/VIISON/AddressSplitting.git",
+            "reference": "96d3153ea464946602169d3418f255d8d82e8dee"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/VIISON/AddressSplitting/zipball/96d3153ea464946602169d3418f255d8d82e8dee",
+            "reference": "96d3153ea464946602169d3418f255d8d82e8dee",
+            "shasum": ""
+        },
+        "time": "2016-04-15 14:38:30",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "VIISON\\AddressSplitter\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "VIISON GmbH",
+                "email": "contact@viison.com"
+            }
+        ],
+        "description": "Tries to split an address line into street name, house number and other additional information like building, apartment information etc."
+    },
+    {
+        "name": "Viison/ShopwareShippingCommon",
+        "version": "19.3.1",
+        "version_normalized": "19.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:VIISON/ShopwareShippingCommon.git",
+            "reference": "fede67f7e1f8bc1497c1b1700f691546ba3d9793"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/VIISON/ShopwareShippingCommon/zipball/fede67f7e1f8bc1497c1b1700f691546ba3d9793",
+            "reference": "fede67f7e1f8bc1497c1b1700f691546ba3d9793",
+            "shasum": ""
+        },
+        "require": {
+            "dompdf/dompdf": "dev-set-media-box#fbacca4df7fbaabf321213e48a0822c3be32dcfb",
+            "viison/address-splitter": "^0.2"
+        },
+        "time": "2016-04-22 10:31:51",
+        "type": "shopware-core-plugin",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/VIISON/ShopwareShippingCommon/tree/master",
+            "issues": "https://github.com/VIISON/ShopwareShippingCommon/issues"
+        }
+    }
+]

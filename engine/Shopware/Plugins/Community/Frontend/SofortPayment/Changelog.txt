@@ -1,0 +1,66 @@
+#SOFORT AG SHOPWARE PLUGIN
+------------------------------------------------------------------------------------------------------------------------
+
+##EN
+2.0.0 Rework of the Shopware Plugin
+ * Added iDEAL as a payment method
+ * Added Log with custom backend view
+
+2.0.1 Fixed a bug causing customers created from the shop backend not to be able to complete iDEAL checkouts
+
+2.0.2
+ * Fixed a bug causing Sofort Banking payment with more than 1 unique article in the basket to be impossible
+ * Fixed a bug causing Sofort Banking Confirmation Mails with attachments to crash the checkout process.
+
+2.0.3
+ * Fixed a bug causing customers created from the shop backend to be redirected to an error page if they did not select iDEAL as the default payment method.
+
+2.0.4
+ * Made adjustments according to Shopware code review
+ * Added workaround for a shopware bug regarding model attributes
+ * Changed the backend description of sofort banking from Sofort Überweisung to Sofort Überweisung / Sofort Banking
+
+2.0.5
+ * Added Overview for timeouted/cancelled orders
+ * Added Option to create an order on redirecting a customer
+
+2.1.0
+ * Removed update Notification
+
+2.2.0
+ * It is now possible to change the orderprocess and not creating a temporary order. open the file SofortPayment/Components/Helpers/OrderProcessHelper.php and chage $createOrder to false. The replacementparameter order_id can not be used without a temporary order.
+
+2.3.0
+ * added compatibility for shopware 5
+ 
+##DE
+2.0.0 Neuentwicklung des Shopware Plugins
+ * iDEAL als Zahlungsart hinzugefügt
+ * Log mit eigener Ansicht im Backend hinzugefügt
+
+2.0.1 Fehler behoben, der aus dem Shop Backend herraus erstellte Kunden vom erfolgreichen Checkout mit iDEAL abhielt
+
+2.0.2
+ * Fehler behoben, der Sofort Überweisungs Zahlungen bei einem Warenkorb mit mehr als 1 Artikel unterschiedlicher Art unmöglich machte.
+ * Fehler behoben, der auftrat, wenn Sofort Überweisungs Bestellbestätigungen mit einem Email Anhang versendet werden sollten.
+
+2.0.3
+ * Fehler behoben, der aus dem Shop Backend herraus erstellte Kunden beim Zahlartenwechsel auf eine Fehlerseite weiterleitete, wenn nicht iDEAL als Zahlart ausgewählt war.
+
+2.0.4
+ * Anpassungen nach Shopware Code Review umgesetzt
+ * Added workaround for a shopware bug regarding model attributes
+ * Backend Beschreibung der Zahlart Sofort Überweisung von Sofort Überweisung in Sofort Überweisung / Sofort Banking umbenannt
+
+2.0.5
+ * Übersicht über timeouted/abgebrochen Bestellungen wurde hinzugefügt
+ * Der Erstellungszeitpunkt der Bestellungen kann via Option geändert werden. Entweder vor Weiterleitung des Kunden oder nachdem er auf die Dankeseite weitergeleitet wurde.
+
+2.1.0
+ * Updatehinweis wurde entfernt
+
+2.2.0
+ * Es ist nun Möglich den Bestellprocess anzupassen, sodass vor dem redirect keine temporäre Bestellung angelegt wird. Hierzu muss in der Datei SofortPayment/Components/Helpers/OrderProcessHelper.php die Variable $createOrder auf false gesetzt werden. Der Ersetzungsparameter order_id kann dann nicht mehr verwendet werden.
+
+2.3.0
+ * Kompatibilität zu shopware 5 hergestellt

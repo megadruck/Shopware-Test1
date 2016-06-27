@@ -1,0 +1,62 @@
+{
+    "label": {
+        "de": "PayPal",
+        "en": "PayPal"
+    },
+    "copyright": "(c) by shopware AG",
+    "license": "MIT",
+    "link": "http://store.shopware.com",
+    "author": "shopware AG",
+
+    "currentVersion": "3.3.12",
+
+    "changelog": {
+        "de": {
+            "3.3.12": "PT-5578 - Feature: Fehlermeldungen werden im Shopware Log gespeichert;",
+            "3.3.11": "PT-5607 - Bugfix: Problem mit Paypal Express;",
+            "3.3.10": "PT-5392 - Bugfix: Umstellung auf POST Methode beim API Client (<a href=\"https://www.paypal-knowledge.com/infocenter/index?page=content&widgetview=true&id=FAQ1927&viewlocale=en_US\">siehe Papyaldokumenation</a>). Plugin Konfiguration 'SSL-Version (CURLOPT-SSLVERSION)' entfernt;",
+            "3.3.9": "PT-5462 - Bugfix: Abo-Commerce führt nicht mehr zu Zahlungsstatus 'Pending';",
+            "3.3.8": "PT-5371 - Bugfix: Problem mit AboCommerce;",
+            "3.3.7": "PT-5242 - Bugfix: Veraltete Felder ersetzt;",
+            "3.3.6": "PT-4548 - Bugfix: Weiterleitung nach Paypal-Abbruch geändert; PT-4713 - Bugfix: Sortierung nach Zahlungsstatus im Backend Modul;",
+            "3.3.5": "PT-4284 - Bugfix: Paypal Logo in Bestätigungsmail; PT-4542 - Bugfix: Redirect URL;",
+            "3.3.4": "PT-3819 - Bugfix: Shopware 5.1 Kompatibilität;",
+            "3.3.3": "PT-3077 - Bugfix: Unterstützung für „Login mit PayPal“ entfernt",
+            "3.3.2": "PT-2876 - Bugfix: Anzeige der Express-Buttons behoben; PT-2917 - Feature: Zeige „PayPal Plus“ in der Zahlungsübersicht an",
+            "3.3.1": "PT-2909 - Bugfix: Problem PayPal-Logo in Bestellmails",
+            "3.3.0": "SW-9488 - Feature: Fügt Responsive-Theme hinzu",
+            "3.1.1": "PT-2833 - Bugfix: Force secure für “Login mit PayPal“ hinzugefügt; PT-2833 - Bugfix: locale für Österreich korrigiert",
+            "3.1.0": "PT-2768 - Feature: “Login mit PayPal“ kann nun verwendet werden; PT-2768 - Feature: “Jetzt API testen“ in der Pluginkonfiguration; PT-2768 - Feature: SSL-Version kann jetzt bestimmt werden; PT-2768 - Feature: Curl kann jetzt deaktiviert werden; PT-2768 - Bugfix: Vorgabe für API-Timeout auf 20 Sekunden erhöht; PT-2768 - Bugfix: Icon im Backend-Module hinzugefügt;",
+            "3.0.2": "Korrigiert die Payment-Action bei wiederkehrende Zahlungen",
+            "3.0.1": "Korrigiert document.body is null",
+            "3.0.0": "Allgemeine Verbesserungen; API-Update"
+        },
+        "en": {
+            "3.3.12": "PT-5578 - Feature: Error messages are logged in the Shopware log;",
+            "3.3.11": "PT-5607 - Bugfix: Problem with Paypal Express;",
+            "3.3.10": "PT-5392 - Bugfix: Change to POST method in API Client (<a href=\"https://www.paypal-knowledge.com/infocenter/index?page=content&widgetview=true&id=FAQ1927&viewlocale=en_US\">see Papyal documentation</a>). Removed plugin configuration 'SSL-Version (CURLOPT-SSLVERSION)';",
+            "3.3.9": "PT-5462 - Bugfix: Abo-commerce won't result in payment-status 'pending' anymore;",
+            "3.3.8": "PT-5371 - Bugfix: Problem with AboCommerce;",
+            "3.3.7": "PT-5242 - Bugfix: Replaced deprecated fields;",
+            "3.3.6": "PT-4548 - Bugfix: Changed the redirect after cancelling a paypal-payment; PT-4713 - Bugfix: Sort for payment status in backend module;",
+            "3.3.5": "PT-4284 - Bugfix: Paypal logo in confirmation mail; PT-4542 - Bugfix: Redirect URL;",
+            "3.3.4": "PT-3819 - Bugfix: Shopware 5.1 compatibility;",
+            "3.3.3": "PT-3077 - Bugfix: Support for „Login with PayPal“ removed",
+            "3.3.2": "PT-2876 - Bugfix: The visibility of the paypal express button; PT-2917 - Feature: Show „PayPal Plus“ in payment overview",
+            "3.3.1": "PT-2909 - Bugfix: PayPal logo in order emails",
+            "3.3.0": "SW-9488 - Feature: Add responsive theme support",
+            "3.1.1": "PT-2833 - Bugfix: Add force secure for “Login with PayPal“; PT-2833 - Bugfix: Fix locale for austria",
+            "3.1.0": "PT-2768 - Feature: possibility to use “Login with PayPal“ now; PT-2768 - Feature: “Test API now“ in the plugin config; PT-2768 - Feature: possibility to identify SSL version; PT-2768 - Feature: possibility to disable curl; PT-2768 - Bugfix: increase API timeout default to 20 seconds; PT-2768 - Bugfix: added icon to the backend module;",
+            "3.0.2": "Fix payment action for reference transaction",
+            "3.0.1": "Fixes document.body is null",
+            "3.0.0": "General improvements; API update"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "4.1.3",
+        "maximumVersion": null,
+        "blacklist": [
+        ]
+    }
+}

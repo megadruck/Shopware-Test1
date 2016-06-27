@@ -1,0 +1,1 @@
+Ext.define("Shopware.apps.ViisonShippingCommonOrder.store.ShippingLabel",{ extend:"Ext.data.Store",pageSize:10,autoLoad:false,sorters:[{ property:"created",direction:"DESC"}],constructor:function(){ this.setProxy({ type:"ajax",url:this.getAllLabelsURL,reader:{ type:"json",root:"data",totalProperty:"total"}});this.callParent(arguments)}});

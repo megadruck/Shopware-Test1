@@ -1,0 +1,49 @@
+{
+  "label": {
+    "de": "Warenkorb Upload",
+    "en": "Warenkorb Upload"
+  },
+  "copyright": "(c) by FULLTime - Patrick König",
+  "license": "proprietary",
+  "link": "http://www.full-ti.me",
+  "author": "FULLTime - Patrick König",
+
+  "currentVersion": "2.1.6",
+
+  "changelog": {
+    "de": {
+      "1.0.1": "PayPal Express Button neu ausgerichtet, Datenuploadinformation in der Artikeldarstellung, Nach benötigten Login wird man wieder zum Warenkorb geleitet",
+      "1.0.2": "Informationstext Anzeige im Detailbereich des aktivierten Artikels.",
+
+      "1.1.0": "Upload Ordner werden nun nur angelegt wenn auch eine Datei übertragen wurde,Backenderweiterung: Die übertragenen Daten werden nun direkt unter der Bestellung im Reiter Positionen angezeigt. Dort kann man diese jetzt mit Rechtsklick auf den Dateinamen die Datei herunterladen(Speichern), Warenkorb: Dort gibt es nun ein Informationbox, Backend->Artikel->Uploadfelder es gibt jetzt eine neuen Syntax für die defintion der Uploadfelder. Nutzen Sie dazu bitte die Installationsanleitung",
+      "1.1.1": "Drag and drop hinzugefügt",
+      "1.1.2": "Multiupload: Sie können jetzt mehrere Dateien gleichzeitig hochladen, Übertragene Daten werden im Warenkorb verlinkt und können dadruch erneut angezeigt werden, Übertragene Daten werden in der Bestellbestätigungsemail hinzugefügt, Optimierter Quellcode und optimierte Datenbankstruktur",
+      "1.1.3": "Bugfix: Wenn Upload-MIN gleich 0 ist und die Bestellung mit keinen übertragenen Daten ausgeführt wird, Zusatzfunktion: Die übertragenen Daten werden in der Bestellbestätigung Email in den Anhang eingefügt. Dies können Sie im Plugin aktiviert",
+      "1.1.4": "DropBox hinzugefügt",
+      "1.1.5": "HTTPS Bugfix",
+
+      "2.0.0": "Austausch der Upload-Bibliothek uploadifive zu fineuploader",
+      "2.0.1": "Update fineuploader 5.0.6 to 5.0.8, Bugfix: Safari Drobbox Button",
+      "2.0.2": "Prüfung des Dateinamen, ",
+      "2.0.3": "Anpassung des Uploadpfads",
+      "2.0.4": "Vorauswahl der Datenübertragung, automatische Löschfunktion, update fineuploader 5.0.8 to 5.1.2",
+      "2.0.5": "Kompatibel mit dem Shopware Responsive Template von conexco",
+      "2.0.6": "Dateinamenprüfung erweitert mit #,-,× - Neues Drag and Drop Feld hinzugefügt - Die Position des Löschbutton angepasst",
+
+      "2.1.0": "Shopware 5",
+      "2.1.1": "Miniaturansichten integriert - Sicherheitsupdate: SQL Inject - Bugfix: Drag&Drop, Kasseseite - Update upload library",
+      "2.1.2": "Bugfix: Dateinamenproblem bei MacOSX korrigiert",
+      "2.1.3": "bugfix load jquery library",
+      "2.1.4": "bugfix checkout page",
+      "2.1.5": "fix confirm page - fix max upload limit",
+      "2.1.6": "Quellcode-Optimierung, Bugfix: Vorladen der Konfiguration"
+
+    }
+  },
+
+  "compatibility": {
+    "minimumVersion": "4.0.0",
+    "maximumVersion": null,
+    "blacklist": []
+  }
+}
