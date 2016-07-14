@@ -1,4 +1,0 @@
-[2016-07-11 15:16:22] plugin.INFO: Array (     [value] => 8.52     [factor] => 0.00     [brutto] => 8.52     [surcharge] => 0     [tax] => 19     [netto] => 7.16 )  [] {"uid":"49959ac"}
-[2016-07-11 15:16:52] plugin.INFO: Array (     [value] => 7.00     [factor] => 0.00     [brutto] => 7     [surcharge] => 0     [tax] => 19     [netto] => 5.88 )  [] {"uid":"deef827"}
-[2016-07-11 18:46:10] plugin.INFO:  [] {"uid":"7e6e08a"}
-[2016-07-11 18:46:13] plugin.INFO:  [] {"uid":"ee58341"}
