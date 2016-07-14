@@ -1,0 +1,8 @@
+[2016-07-13 11:42:11] plugin.INFO: Array (     [brutto] => 0     [netto] => 0 )  [] {"uid":"e5ebc1e"}
+[2016-07-13 11:42:16] plugin.INFO: Array (     [value] => 7.00     [factor] => 0.00     [brutto] => 7     [surcharge] => 0     [tax] => 19     [netto] => 5.88 )  [] {"uid":"801e83c"}
+[2016-07-13 11:42:55] plugin.INFO: Array (     [value] => 7.00     [factor] => 0.00     [brutto] => 7     [surcharge] => 0     [tax] => 19     [netto] => 5.88 )  [] {"uid":"d2edc66"}
+[2016-07-13 14:18:02] plugin.INFO: Array (     [brutto] => 0     [netto] => 0 )  [] {"uid":"3025b48"}
+[2016-07-13 14:23:25] plugin.INFO: Array (     [brutto] => 0     [netto] => 0 )  [] {"uid":"7a261fb"}
+[2016-07-13 19:37:39] plugin.INFO: Array (     [brutto] => 0     [netto] => 0 )  [] {"uid":"7b7b04a"}
+[2016-07-13 19:37:42] plugin.INFO: Array (     [value] => 7.00     [factor] => 0.00     [brutto] => 7     [surcharge] => 0     [tax] => 19     [netto] => 5.88 )  [] {"uid":"78f204b"}
+[2016-07-13 19:38:01] plugin.INFO: Array (     [value] => 7.00     [factor] => 0.00     [brutto] => 7     [surcharge] => 0     [tax] => 19     [netto] => 5.88 )  [] {"uid":"13324e6"}
