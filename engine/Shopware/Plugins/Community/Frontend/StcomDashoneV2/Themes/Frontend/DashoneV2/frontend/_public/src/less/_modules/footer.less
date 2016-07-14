@@ -1,0 +1,208 @@
+.footer-main {
+    background: @theme-secondary;
+    .container {
+        background: @theme-secondary;
+    }
+    .navigation--link:hover {
+        color: @theme-primary;
+    }
+    .column--headline {
+        i {
+            display: none;
+        }
+    }
+    .footer--vat-info .vat-info--text,
+    .footer-main .column--content {
+        color: @theme-footer-text;
+    }
+}
+
+.footer-main {
+    background: @theme-secondary;
+    .container {
+        color: @theme-footer-text;
+        a {
+            color: @theme-footer-text;
+        }
+        .footer--columns {
+            .footer--column {
+                .column--headline {
+                    color: #FFF;
+                    font-family: "Oswald";
+                    border: 0 none;
+                    font-weight: normal;
+                    i {
+                    }
+                }
+                .column--content {
+                    .column--desc {
+                    }
+                    .newsletter--form {
+                        .newsletter--field {
+                        }
+                        .newsletter--button {
+                            .newsletter--submit {
+                            }
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer--bottom {
+            color: @theme-footer-text;
+            a {
+            }
+            .footer--vat-info {
+                .vat-info--text {
+                    color: @theme-footer-text;
+                }
+            }
+            .footer--copyright {
+                color: @theme-footer-text;
+            }
+            .footer--logo {
+                color: @theme-footer-text;
+                .unitize(margin-bottom, 20);
+                .logo--shop-templates {
+                    display: block;
+                    margin: 0 auto;
+                    .unitize-width(52);
+                    .unitize-height(46);
+                    background: url('../../img/stlogo.png') no-repeat;
+                    background-size: 212px 40px;
+                    .transition(width 0.3s ease);
+                    &:hover {
+                        .unitize-width(224);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .footer-main {
+        background: @theme-secondary;
+        border: 0 none;
+        .container {
+            background: none;
+            color: @theme-footer-text;
+            a {
+                color: @theme-footer-text;
+                line-height: 18px;
+            }
+            .footer--columns {
+                border: 0 none;
+                .footer--column {
+                    .column--headline {
+                        color: #FFF;
+                        font-family: "Oswald";
+                        font-weight: 300;
+                        font-size: 18px;
+                        text-transform: uppercase;
+                        i {
+                            display: inline;
+                            position: relative;
+                            top: -1px;
+                            .unitize(margin-right, 15);
+                            font-size: 15px;
+                        }
+                    }
+                    .column--content {
+                        font-size: 12px;
+                        .column--desc {
+                            font-size: 12px;
+                            line-height: 18px;
+                        }
+                        .newsletter--form {
+                            .newsletter--field {
+                                .unitize-height(30);
+                            }
+                            .newsletter--button {
+                                background: none;
+                                border: 0 none;
+                                line-height: 21px;
+                                .unitize-height(30);
+                                .newsletter--submit {
+                                    color: #FFF;
+                                    font-weight: 400;
+                                }
+                                &:hover {
+                                    background: @theme-primary;
+                                    border: 1px solid @theme-primary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .footer--bottom {
+                color: @theme-footer-text;
+                a {
+                    color: #FFF;
+                    text-decoration: underline;
+                }
+                .footer--vat-info {
+                    .vat-info--text {
+                        margin: 0;
+                    }
+                }
+                .footer--copyright {
+
+                }
+                .footer--logo {
+                    .unitize(margin-bottom, 20);
+                    .logo--shop-templates {
+                        display: block;
+                        margin: 0 auto;
+                        .unitize-width(52);
+                        .unitize-height(46);
+                        background: url('../../img/stlogo.png') no-repeat;
+                        background-size: 212px 40px;
+                        .transition(width 0.3s ease);
+                        &:hover {
+                            .unitize-width(224);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
+
+a.logoSt{
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  width: 3.25rem;
+  height: 2.875rem;
+  background: url('../../img/stlogo.png') no-repeat;
+  background-size: 212px 40px;
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+  text-indent: -99999em;
+  &:hover{
+    width: 14rem;
+  }
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    background-image: url('../../img/stlogo.png');
+    }
+}

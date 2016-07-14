@@ -1,0 +1,129 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .sidebar-main {
+        padding: 0;
+        &.off-canvas {
+        }
+        .sidebar--categories-wrapper {
+            .categories--headline {
+                .panel-title();
+                .unitize(margin-bottom, 10);
+            }
+            .sidebar--categories-navigation {
+                .sidebar--navigation {
+                    // ul
+                    border: 0 none;
+                    border-radius: 0;
+                    .navigation--entry {
+                        // li
+                        padding: 0;
+                        .unitize(padding-left, 12);
+                        border: 0 none;
+                        .unitize-margin(4, 0);
+                        &.is--active {
+                            margin: 0;
+                        }
+                        &.has--sub-categories {
+
+                        }
+                        &.has--sub-children {
+
+                        }
+                        .navigation--link {
+                            // a
+                            text-transform: uppercase;
+                            font-size: 12px;
+                            .unitize-padding(3, 0);
+                            color: #3e3e3e;
+                            &.is--active {
+                                color: @theme-primary;
+                            }
+                            .has--sub-categories {
+
+                            }
+                            .is--icon-right {
+                                .icon--arrow-right {
+
+                                }
+                            }
+                        }
+                        .categories--navigation {
+                            // ul
+                            &.is--level1 {
+                                border-top: 1px solid @theme-bg-light;
+                                border-bottom: 1px solid @theme-bg-light;
+                                .unitize-padding(7, 0, 7, 4);
+                                .navigation--entry {
+                                    // li
+                                    margin: 0;
+                                    .unitize(padding-left, 16);
+                                    .navigation--link {
+                                        // a
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .shop-sites--container {
+                background: #f3f4f6;
+                .unitize-padding(10, 0);
+                border: 0 none;
+                .shop-sites--headline {
+                    font-weight: 700;
+                    .unitize-height(35);
+                    line-height: 35px;
+                    font-size: 13px;
+                    border: 0 none;
+                    padding: 0;
+                    .unitize-margin(0, 10);
+                    color: #636363;
+                }
+                .shop-sites--navigation {
+                    padding: 0;
+                    border: 0 none;
+                    background: none;
+                    .navigation--entry {
+                        .navigation--link {
+                            font-size: 13px;
+                            .unitize-padding(2, 0, 2, 4);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .is--ctl-forms .sidebar-main .sidebar--categories-navigation,
+    .is--ctl-custom .sidebar-main .sidebar--categories-navigation {
+        display: block;
+    }
+
+    .is--ctl-account {
+        &.is--user {
+            .sidebar-main {
+                display: none;
+            }
+            .content-main {
+                .content-main--inner {
+                    .content--wrapper {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
