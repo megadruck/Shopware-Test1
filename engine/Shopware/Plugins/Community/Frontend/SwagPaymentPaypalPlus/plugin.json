@@ -1,0 +1,52 @@
+{
+    "label": {
+        "de": "PayPal PLUS",
+        "en": "PayPal PLUS"
+    },
+    "copyright": "(c) by shopware AG",
+    "license": "MIT",
+    "link": "http://store.shopware.com",
+    "author": "shopware AG",
+
+    "currentVersion": "1.1.4",
+
+    "changelog": {
+        "de": {
+            "1.1.4": "PT-5096 - Bugfix: Buchungsdatum im Paypal Backend Modul; PT-5620 - Bugfix: Zahlungsartenwechsel vor Bestellabschluss mit Paypal;",
+            "1.1.3": "PT-4875 - Feature: Pluginkonfiguration Subshop kompatibel; PT-4922 - Bugfix: Weiterleitung zu Paypal; PT-4940 - Bugfix: Rechnungskauf in Shopware 4.1.x, Bestellmodul in Shopware 4.3.2;",
+            "1.1.2": "Problem mit Datenbankverbindung unter älteren Shopware Versionen;",
+            "1.1.1": "PT-4731 - Bugfix: Problem mit Weiterleitung zu Paypal unter HTTPS;",
+            "1.1.0": "PT-4716 - Bugfix: Kompatibilität zu anderen Plugins, z.B. Facebook; PT-4838 - Bugfix: Bezahlanweisung auf Rechnungen, die nicht mit Paypal Rechnungskauf bezahlt wurden;",
+            "1.0.9": "PT-4401 - Feature: Rechnungskauf; PT-4726 - Bugfix: Javascript Fehler; PT-4764 - Bugfix: Falsche Datenbankverbindung;",
+            "1.0.8": "PT-4354 - Bugfix: Falscher Methodenaufruf;",
+            "1.0.7": "PT-3886 - Bugfix: Beschreibung der Zahlart; PT-3887, PT-4184 - Bugfix: Verbesserung der Usability in Shopware 5;",
+            "1.0.6": "PT-3638, PT-3639, PT-3640 - Bugfix: Anpassungen Shopware 5 Responsive Theme;",
+            "1.0.5": "PT-3216 - Bugfix: Unterstützung für Shopware 4.1.x; PT-3277 - Bugfix: Verbesserung der Bedienbarkeit mit Shopware 4; PT-3435 - Bugfix: Weiterleitung zu PayPal unter Shopware 5.0.2 korrigiert;",
+            "1.0.4": "PT-3077 - Bugfix: Bestellungen im Netto-Modus; PT-3077 - Feature: Zahlungsart-Bezeichnung überschreiben",
+            "1.0.3": "PT-3016 - Bugfix: Sonderzeichen in älteren PHP-Versionen, Update bei der Übergabe von country / language an PayPal; PT-3016 - Feature: Unterstützung für das Responsive-Template hinzugefügt",
+            "1.0.2": "PT-2917 - Bugfix: Sonderzeichen in der Zahlungsart-Beschreibung werden nun richtig an PayPal übergeben",
+            "1.0.1": "PT-2917 - Feature: Fügt Webhook unter „/payment_paypal/webhook“ hinzu. PAYMENT.SALE.COMPLETED wird nicht unterstützt/benötigt; PT-2917 - Feature: Fügt die Option „Direkt auf externe Zahlungsart umleiten“ hinzu; PT-2917 - Bugfix: Übergabe von country / language an PayPal",
+            "1.0.0": "PT-2396 - Erstveröffentlichung"
+        },
+        "en": {
+            "1.1.4": "PT-5096 - Bugfix: Order date in Paypal backend modulel; PT-5620 - Bugfix: Changing the payment method before finishing an order via Paypal;",
+            "1.1.3": "PT-4875 - Feature: Plugin configuration subshop compatible; PT-4922 - Bugfix: Redirect to Paypal; PT-4940 - Bugfix: Payment upon invoice in Shopware 4.1.x, order module in Shopware 4.3.2;",
+            "1.1.2": "Problem with database connection under older Shopware versions;",
+            "1.1.1": "PT-4731 - Bugfix: Problem with redirect to Paypal with HTTPS;",
+            "1.1.0": "PT-4716 - Bugfix: Compatibility with other plugins, e.g. Facebook; PT-4838 - Bugfix: Payment instructions on invoices, which are not paid with Paypal payment on invoice;",
+            "1.0.9": "PT-4401 - Feature: Pay upon invoice; PT-4726 - Bugfix: Javascript error; PT-4764 - Bugfix: Wrong database connection;",
+            "1.0.8": "PT-4354 - Bugfix: Wrong method call;",
+            "1.0.7": "PT-3886 - Bugfix: Description of payment method; PT-3887, PT-4184 - Bugfix: Usability improvement in Shopware 5;",
+            "1.0.0": "PT-2396 - First release"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "4.1.3",
+        "maximumVersion": null,
+        "blacklist": [
+            "5.0.0",
+            "5.0.1"
+        ]
+    }
+}
