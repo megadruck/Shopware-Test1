@@ -1,2 +1,3 @@
-/var/cache/
-/config.php
+var/*
+config.*
+web/*
