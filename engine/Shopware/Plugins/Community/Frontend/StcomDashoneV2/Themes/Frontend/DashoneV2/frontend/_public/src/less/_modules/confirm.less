@@ -1,0 +1,67 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .confirm--content,
+    .finish--content {
+        .tos--panel {
+            border: 0 none;
+            margin: 0;
+            .panel--title {
+                .panel-title(40px, 17px, 30px);
+                .unitize(margin-bottom, 10);
+            }
+            .panel--body {
+                .body--revocation {
+                    a {
+
+                    }
+                }
+                .confirm--form {
+                    .list--checkbox {
+
+                    }
+                }
+            }
+        }
+        .information--panel-wrapper,
+        .finish--info {
+            .information--panel,
+            .finish--billing,
+            .finish--shipping,
+            .finish--details {
+                border: 0 none;
+                .panel--title {
+                    .panel-title(40px, 17px, 30px);
+                    .unitize(margin-bottom, 10);
+                }
+                .panel--body {
+                    .panel--actions {
+                        .btn {
+                            .btn-dark();
+                        }
+                    }
+                }
+                &.billing--panel {
+                }
+                &.shipping--panel {
+                }
+                &.payment--panel {
+                }
+            }
+        }
+        .is--primary {
+            .btn-dark();
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

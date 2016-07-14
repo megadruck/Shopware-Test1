@@ -1,0 +1,50 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .newsletter--content {
+        border: 0 none !important;
+        padding: 0;
+        .newsletter--headline {
+            border: 0 none !important;
+            padding: 0;
+            .newsletter--title {
+                color: @theme-primary;
+            }
+            .newsletter--info {
+            }
+        }
+        .newsletter--form {
+            border: 0 none !important;
+            background-color: @theme-bg-light;
+            padding: 0;
+            .panel--title {
+                .panel-title();
+                .unitize(margin-bottom, 10);
+            }
+            .panel--body {
+                input,
+                textarea {
+                    .form-input();
+                }
+                .js--fancy-select {
+                    .form-select();
+                    .unitize(margin-bottom, 2);
+                }
+            }
+        }
+        .btn {
+            .btn-dark();
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

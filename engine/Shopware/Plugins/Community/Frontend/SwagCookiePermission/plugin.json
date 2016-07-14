@@ -1,0 +1,38 @@
+{
+    "label": {
+        "de": "Shopware Cookie entfernen",
+        "en": "Cookie permission"
+    },
+    "copyright": "(c) by Shopware AG",
+    "license": "proprietary",
+    "link": "http://store.shopware.com",
+    "author": "Shopware AG",
+
+    "currentVersion": "1.0.6",
+
+    "changelog": {
+        "de": {
+            "1.0.6": "PT-2925 - Fix: SW5 Kompatibilität",
+            "1.0.5": "PT-2698 - Bugfix: Problem mit 'geoIp' behoben; PT-2454 - Bugfix: Fehlende Übersetzungen ergänzt;",
+            "1.0.4": "Korrektur: Findet nun die GeoIp.dat.",
+            "1.0.3": "Korrektur: Erkenne bereits deklarierte GEOIP-Funktionen",
+            "1.0.2": "Korrektur: SSL-Unterstützung",
+            "1.0.1": "Korrektur: Mail-Fenster"
+        },
+        "en": {
+            "1.0.6": "PT-2925 - Fix: SW5 compatibility",
+            "1.0.5": "PT-2698 - Bugfix: Problem with 'geoIp'; PT-2454 - Bugfix: Add missing translations;",
+            "1.0.4": "Fixed: Can not open /../..GeoIP.dat ",
+            "1.0.3": "Check for redeclare of geoip functions",
+            "1.0.2": "Fixed issue when ssl is active",
+            "1.0.1": "Fixed the mailing window"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "4.1.0",
+        "maximumVersion": null,
+        "blacklist": [
+        ]
+    }
+}

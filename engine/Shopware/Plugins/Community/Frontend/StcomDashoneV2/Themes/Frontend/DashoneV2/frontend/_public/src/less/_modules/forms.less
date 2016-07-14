@@ -1,0 +1,52 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .forms--content {
+        background-color: @theme-bg-light;
+        .forms--headline {
+            border: 0 none;
+            background: none;
+            padding: 0;
+            .forms--title {
+                .panel-title();
+                .unitize(margin-bottom, 10);
+            }
+            .forms--text {
+                padding: 0 20px;
+            }
+        }
+        .forms--container {
+            background: none;
+            border: 0 none;
+            .panel--title {
+                display: none;
+            }
+            .panel--body {
+                input {
+                    .form-input();
+                }
+                textarea {
+                    .form-textarea();
+                }
+                .js--fancy-select {
+                    .form-select();
+                    margin-bottom: 0;
+                }
+            }
+            .btn {
+                .btn-dark();
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

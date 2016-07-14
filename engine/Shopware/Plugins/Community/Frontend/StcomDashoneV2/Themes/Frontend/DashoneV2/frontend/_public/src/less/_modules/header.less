@@ -1,0 +1,472 @@
+.header-main {
+    background: @theme-secondary;
+    border: 0 none;
+    .top-bar {
+        .container {
+            .top-bar--navigation {
+                .navigation--entry {
+                    &.entry--account {
+                        display: none;
+                    }
+                    &.entry--note {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .container {
+        background: none;
+        &.header--navigation {
+            .logo-main {
+                text-align: center;
+                .logo--shop {
+                    width: 100%;
+                }
+            }
+            .shop--navigation {
+                .navigation--list {
+                    .navigation--entry {
+                        .btn,
+                        .entry--link {
+                            background: none;
+                            color: #FFF;
+                            border-radius: 0;
+                            border: 0 none;
+                            &:hover {
+                                color: @theme-primary;
+                                .badge {
+                                    color: #FFF;
+                                    background: @theme-primary;
+                                }
+                            }
+                            .badge {
+                                border: 0 none;
+                            }
+                        }
+                        &.entry--menu-left {
+                            letter-spacing: 3px;
+                            font-size: 19px;
+                            font-weight: 600;
+                            font-family: "Oswald";
+                            .btn {
+                                color: #FFF;
+                                &:hover {
+                                    background: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+    .header-main {
+        .entry--cart {
+            .cart--link {
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .header-main {
+        .unitize-height(115);
+        .top-bar {
+            padding: 0;
+            .container {
+                .top-bar--navigation {
+                    position: relative;
+                    background: @theme-primary;
+                    color: #FFF;
+                    .border-radius-multi(0, 0, 2px, 2px);
+                    .box-shadow(0px 0px 6px 6px rgba(0, 0, 0, 0.2));
+                    .unitize-padding(1, 10, 1, 1);
+                    .unitize-max-height(27);
+                    .top-bar--login {
+                        display: none;
+                        position: absolute;
+                        background: @theme-secondary;
+                        z-index: 9;
+                        top: 27px;
+                        .unitize-padding(10, 10, 2, 10);
+                        width: 101%;
+                        left: -1px;
+                        z-index: 1000;
+                        .register--login-description {
+                            .unitize(margin-bottom, 10);
+                        }
+                        .register--login-field {
+                            .unitize-padding(3, 3);
+                            border-radius: 0;
+                            border: 0 none;
+                            background: #FFF;
+                            .unitize-width(180);
+                            .unitize(margin-bottom, 10);
+                            font-size: 11px;
+                        }
+                        .register--login-lostpassword {
+                            font-size: 11px;
+                        }
+                        .register--login-action {
+                            text-align: right;
+                            margin-top: -24px;
+                            .register--login-btn {
+                                line-height: 20px;
+                                cursor: pointer;
+                                background: @theme-primary;
+                                .unitize-padding(0, 18);
+                                .unitize-height(26);
+                                .unitize-width(114);
+                                text-align: left;
+                                color: #FFF;
+                                position: relative;
+                                .btn-dark();
+                                span {
+                                    left: 8px;
+                                    position: absolute;
+                                    top: 3px;
+                                    font-weight: 400;
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                        &.is--loggedin {
+                            padding: 0;
+                        }
+                        .account--menu {
+                            border: 0 none;
+                            .navigation--headline {
+                                display: none;
+                            }
+                            .account--menu-container {
+                                padding: 0;
+                                .navigation--list {
+                                    display: block;
+                                    background-color: #3b3f42;
+                                    .navigation--entry {
+                                        padding: 0;
+                                        background-color: #3b3f42;
+                                        display: block;
+                                        width: 100%;
+                                        height: auto;
+                                        .navigation--link {
+                                            .unitize-padding(5, 0, 5, 12);
+                                            background: none;
+                                            color: #FFF;
+                                            margin: 0;
+                                            .transition(all .2s ease);
+                                            font-size: 17px;
+                                            &.is--active,
+                                            &:hover {
+                                                color: #FFF;
+                                                background: @theme-secondary;
+                                            }
+                                            &.link--logout {
+                                                border: 0 none;
+                                                font-weight: normal;
+                                                i {
+                                                    display: none;
+                                                }
+                                            }
+                                            &:last-child {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .top-bar--language {
+                        .field--select {
+                            color: #FFF;
+                            font-size: 11px;
+                        }
+                    }
+                    .top-bar--currency {
+                        .field--select {
+                            color: #FFF;
+                            font-size: 11px;
+                        }
+                    }
+                    .navigation--entry {
+                        font-family: "Open Sans", sans-serif;
+                        .entry--link {
+                            color: #FFF;
+                            font-size: 11px;
+                            position: relative;
+                            top: -1px;
+                            i {
+                                position: relative;
+                                top: 2px;
+                                .unitize(margin-right, 2);
+                                font-size: 13px;
+                            }
+                            &:hover {
+                                color: @theme-topbar-text;
+                            }
+                        }
+                        &.entry--account {
+                            display: inline;
+                        }
+                        &.entry--note {
+                            display: inline;
+                            .notes--quantity {
+                                background: @theme-primary;
+                                border-color: @theme-primary;
+                                color: #FFF;
+                                position: absolute;
+                                font-weight: normal;
+                                top: 19px;
+                                right: 78px;
+                            }
+                        }
+                        &.entry--compare {
+                            color: #FFF;
+                            font-size: 11px;
+                            position: relative;
+                            top: -1px;
+                            .compare--quantity {
+                                background: @theme-primary;
+                                border-color: @theme-primary;
+                                color: #FFF;
+                                position: absolute;
+                                font-weight: normal;
+                                top: 19px;
+                                right: -6px;
+                                text-align: center;
+                            }
+                            .compare--list {
+                                &::after {
+                                    left: auto;
+                                    right: 78px;
+                                }
+                            }
+                        }
+                        &.entry--service {
+                            color: #FFF;
+                            font-size: 11px;
+                            .service--list {
+                                background: #FFF;
+                                border-color: #D7D7D7;
+                                border-radius: 0;
+                                .unitize-padding(15, 15);
+                                .service--entry {
+                                    font-family: "Open Sans", sans-serif;
+                                    .service--link {
+                                        font-size: 11px;
+                                        color: #777;
+                                        &:hover {
+                                            background: #f0f0f0;
+                                            color: @theme-primary;
+                                        }
+                                    }
+                                }
+                            }
+                            &:hover {
+                                color: @theme-topbar-text;
+                            }
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .container {
+            &.header--navigation {
+                .logo-main {
+                    width: 40%;
+                    text-align: left;
+                    padding: 0;
+                    .logo--link {
+                        .unitize(margin-top, 6);
+                    }
+                }
+                .shop--navigation {
+                    width: 60%;
+                    .navigation--list {
+                        .navigation--entry {
+                            .btn {
+
+                            }
+                            .entry--link {
+                            }
+                            &.entry--notepad {
+                                display: none;
+                            }
+                            &.entry--account {
+                                display: none;
+                            }
+                            &.entry--search {
+                                top: 4px;
+                                left: -4%;
+                                .main-search--form {
+                                    .main-search--field {
+                                        .unitize-height(30);
+                                        .unitize-padding(0, 10);
+                                        &:focus {
+                                            border-width: 2px;
+                                            border-color: @theme-primary;
+                                        }
+                                    }
+                                    .main-search--button {
+                                        top: -2px;
+                                        right: -2px;
+                                        .icon--search {
+                                            font-size: 18px;
+                                            color: @theme-primary;
+                                        }
+                                    }
+                                    .form--ajax-loader {
+                                        top: 5px;
+                                    }
+                                }
+                                .main-search--results {
+                                    .results--list {
+                                        background: #3b3f42;
+                                        border: 0 none;
+                                        padding: 0;
+                                        border-radius: 0;
+                                        .list--entry {
+                                            border: 0 none;
+                                            .transition(background 0.2s ease);
+                                            .search-result--link {
+                                                padding: 3px 12px 3px 6px;
+                                                .entry--media {
+                                                    .media--image {
+                                                    }
+                                                }
+                                                .entry--name {
+                                                    color: #FFF;
+                                                }
+                                                .entry--price {
+                                                    color: #FFF;
+                                                    .product--price {
+                                                    }
+                                                }
+                                            }
+                                            &:hover {
+                                                background: @theme-secondary;
+                                                .entry--name,
+                                                .entry--price {
+                                                    color: #FFF;
+                                                }
+                                            }
+                                            &:first-child {
+                                                z-index: 1;
+                                                position: relative;
+                                            }
+                                        }
+                                        .entry--all-results {
+                                            .unitize-padding(3, 12);
+                                            .entry--all-results-link {
+                                                padding: 0;
+                                                .icon--arrow-right {
+                                                    &::before {
+                                                    }
+                                                }
+                                            }
+                                            .entry--all-results-number {
+
+                                            }
+                                            &:hover {
+                                                background: @theme-secondary;
+                                            }
+                                        }
+                                        &::after {
+                                            background: #3b3f42;
+                                            border-color: #3b3f42;
+                                        }
+                                    }
+                                }
+                            }
+                            &.entry--cart {
+                                .cart--link {
+                                    // .btn
+                                    .unitize-width(200);
+                                    border: 0 none;
+                                    background: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    .cart--background {
+                                        position: absolute;
+                                        right: 199px;
+                                        top: 6px;
+                                        .unitize-height(55);
+                                        .unitize-width(44);
+                                        background: url(../../img/cart.png) no-repeat;
+                                    }
+                                    .cart--display {
+                                        display: block;
+                                        padding: 0;
+                                        margin: 0;
+                                        color: @theme-primary;
+                                        font-size: 21px;
+                                        font-family: 'Open Sans';
+                                        text-transform: uppercase;
+                                        font-weight: 600;
+                                        top: 5px;
+                                        position: relative;
+                                        .unitize-width(200);
+                                        text-align: center;
+                                    }
+                                    .badge {
+                                        // .cart--quantity
+                                        display: none;
+                                    }
+                                    .icon--basket {
+                                        display: none;
+                                    }
+                                    .cart--amount {
+                                        color: #FFF;
+                                        font-weight: 400;
+                                        text-align: center;
+                                        font-family: 'Open Sans', "Helvetica Neue", "Open Sans", sans-serif;
+                                        font-size: 16px;
+                                        margin-top: -6px;
+                                        display: block;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
+.is--act-shippingPayment{
+    .header-main {
+        height: 4.1875rem;
+    }
+    .logo-main{
+      width: 100% !important;
+      .logo--shop {
+          width: 40% !important;
+      }
+      .logo--supportinfo{
+        color: #FFF;
+      }
+    }
+}
+.header-main .top-bar .container .top-bar--navigation .navigation--entry.entry--compare:hover {
+    color: @theme-topbar-text;
+}
+.header-main .top-bar .container .top-bar--navigation .top-bar--login{
+  padding: 0.625rem 0.625rem 0.625rem;
+}
