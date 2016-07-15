@@ -67,7 +67,7 @@ $logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));
     /**@var $articleClass sArticles*/
  
     //$sql = $arguments->getReturn();
- 
+  
 
 
     
