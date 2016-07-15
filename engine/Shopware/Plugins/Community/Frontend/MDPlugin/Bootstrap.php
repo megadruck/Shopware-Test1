@@ -44,7 +44,7 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
     public function install()
     {
         $this->registerEvents();
-        return true;
+        return array('success' => true, 'invalidateCache' => array('frontend','proxy'));;
     }
     
     
@@ -60,45 +60,21 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
 
 public function getBasketFilter(Enlight_Event_EventArgs $arguments)
 {     
-    
+    $logger = Shopware()->Container()->get('debuglogger');
+$logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));
+
+
     /**@var $articleClass sArticles*/
-    $articleClass = $arguments->getSubject();
  
-    $categoryId = $arguments->getId();
- 
-    $sql = $arguments->getReturn();
+    //$sql = $arguments->getReturn();
  
 
-    $sql = "
-		SELECT 
-                s_order_basket.*, 
-                a.packunit, 
-                minpurchase,
-                taxID,
-                IF (ad.instock,ad.instock,av.instock) AS `instock`,
-                suppliernumber,
-                maxpurchase,
-                purchasesteps,
-                purchaseunit,
-                unitID,laststock,
-                shippingtime,
-                releasedate, 
-                releasedate AS sReleaseDate,
-                stockmin,esd, 
-                su.description AS itemUnit, 
-                ob_attr1,ob_attr2,ob_attr3,ob_attr4,ob_attr5,ob_attr6, attr1,attr2,attr3,attr4,attr5,attr6,attr7,attr8,attr9,attr10,attr11,attr12,attr13,attr14,attr15,attr16,attr17,attr18,attr19,attr20 
-                
-                FROM 
-                s_order_basket	LEFT JOIN s_articles_details AS ad ON ad.ordernumber = s_order_basket.ordernumber
-                LEFT JOIN s_articles_attributes AS at ON at.articledetailsID = ad.id
-		LEFT JOIN s_articles_groups_value AS av ON av.ordernumber = s_order_basket.ordernumber
-		LEFT JOIN s_articles a ON (a.id = ad.articleID OR a.id = av.articleID)
-		LEFT JOIN s_core_units su ON su.id = a.unitID
-		WHERE sessionID=?
-		ORDER BY id ASC, datum DESC";
+
     
-                
+    $sql ="SELECT  * FROM s_order_basket WHERE sessionID=? ORDER BY id ASC, datum DESC";
 
+                
+    
         return $sql;
 }
 
