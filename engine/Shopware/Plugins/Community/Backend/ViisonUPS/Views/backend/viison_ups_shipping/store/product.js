@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonUPSShipping.store.Product",{ extend:"Shopware.apps.ViisonShippingCommonShipping.store.Product",storeId:"viison-ups-product-store",getProductsURL:'{url controller="ViisonUPSShipping" action="getProducts"}'});

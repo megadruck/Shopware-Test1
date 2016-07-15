@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonShippingCommonFreeFormLabels.store.Country",{ extend:"Ext.data.Store",model:Shopware.apps.Base.model.Country,constructor:function(){ this.setProxy({ type:"ajax",url:'{url controller="ViisonShippingCommonFreeFormLabels" action="getCountries"}',reader:{ type:"json",root:"data",totalProperty:"total"}});this.callParent(arguments)}});

@@ -21,6 +21,7 @@
  * trademark license. Therefore any rights, title and interest in
  * our trademarks remain entirely with us.
  */
+use Doctrine\DBAL\Query\QueryBuilder;
 use Shopware\Models\Category\Category;
 
 /**
@@ -125,7 +126,7 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
      */
     public function getCategoryComponent()
     {
-        return Shopware()->CategoryDenormalization();
+        return Shopware()->Container()->get('CategoryDenormalization');
     }
 
     /**
@@ -403,7 +404,7 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
      */
     public function getTemplateSettingsAction()
     {
-        $categoryTemplates = explode(';', Shopware()->Config()->categoryTemplates);
+        $categoryTemplates = array_filter(explode(';', Shopware()->Config()->categoryTemplates));
         $data = array();
         foreach ($categoryTemplates as $templateConfigRaw) {
             list($template, $name) = explode(':', $templateConfigRaw);
@@ -439,44 +440,35 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
         $offset = $this->Request()->getParam('start', 0);
         $limit = $this->Request()->getParam('limit', 20);
         $search = $this->Request()->getParam('search', '');
-        $conditions = '';
+        $params = [
+            'categoryId' => $categoryId
+        ];
+        /** @var QueryBuilder $builder */
+        $builder = $this->get('dbal_connection')->createQueryBuilder();
+        $builder->select(array(
+            'SQL_CALC_FOUND_ROWS articles.id as articleId',
+            'articles.name',
+            'details.ordernumber as number',
+            'suppliers.name as supplierName'
+        ));
+        $builder->from('s_articles', 'articles')
+            ->leftJoin('articles', 's_articles_categories', 'categories', 'articles.id = categories.articleID AND categories.categoryID = :categoryId')
+            ->join('articles', 's_articles_supplier', 'suppliers', 'articles.supplierID = suppliers.id')
+            ->join('articles', 's_articles_details', 'details', 'articles.main_detail_id = details.id')
+            ->andWhere('categories.categoryID IS NULL');
 
         if (!empty($search)) {
-            $search = '%' . $search . '%';
-            $conditions = "
-            AND (
-                   s_articles.name LIKE '" . $search . "'
-                OR s_articles_details.ordernumber LIKE '" . $search . "'
-                OR s_articles_supplier.name LIKE '" . $search . "'
-            )
-            ";
+            $builder->andWhere('(articles.name LIKE :search OR details.ordernumber LIKE :search OR suppliers.name LIKE :search)');
+            $params['search'] = "%".$search."%";
         }
 
-        $sql = "
-            SELECT SQL_CALC_FOUND_ROWS
-                s_articles.id as articleId,
-                s_articles.name,
-                s_articles_details.ordernumber as number,
-                s_articles_supplier.name as supplierName
-            FROM s_articles
-               INNER JOIN s_articles_details
-                 ON s_articles_details.id = s_articles.main_detail_id
-               INNER JOIN s_articles_supplier
-                 ON s_articles.supplierID = s_articles_supplier.id
-               LEFT JOIN s_articles_categories
-                 ON s_articles.id = s_articles_categories.articleID
-                 AND s_articles_categories.categoryID = :categoryId
-            WHERE s_articles_categories.id IS NULL
-            " . $conditions . "
-            LIMIT $offset , $limit
-        ";
+        $builder->setFirstResult($offset);
+        $builder->setMaxResults($limit);
+        $builder->setParameters($params);
+        $result = $builder->execute()->fetchAll();
 
-        $result = Shopware()->Db()->fetchAll($sql, array(
-            'categoryId' => (int)$categoryId
-        ));
-
-        $sql = "SELECT FOUND_ROWS() as count";
-        $count = Shopware()->Db()->fetchOne($sql);
+        $builder->select('FOUND_ROWS() as count');
+        $count = $builder->execute()->fetchColumn();
 
         $this->View()->assign(array(
             'success' => true,
@@ -675,7 +667,6 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
             $params['stream'] = Shopware()->Models()->find('Shopware\Models\ProductStream\ProductStream', $params['streamId']);
         }
 
-        $params = $this->prepareAttributeAssociatedData($params);
         $params = $this->prepareCustomerGroupsAssociatedData($params);
         $params = $this->prepareMediaAssociatedData($params);
 
@@ -684,6 +675,10 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
         unset($params['imagePath']);
         unset($params['parentId']);
         unset($params['parent']);
+
+        if (!array_key_exists('template', $params)) {
+            $params['template'] = null;
+        }
 
         $categoryModel->fromArray($params);
         Shopware()->Models()->flush();
@@ -738,18 +733,6 @@ class Shopware_Controllers_Backend_Category extends Shopware_Controllers_Backend
         }
         $data['customerGroups'] = $customerGroups;
 
-        return $data;
-    }
-
-    /**
-     * This method loads the article models for the passed ids in the "articles" parameter.
-     *
-     * @param $data
-     * @return array
-     */
-    protected function prepareAttributeAssociatedData($data)
-    {
-        $data['attribute'] = $data['attribute'][0];
         return $data;
     }
 

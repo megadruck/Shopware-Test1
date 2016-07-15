@@ -49,7 +49,8 @@ Ext.define('Shopware.apps.PluginManager.controller.Navigation', {
         listingPage: 3,
         accountPage: 4,
         licencePage: 5,
-        premiumPluginsPage: 6
+        premiumPluginsPage: 6,
+        expiredPluginsPage: 7
     },
 
     animationSpeed: 150,
@@ -84,10 +85,12 @@ Ext.define('Shopware.apps.PluginManager.controller.Navigation', {
         });
 
         Shopware.app.Application.on({
+            'display-installed-plugins': me.displayLocalPluginPage,
             'display-plugin': me.displayDetailPage,
             'display-plugin-by-name': me.displayDetailPageByName,
             'plugin-manager-display-updates': me.displayPluginUpdatesPage,
             'display-premium-plugins': me.displayPremiumPluginsPage,
+            'display-expired-plugins': me.displayExpiredPluginsPage,
             scope: me
         });
 
@@ -242,6 +245,14 @@ Ext.define('Shopware.apps.PluginManager.controller.Navigation', {
         Shopware.app.Application.fireEvent('enable-premium-plugins-mode');
 
         me.switchView(me.cards.premiumPluginsPage);
+    },
+
+    displayExpiredPluginsPage: function() {
+        var me = this;
+
+        Shopware.app.Application.fireEvent('enable-expired-plugins-mode');
+
+        me.switchView(me.cards.expiredPluginsPage);
     },
 
     displayPluginUpdatesPage: function () {

@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonUPSShipping.view.edit.Panel",{ override:"Shopware.apps.Shipping.view.edit.Panel",initComponent:function(){ this.addDispatchServiceProviderTabClass("Shopware.apps.ViisonUPSShipping.view.edit.Tab");this.callParent(arguments)}});

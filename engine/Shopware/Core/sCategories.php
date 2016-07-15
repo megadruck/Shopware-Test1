@@ -344,11 +344,9 @@ class sCategories
             'blog'              => $category->isBlog(),
             'path'              => $path,
             'external'          => $category->getExternalLink(),
-            'showFilterGroups'  => $category->displayPropertySets(),
             'hideFilter'        => !$category->displayFacets(),
             'hideTop'           => !$category->displayInNavigation(),
             'hidetop'           => !$category->displayInNavigation(),
-            'noViewSelect'      => !$category->allowViewSelect(),
             'attribute'         => $attribute,
             'media'             => $media,
             'description'       => $category->getName(),
@@ -550,7 +548,6 @@ class sCategories
                 'cmstext'         => $category['cmsText'],
                 'metaKeywords'    => $category['metaKeywords'],
                 'metaDescription' => $category['metaDescription'],
-                'noviewselect'    => $category['noViewSelect'],
                 'childrenCount'   => (int) $category['childrenCount'],
                 'sSelf'           => $detailUrl,
                 'sSelfCanonical'  => $canonical,
@@ -561,18 +558,6 @@ class sCategories
         );
 
         $category['productBoxLayout'] = $this->getProductBoxLayout($category['id']);
-
-        if (empty($category['template'])) {
-            $category['template'] = $this->config->get('categoryDefaultTpl');
-        }
-
-        if (empty($category['template'])) {
-            $category['template'] = 'article_listing_3col.tpl';
-        }
-
-        if (preg_match('#article_listing_([1-4]col).tpl#', $category['template'], $match)) {
-            $category['layout'] = $match[1];
-        }
 
         return $category;
     }

@@ -27,7 +27,7 @@
  */
 class Shopware_Plugins_Frontend_InputFilter_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
-    public $sqlRegex = 's_core_|s_order_|s_user|benchmark.*\(|(?:insert|replace).+into|update.+set|(?:delete|select).+from|(?:alter|rename|create|drop|truncate).+(?:database|table)|union.+select|prepare.+from.+execute';
+    public $sqlRegex = 's_core_|s_order_|s_user|benchmark.*\(|(?:insert|replace).+into|update.+set|(?:delete|select).+from|(?:alter|rename|create|drop|truncate).+(?:database|table|procedure)|union.+select|prepare.+from.+execute';
     public $xssRegex = 'javascript:|src\s*=|on[a-z]+\s*=|style\s*=';
     public $rfiRegex = '\.\./|\\0';
 
@@ -52,7 +52,6 @@ class Shopware_Plugins_Frontend_InputFilter_Bootstrap extends Shopware_Component
         $form->setElement('boolean', 'xss_protection', array('label' => 'XSS-Schutz aktivieren', 'value' => true));
         $form->setElement('boolean', 'rfi_protection', array('label' => 'RemoteFileInclusion-Schutz aktivieren', 'value' => true));
         $form->setElement('textarea', 'own_filter', array('label' => 'Eigener Filter', 'value' => null));
-        $form->setElement('checkbox', 'refererCheck', array('label' => 'Referer-Check aktivieren', 'value' => 1));
 
         return true;
     }
@@ -71,27 +70,6 @@ class Shopware_Plugins_Frontend_InputFilter_Bootstrap extends Shopware_Component
 
         if ($request->getModuleName() == 'backend' || $request->getModuleName() == 'api') {
             return;
-        }
-
-        if (!empty($config->refererCheck)
-            && $request->isPost()
-            && in_array($request->getControllerName(), array('account'))
-            && ($referer = $request->getHeader('Referer')) !== null
-            && strpos($referer, 'http') === 0
-        ) {
-            /** @var $shop Shopware_Models_Shop */
-            $shop = Shopware()->Shop();
-            $validHosts = array(
-                $shop->getHost(),
-                $shop->getSecureHost()
-            );
-            $host = parse_url($referer, PHP_URL_HOST);
-            $hostWithPort = $host . ':' .parse_url($referer, PHP_URL_PORT);
-            if (!in_array($host, $validHosts) && !in_array($hostWithPort, $validHosts)) {
-                $response->setException(
-                    new Exception('Referer check for frontend session failed')
-                );
-            }
         }
 
         $intVars = array('sCategory', 'sContent', 'sCustom');

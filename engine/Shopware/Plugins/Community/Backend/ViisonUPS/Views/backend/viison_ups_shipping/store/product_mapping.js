@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonUPSShipping.store.ProductMapping",{ extend:"Shopware.apps.ViisonShippingCommonShipping.store.ProductMapping",model:"Shopware.apps.ViisonUPSShipping.model.ProductMapping",getDispatchProductMappingURL:'{url controller="ViisonUPSShipping" action="getDispatchProductMapping"}'});

@@ -82,7 +82,7 @@ class Order extends ModelEntity
     /**
      * Contains the alphanumeric order number. If the
      * @var string $number
-     * @ORM\Column(name="ordernumber", type="string", length=30, nullable=true)
+     * @ORM\Column(name="ordernumber", type="string", length=255, nullable=true)
      */
     private $number;
 
@@ -1057,7 +1057,10 @@ class Order extends ModelEntity
             }
         }
 
-        if ($this->net) {
+        if ($this->taxFree) {
+            $this->invoiceAmountNet = $invoiceAmount + $this->invoiceShippingNet;
+            $this->invoiceAmount = $this->invoiceAmountNet;
+        } elseif ($this->net) {
             $this->invoiceAmountNet = $invoiceAmount + $this->invoiceShippingNet;
             $this->invoiceAmount = $invoiceAmountNet + $this->invoiceShipping;
         } else {

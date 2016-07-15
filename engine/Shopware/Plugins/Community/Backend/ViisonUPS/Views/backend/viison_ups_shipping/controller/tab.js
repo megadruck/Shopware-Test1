@@ -1,2 +1,0 @@
-//{namespace name="backend/viison_ups/shipping"}
-Ext.define("Shopware.apps.ViisonUPSShipping.controller.Tab",{ extend:"Shopware.apps.ViisonShippingCommonShipping.controller.Tab",tabAlias:"shipping-viison-ups-tab",productStoreClass:"Shopware.apps.ViisonUPSShipping.store.Product",productMappingStoreClass:"Shopware.apps.ViisonUPSShipping.store.ProductMapping",productMappingModelClass:"Shopware.apps.ViisonUPSShipping.model.ProductMapping",dispatchServiceProviderName:"UPS"});

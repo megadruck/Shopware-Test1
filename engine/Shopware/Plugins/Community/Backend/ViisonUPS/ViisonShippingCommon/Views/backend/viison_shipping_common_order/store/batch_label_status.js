@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonShippingCommonOrder.store.BatchLabelStatus",{ extend:"Ext.data.Store",model:"Shopware.apps.ViisonShippingCommonOrder.model.BatchLabelStatus",autoLoad:false,sorters:[{ property:"success",direction:"ASC"},{ property:"orderNumber",direction:"DESC"}]});

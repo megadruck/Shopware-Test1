@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonShippingCommonShipping.store.ProductMapping",{ extend:"Ext.data.Store",pageSize:10,autoLoad:false,constructor:function(){ this.setProxy({ type:"ajax",url:this.getDispatchProductMappingURL,reader:{ type:"json",root:"data",totalProperty:"total"}});this.callParent(arguments)}});

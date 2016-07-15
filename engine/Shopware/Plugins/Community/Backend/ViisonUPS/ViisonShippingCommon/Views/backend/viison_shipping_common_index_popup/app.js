@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonShippingCommonIndexPopup",{ extend:"Enlight.app.SubApplication",name:"Shopware.apps.ViisonShippingCommonIndexPopup",bulkLoad:true,loadPath:'{url controller="ViisonShippingCommonIndexPopup" action="load"}',controllers:["Main"],views:["Window"],launch:function(){ var i=this,n=i.getController("Main");return n.mainWindow}});

@@ -1,2 +1,0 @@
-//{namespace name="backend/viison_ups_order/order"}
-Ext.define("Shopware.apps.ViisonUPSOrder.view.detail.Tab",{ extend:"Shopware.apps.ViisonShippingCommonOrder.view.detail.Tab",alias:"widget.order-viison-ups-tab",cls:Ext.baseCSSPrefix+"order-viison-ups-tab",title:'{s name=tab/title}{/s}',constructor:function(){ this.packagingTypeStore=Ext.create("Shopware.apps.ViisonUPSShipping.store.PackagingType").load();this.callParent(arguments)}});

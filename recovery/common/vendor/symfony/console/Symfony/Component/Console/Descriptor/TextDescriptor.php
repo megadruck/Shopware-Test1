@@ -21,6 +21,8 @@ use Symfony\Component\Console\Input\InputOption;
  * Text descriptor.
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
+ *
+ * @internal
  */
 class TextDescriptor extends Descriptor
 {
@@ -162,7 +164,7 @@ class TextDescriptor extends Descriptor
             }
 
             $this->writeText("<comment>Usage:</comment>\n", $options);
-            $this->writeText(" [options] command [arguments]\n\n", $options);
+            $this->writeText(" command [options] [arguments]\n\n", $options);
             $this->writeText('<comment>Options:</comment>', $options);
 
             $inputOptions = $application->getDefinition()->getOptions();
@@ -187,7 +189,7 @@ class TextDescriptor extends Descriptor
             $width = $this->getColumnWidth($description->getCommands());
 
             if ($describedNamespace) {
-                $this->writeText(sprintf("<comment>Available commands for the \"%s\" namespace:</comment>", $describedNamespace), $options);
+                $this->writeText(sprintf('<comment>Available commands for the "%s" namespace:</comment>', $describedNamespace), $options);
             } else {
                 $this->writeText('<comment>Available commands:</comment>', $options);
             }

@@ -175,7 +175,7 @@ class Shopware_Controllers_Backend_Mail extends Shopware_Controllers_Backend_Ext
 
         /** @var $shop \Shopware\Models\Shop\Shop **/
         $shop = Shopware()->Models()->getRepository('Shopware\Models\Shop\Shop')->getActiveDefault();
-        $shop->registerResources(Shopware()->Bootstrap());
+        $shop->registerResources();
 
         $defaultContext = array(
             'sShop'    => Shopware()->Config()->get('ShopName'),
@@ -233,7 +233,6 @@ class Shopware_Controllers_Backend_Mail extends Shopware_Controllers_Backend_Ext
         $params = $this->Request()->getParams();
 
         $mail = new Mail();
-        $params['attribute'] = $params['attribute'][0];
         $params['dirty'] = 1;
         $mail->fromArray($params);
 
@@ -271,7 +270,6 @@ class Shopware_Controllers_Backend_Mail extends Shopware_Controllers_Backend_Ext
         }
 
         $params = $this->Request()->getParams();
-        $params['attribute'] = $params['attribute'][0];
         $params['dirty'] = 1;
 
         $mail->fromArray($params);
@@ -407,7 +405,7 @@ class Shopware_Controllers_Backend_Mail extends Shopware_Controllers_Backend_Ext
         $recipient = Shopware()->Config()->get('mail');
 
         $shop = Shopware()->Models()->getRepository('Shopware\Models\Shop\Shop')->getActiveDefault();
-        $shop->registerResources(Shopware()->Bootstrap());
+        $shop->registerResources();
 
         $defaultContext = array(
             'sShop'    => Shopware()->Config()->get('ShopName'),
@@ -455,7 +453,7 @@ class Shopware_Controllers_Backend_Mail extends Shopware_Controllers_Backend_Ext
         $compiler = new Shopware_Components_StringCompiler($this->View()->Engine());
 
         $shop = Shopware()->Models()->getRepository('Shopware\Models\Shop\Shop')->getActiveDefault();
-        $shop->registerResources(Shopware()->Bootstrap());
+        $shop->registerResources();
 
         $defaultContext = array(
             'sShop'    => Shopware()->Config()->get('ShopName'),

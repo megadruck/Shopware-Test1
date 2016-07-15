@@ -1,2 +1,0 @@
-//{namespace name="backend/viison_shipping_common_order/order"}
-Ext.define("Shopware.apps.ViisonUPSOrder.controller.List",{ override:"Shopware.apps.ViisonShippingCommonOrder.controller.ListDispatch",init:function(){ this.callParent(arguments);this.addDispatchServiceProviderTabControllerClass("Shopware.apps.ViisonUPSOrder.controller.Tab");this.addListDispatchActionsControllerClass("Shopware.apps.ViisonUPSOrder.controller.ListDispatchActions")}});

@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonUPSOrder.view.detail.Window",{ override:"Shopware.apps.Order.view.detail.Window",initComponent:function(){ this.addDispatchServiceProviderTab({ dispatchServiceProviderPanelClass:"Shopware.apps.ViisonUPSOrder.view.detail.Tab",shippingLabelStoreClass:"Shopware.apps.ViisonUPSOrder.store.ShippingLabel"});this.callParent(arguments)}});

@@ -79,6 +79,7 @@ Ext.define('Shopware.apps.PluginManager.controller.Main', {
         Shopware.app.Application.on({
             'load-update-listing': me.loadUpdateListing,
             'enable-premium-plugins-mode': me.enablePremiumPluginsMode,
+            'enable-expired-plugins-mode': me.enableExpiredPluginsMode,
             scope: me
         });
 
@@ -93,6 +94,15 @@ Ext.define('Shopware.apps.PluginManager.controller.Main', {
         me.getNavigation().hide();
     },
 
+    enableExpiredPluginsMode: function() {
+        var me = this,
+            listingWindow = me.getListingWindow();
+
+        listingWindow.setWidth(1028);
+        listingWindow.setTitle('{s name="expired_plugins/title"}Expired plugins{/s}');
+        me.getNavigation().hide();
+    },
+
     loadUpdateListing: function(callback) {
         var me = this,
             navigation = me.getNavigation(),
@@ -101,11 +111,16 @@ Ext.define('Shopware.apps.PluginManager.controller.Main', {
         updatePage.listing.resetListing();
 
         updatePage.updateStore.load({
-            callback: function(records) {
+            callback: function(records, operation, success) {
+                if (operation.response && operation.response.responseText) {
+                    var result = Ext.JSON.decode(operation.response.responseText);
+                    if (result.loginRecommended) {
+                        Shopware.app.Application.fireEvent('open-login', function() {});
+                    }
+                }
+
                 if (records) {
                     navigation.setUpdateCount(records.length);
-
-                    Ext.create('Shopware.notification.ExpiredLicence').check();
                 }
 
                 if (Ext.isFunction(callback)) {
@@ -137,6 +152,9 @@ Ext.define('Shopware.apps.PluginManager.controller.Main', {
         if (me.subApplication.action == 'PremiumPlugins') {
             Shopware.app.Application.fireEvent('display-premium-plugins');
             return;
+        }
+        if (me.subApplication.action == 'ExpiredPlugins') {
+            Shopware.app.Application.fireEvent('display-expired-plugins');
         }
 
         Ext.Function.defer(function () {

@@ -22,7 +22,12 @@
                 </div>
             {/block}
 
-  
+            {* Copyright *}
+            {block name="frontend_index_minimal_footer_copyright"}
+                <div class="footer--copyright">
+                    {s name="IndexCopyright" namespace="frontend/index/footer"}{/s}
+                </div>
+            {/block}
         {/if}
     </div>
 {/block}

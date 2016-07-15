@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonUPSOrder.store.ShippingLabel",{ extend:"Shopware.apps.ViisonShippingCommonOrder.store.ShippingLabel",model:"Shopware.apps.ViisonUPSOrder.model.ShippingLabel",getAllLabelsURL:'{url controller="ViisonUPSOrder" action="getAllLabels"}'});

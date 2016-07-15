@@ -214,10 +214,10 @@ Ext.define('Shopware.apps.Order.view.list.List', {
 
         var pageSize = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: me.snippets.paging.pageSize,
-            labelWidth: 120,
+            labelWidth: 155,
             cls: Ext.baseCSSPrefix + 'page-size',
             queryMode: 'local',
-            width: 180,
+            width: 250,
             listeners: {
                 scope: me,
                 select: me.onPageSizeChange
@@ -310,7 +310,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
                 renderer: me.dispatchColumn
             },
             {
-                header: me.snippets.columns.shopName, 
+                header: me.snippets.columns.shopName,
                 dataIndex: 'shopId',
                 flex:1,
                 renderer: me.shopColumn
@@ -339,7 +339,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
                     valueField: 'id',
                     displayField: 'description',
                     store : me.orderStatusStore,
-                    editable: false 
+                    editable: false
 
                 }
             },
@@ -360,7 +360,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
             },
             me.createActionColumn()
         ];
- 
+
         return columns;
     },
 
@@ -373,7 +373,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
                 me.createOpenCustomerColumn(),
                 me.createDeleteOrderColumn(),
                 me.createEditOrderColumn()
-            ] 
+            ]
         });
     },
 
@@ -383,7 +383,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
         return {
             iconCls:'sprite-pencil',
             action:'editOrder',
-            tooltip:me.snippets.columns.detail, 
+            tooltip:me.snippets.columns.detail,
             /**
              * Add button handler to fire the showDetail event which is handled
              * in the list controller.
@@ -394,7 +394,7 @@ Ext.define('Shopware.apps.Order.view.list.List', {
 
                 me.fireEvent('showDetail', record);
             }
-        } 
+        }
     },
 
 

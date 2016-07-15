@@ -1,2 +1,0 @@
-//{namespace name=backend/viison_shipping_common_free_form_labels/main}
-Ext.define("Shopware.apps.ViisonShippingCommonFreeFormLabels.controller.Main",{ extend:"Shopware.apps.ViisonShippingCommonOrder.controller.ShippingLabels",init:function(){ var i=this;i.callParent(arguments);i.countriesStore=Ext.create("Shopware.apps.ViisonShippingCommonFreeFormLabels.store.Country").load({ callback:function(){ var e=i.getView("Window").create();e.show()}})}});

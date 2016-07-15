@@ -91,16 +91,6 @@ class Category extends Extendable implements \JsonSerializable
     /**
      * @var boolean
      */
-    protected $allowViewSelect;
-
-    /**
-     * @var boolean
-     */
-    protected $displayPropertySets;
-
-    /**
-     * @var boolean
-     */
     protected $displayFacets;
 
     /**
@@ -299,14 +289,6 @@ class Category extends Extendable implements \JsonSerializable
     }
 
     /**
-     * @param boolean $allowViewSelect
-     */
-    public function setAllowViewSelect($allowViewSelect)
-    {
-        $this->allowViewSelect = $allowViewSelect;
-    }
-
-    /**
      * @param boolean $displayFacets
      */
     public function setDisplayFacets($displayFacets)
@@ -320,14 +302,6 @@ class Category extends Extendable implements \JsonSerializable
     public function setDisplayInNavigation($displayInNavigation)
     {
         $this->displayInNavigation = $displayInNavigation;
-    }
-
-    /**
-     * @param boolean $displayPropertySets
-     */
-    public function setDisplayPropertySets($displayPropertySets)
-    {
-        $this->displayPropertySets = $displayPropertySets;
     }
 
     /**
@@ -357,14 +331,6 @@ class Category extends Extendable implements \JsonSerializable
     /**
      * @return boolean
      */
-    public function allowViewSelect()
-    {
-        return $this->allowViewSelect;
-    }
-
-    /**
-     * @return boolean
-     */
     public function isBlog()
     {
         return $this->blog;
@@ -384,14 +350,6 @@ class Category extends Extendable implements \JsonSerializable
     public function displayInNavigation()
     {
         return $this->displayInNavigation;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function displayPropertySets()
-    {
-        return $this->displayPropertySets;
     }
 
     /**

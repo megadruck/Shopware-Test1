@@ -52,7 +52,7 @@ Ext.define('Shopware.apps.Order.view.detail.Communication', {
     /**
      * An optional extra CSS class that will be added to this component's Element.
      */
-    cls: Ext.baseCSSPrefix + 'communication-panel',
+    cls: Ext.baseCSSPrefix + 'communication-panel shopware-form',
 
     /**
      * A shortcut for setting a padding style on the body element. The value can either be a number to be applied to all sides, or a normal css string describing padding.
@@ -69,7 +69,7 @@ Ext.define('Shopware.apps.Order.view.detail.Communication', {
      * @object
      */
     snippets:{
-        title: '{s name=communication/window_title}Communication{/s}', 
+        title: '{s name=communication/window_title}Communication{/s}',
         internal: {
             title: '{s name=communication/internal/title}Internal communication{/s}',
             text: '{s name=communication/internal/text}This comment box is for internal communication. The field is not visible in the frontend and for the customer at any given time.{/s}',

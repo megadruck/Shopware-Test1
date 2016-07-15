@@ -1,1 +1,0 @@
-Ext.define("Shopware.apps.ViisonShippingCommonShipping.model.Product",{ extend:"Ext.data.Model",fields:[{ name:"id",type:"int"},{ name:"name",type:"string"},{ name:"code",type:"string"},{ name:"packageDimensionsRequired",type:"bool"}]});
