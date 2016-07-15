@@ -62,32 +62,33 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
     public function install()
     {
         $this->registerEvents();
-        return array('success' => true, 'invalidateCache' => array('frontend','proxy'));;
+        return array('success' => true, 'invalidateCache' => array('frontend','proxy'));
     }
     
     
     
     private function registerEvents()
-{
-    $this->subscribeEvent(
-        'Shopware_Modules_Basket_GetBasket_FilterSQL',
-        'getBasketFilter'
-    );
-}
+    {
+        $this->subscribeEvent(
+            'Shopware_Modules_Basket_GetBasket_FilterSQL',
+            'getBasketFilter'
+        );
+    }
 
 
-public function getBasketFilter(Enlight_Event_EventArgs $arguments)
-{     
-    
-$logger = Shopware()->Container()->get('debuglogger');
-$logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
+    public function getBasketFilter(Enlight_Event_EventArgs $arguments)
+    {     
 
-//$sql = $arguments->getReturn();
-  
-    $sql ="SELECT  * FROM s_order_basket WHERE sessionID=? ORDER BY id ASC, datum DESC";
-//    Demo query. result is not important
-    return $sql;
-}
+        $logger = Shopware()->Container()->get('debuglogger');
+        $logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
+
+        //$sql = $arguments->getReturn();
+
+        $sql ="SELECT  * FROM s_order_basket WHERE sessionID=? ORDER BY id ASC, datum DESC";
+        //    Demo query. result is not important
+        
+        return $sql;
+    }
 
 
 }
