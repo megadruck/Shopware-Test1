@@ -60,22 +60,15 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
 
 public function getBasketFilter(Enlight_Event_EventArgs $arguments)
 {     
-    $logger = Shopware()->Container()->get('debuglogger');
-$logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));
+    
+$logger = Shopware()->Container()->get('debuglogger');
+$logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
 
-
-    /**@var $articleClass sArticles*/
- 
-    //$sql = $arguments->getReturn();
+//$sql = $arguments->getReturn();
   
-
-
-    
     $sql ="SELECT  * FROM s_order_basket WHERE sessionID=? ORDER BY id ASC, datum DESC";
-
-                
-    
-        return $sql;
+//    Demo query. result is not important
+    return $sql;
 }
 
 
