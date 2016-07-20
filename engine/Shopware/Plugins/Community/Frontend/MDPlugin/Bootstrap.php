@@ -44,25 +44,26 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
  
     public function getVersion()
     {
-        return '1.0.0';
+        return '0.0.1a';
     }
  
     public function getInfo()
     {
         return array(
-        'version' => $this->getVersion(),
-        'label' => $this->getLabel(),
-        'supplier' => 'Megadruck.de',
-        'description' => 'Core Anpassungen Megadruck',
-        'support' => 'Megadruck.de',
-        'link' => 'http://www.megadruck.de'
+        'version'       => $this->getVersion(),
+        'label'         => $this->getLabel(),
+        'supplier'      => 'Megadruck.de',
+        'description'   => 'Core Anpassungen Megadruck',
+        'support'       => 'Megadruck.de',
+        'author'        => 'Megadruck.de',
+        'link'          => 'http://www.megadruck.de'
     );
     }
  
     public function install()
     {
         $this->registerEvents();
-        return array('success' => true, 'invalidateCache' => array('frontend','proxy'));
+        return array('success' => true, 'invalidateCache' => array('proxy'));
     }
     
     
@@ -76,16 +77,57 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
     }
 
 
+    /**
+     * Returns the path to the backend controller.
+     *
+     * @return string
+     */
+   
     public function getBasketFilter(Enlight_Event_EventArgs $arguments)
     {     
 
-        $logger = Shopware()->Container()->get('debuglogger');
-        $logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
+//        $logger = Shopware()->Container()->get('debuglogger');
+//        $logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
 
-        //$sql = $arguments->getReturn();
+//        $sql = $arguments->getReturn();
+        
+          
 
-        $sql ="SELECT  * FROM s_order_basket WHERE sessionID=? ORDER BY id ASC, datum DESC";
-        //    Demo query. result is not important
+        $sql ="SELECT
+            s_order_basket.*,
+            COALESCE (NULLIF(ad.packunit, ''), mad.packunit) AS packunit,
+            a.main_detail_id AS mainDetailId,
+            ad.id AS articleDetailId,
+            ad.minpurchase,
+            a.taxID,
+            ad.instock AS instock,
+            ad.suppliernumber,
+            ad.maxpurchase,
+            ad.purchasesteps,
+            ad.purchaseunit,
+            COALESCE (ad.unitID, mad.unitID) AS unitID,
+            a.laststock,
+            ad.shippingtime,
+            ad.releasedate,
+            ad.releasedate AS sReleaseDate,
+            COALESCE (ad.ean, mad.ean) AS ean,
+            ad.stockmin,
+            s_order_basket_attributes.attribute1 as ob_attr1,
+            s_order_basket_attributes.attribute2 as ob_attr2,
+            s_order_basket_attributes.attribute3 as ob_attr3,
+            s_order_basket_attributes.attribute4 as ob_attr4,
+            s_order_basket_attributes.attribute5 as ob_attr5,
+            s_order_basket_attributes.attribute6 as ob_attr6
+        FROM s_order_basket
+        LEFT JOIN s_articles_details AS ad ON ad.ordernumber = s_order_basket.ordernumber
+        LEFT JOIN s_articles a ON (a.id = ad.articleID)
+        LEFT JOIN s_articles_details AS mad ON mad.id = a.main_detail_id
+        LEFT JOIN s_order_basket_attributes ON s_order_basket.id = s_order_basket_attributes.basketID
+        WHERE sessionID=?
+        ORDER BY id ASC, datum DESC";
+
+        
+        
         
         return $sql;
     }
