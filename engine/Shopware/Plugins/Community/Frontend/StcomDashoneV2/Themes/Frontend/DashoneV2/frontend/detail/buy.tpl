@@ -3,7 +3,7 @@
 
 
 {block name='frontend_detail_buy_quantity_select'}
-    {if $sArticle.attr6 == "1"}
+    {if $sArticle.attr6 == "1"} {* Check for setting manual input *}
         <input type="text" id="sQuantity" name="sQuantity" class="js--fancy-input" value="{$sArticle.minpurchase}">{if $sArticle.packunit} {$sArticle.packunit}{/if}
     {else}
         <select id="sQuantity" name="sQuantity" class="quantity--select">
