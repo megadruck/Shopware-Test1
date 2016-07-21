@@ -25,7 +25,7 @@
  */
 
 
-class Shopware_Plugins_Frontend_MDPlugin_Bootstrap 
+class Shopware_Plugins_Core_MDPlugin_Bootstrap 
     extends Shopware_Components_Plugin_Bootstrap
 {
     public function getCapabilities()
@@ -69,7 +69,14 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
     
     
     private function registerEvents()
+            
     {
+        
+        $this->subscribeEvent(
+		'Shopware_Modules_Basket_UpdateArticle_FilterSqlDefault',
+		'UpdateArticleFilterSqlDefault'
+	);
+        
         $this->subscribeEvent(
             'Shopware_Modules_Basket_GetBasket_FilterSQL',
             'getBasketFilter'
@@ -77,21 +84,21 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
     }
 
 
-    /**
-     * Returns the path to the backend controller.
-     *
-     * @return string
-     */
+public function UpdateArticleFilterSqlDefault(Enlight_Event_EventArgs $arguments)
+{
+    
+    
+}
    
     public function getBasketFilter(Enlight_Event_EventArgs $arguments)
     {     
 
-//        $logger = Shopware()->Container()->get('debuglogger');
-//        $logger->addInfo($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
+//       $logger = Shopware()->Container()->get('debuglogger');
+//        Shopware()->Debuglogger()->info($result = \Doctrine\Common\Util\Debug::dump($arguments));          // Object dumping
 
 //        $sql = $arguments->getReturn();
         
-          
+         
 
         $sql ="SELECT
             s_order_basket.*,
@@ -126,8 +133,8 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
         WHERE sessionID=?
         ORDER BY id ASC, datum DESC";
 
-        
-        
+         
+        Shopware()->Debuglogger()->info($sql);
         
         return $sql;
     }
