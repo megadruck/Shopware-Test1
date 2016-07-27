@@ -290,8 +290,7 @@
 
                 {* Tab navigation *}
                 {block name="frontend_detail_index_tabs_navigation"}
-                    {if count($sArticle.sSimilarArticles) > 0 OR $showAlsoBought OR $sArticle.sRelatedArticles OR $showAlsoViewed}
-                    <div class="tab--navigation">
+                                        <div class="tab--navigation">
                         {block name="frontend_detail_index_tabs_navigation_inner"}
                             {block name="frontend_detail_index_related_similiar_tabs"}
 
@@ -337,7 +336,7 @@
                             {/block}
                         {/block}
                     </div>
-                    {/if}
+                   
                 {/block}
 
                 {* Tab content container *}
