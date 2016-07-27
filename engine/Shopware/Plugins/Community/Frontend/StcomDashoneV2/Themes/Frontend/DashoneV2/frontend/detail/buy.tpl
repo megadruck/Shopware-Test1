@@ -4,7 +4,7 @@
 
 {block name='frontend_detail_buy_quantity_select'}
     {if $sArticle.attr6 == "1"} {* Check for setting manual input *}
-        <input maxlength="6" type="number" min ="{$sArticle.minpurchase}" max="{$sArticle.maxpurchase}" id="sQuantity" name="sQuantity" class="js--fancy-input" value="{$sArticle.minpurchase}">{if $sArticle.packunit} {$sArticle.packunit}{/if}
+        <input {if $sArticle.minpurchase == $sArticle.maxpurchase  AND $sArticle.minpurchase ==1}style="visibility:hidden"{/if} maxlength="6" type="number" min ="{$sArticle.minpurchase}" max="{$sArticle.maxpurchase}" id="sQuantity" name="sQuantity" class="js--fancy-input" value="{$sArticle.minpurchase}">{if $sArticle.packunit} {$sArticle.packunit}{/if}
     {else}
         <select id="sQuantity" name="sQuantity" class="quantity--select">
                 {section name="i" start=$sArticle.minpurchase loop=$maxQuantity step=$sArticle.purchasesteps}
