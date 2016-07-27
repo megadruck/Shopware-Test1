@@ -280,7 +280,7 @@
             {/block}
         {/block}
 
-        {* Crossselling tab panel *}
+        {* Crossselling tab panel *} 
         {block name="frontend_detail_index_tabs_cross_selling"}
 
             {$showAlsoViewed = {config name=similarViewedShow}}
