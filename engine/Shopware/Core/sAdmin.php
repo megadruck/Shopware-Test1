@@ -280,6 +280,12 @@ class sAdmin
         }
 
         if ($resetPayment && $user["additional"]["user"]["id"]) {
+            $this->eventManager->notify(
+                'Shopware_Modules_Admin_Payment_Fallback',
+                $data,
+                ['userId' => $user["additional"]["user"]["id"], 'paymentId' => $resetPayment]
+            );
+
             $this->db->update(
                 's_user',
                 array('paymentID' => $resetPayment),
@@ -636,6 +642,7 @@ class sAdmin
 
         Shopware()->Session()->unsetAll();
         $this->regenerateSessionId();
+        Shopware()->Container()->get('shopware.csrftoken_validator')->invalidateToken($this->front->Response());
     }
 
     /**
@@ -3301,6 +3308,7 @@ SQL;
 
                 // Set article in activate state
                 $getOrderDetails[$orderDetailsKey]['active'] = 1;
+                $getOrderDetails[$orderDetailsKey]['article'] = $tmpArticle;
                 if (!empty($tmpArticle['purchaseunit'])) {
                     $getOrderDetails[$orderDetailsKey]['purchaseunit'] = $tmpArticle['purchaseunit'];
                 }
