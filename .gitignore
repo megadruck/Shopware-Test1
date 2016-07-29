@@ -3,4 +3,3 @@ config.*
 web/*
 *.log
 nbproject/*
-/files/*
