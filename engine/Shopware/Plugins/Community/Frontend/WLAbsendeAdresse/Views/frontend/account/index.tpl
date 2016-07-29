@@ -84,19 +84,22 @@
 
                         {block name="frontend_account_index_primary_shipping_actions"}
                             <div class="panel--actions is--wide">
+                                {if $sUserData.additional.user.default_shipping_address_id != $sUserData.additional.user.default_billing_address_id}
                                 <a href="{url controller=address action=edit id=$sUserData.additional.user.default_shipping_address_id sTarget=account}"
                                    title="{s name='AccountLinkChangeBilling'}{/s}"
                                    class="btn">
                                     {s name="AccountLinkChangeShipping"}{/s}
                                 </a>
                                 <br/>
+                                {/if}
                                 <a href="{url controller=address}"
-                                   data-address-selection="true"
-                                   data-setDefaultShippingAddress="1"
-                                   data-id="{$sUserData.additional.user.default_shipping_address_id}"
-                                   title="{s name='AccountLinkChangeBilling'}{/s}">
-                                    {s name="AccountLinkSelectBilling"}{/s}
+                                       data-address-selection="true"
+                                       data-setDefaultShippingAddress="1"
+                                       data-id="{$sUserData.additional.user.default_shipping_address_id}"
+                                       title="{s name='AccountLinkChangeBilling'}{/s}">
+                                        {s name="AccountLinkSelectBilling"}{/s}
                                 </a>
+
                             </div>
                         {/block}
                     </div>
@@ -140,18 +143,20 @@
 
                         {block name="frontend_account_index_primary_sender_actions"}
                             <div class="panel--actions is--wide">
-                                <a href="{url controller=address action=edit id=$sUserData.additional.user.default_shipping_address_id sTarget=account}"
-                                   title="{s name='AccountLinkChangeSender'}{/s}"
-                                   class="btn">
-                                    {s name="AccountLinkChangeSender"}{/s}
-                                </a>
-                                <br/>
+                                {if !$billingSame}
+                                    <a href="{url controller=address action=edit id=$sUserData.additional.user.default_shipping_address_id sTarget=account}"
+                                       title="{s name='AccountLinkEditSenderTitle'}Absendeadresse ändern{/s}"
+                                       class="btn">
+                                        {s name="AccountLinkEditSender"}Absendeadresse ändern{/s}
+                                    </a>
+                                    <br/>
+                                {/if}
                                 <a href="{url controller=address}"
                                    data-address-selection="true"
                                    data-setDefaultShippingAddress="1"
                                    data-id="{$sUserData.additional.user.default_shipping_address_id}"
-                                   title="{s name='AccountLinkChangeSender'}Absendeadresse ändern{/s}">
-                                    {s name="AccountLinkSelectSender"}Absendeadresse ändern{/s}
+                                   title="{s name='AccountLinkChangeSenderTitle'}oder andere Adresse wählen{/s}">
+                                    {s name="AccountLinkSelectSender"}oder andere Adresse wählen{/s}
                                 </a>
                             </div>
                         {/block}

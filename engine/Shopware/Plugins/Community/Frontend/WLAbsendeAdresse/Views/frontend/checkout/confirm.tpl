@@ -223,15 +223,18 @@
                                                     {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change"}
                                                         <div class="address--actions-change">
                                                             {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change_address"}
-                                                                <a href="{url controller=address action=edit id=$activeShippingAddressId sTarget=checkout sTargetAction=confirm}"
-                                                                   title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
-                                                                   data-title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
-                                                                   data-address-editor="true"
-                                                                   data-id="{$activeShippingAddressId}"
-                                                                   data-sessionKey="checkoutShippingAddressId"
-                                                                   class="btn">
-                                                                    {s name="ConfirmAddressSelectButton"}Change address{/s}
-			</a>
+                                                            	{if $activeBillingAddressId != $activeShippingAddressId}
+																	<a href="{url controller=address action=edit id=$activeShippingAddressId sTarget=checkout sTargetAction=confirm}"
+																	   title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
+																	   data-title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
+																	   data-address-editor="true"
+																	   data-id="{$activeShippingAddressId}"
+																	   data-sessionKey="checkoutShippingAddressId"
+																	   class="btn">
+																		{s name="ConfirmAddressSelectButton"}Change address{/s}
+																	</a>
+																{/if}
+
 			{/block}
 			</div>
 			{/block}

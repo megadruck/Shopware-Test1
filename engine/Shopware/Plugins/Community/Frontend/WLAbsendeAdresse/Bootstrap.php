@@ -8,7 +8,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 {
     public function getLabel()
     {
-        return 'WL Absende Adresse';
+        return 'WL Absender Adresse';
     }
 	
 	public function getVersion()
@@ -140,7 +140,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			'Enlight_Controller_Action_PostDispatch_Backend_Order',
 			'onOrderPostDispatch'
 		);
-		
+
 		// Dokumente
 		$this->subscribeEvent(
 			'Shopware_Components_Document::assignValues::after',
