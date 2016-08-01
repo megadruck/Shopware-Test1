@@ -92,26 +92,26 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
        
         $this->subscribeEvent(
             'Enlight_Controller_Action_PostDispatch_Backend_Order',
-            'onBackendOrderPostDispatch'
+            'BackendOrderPostDispatch'
         );
     }
 
 
-    public function onBackendOrderPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $view Enlight_View_Default*/
-        $view = $arguments->getSubject()->View();
-Shopware()->Debuglogger()->info($arguments->getSubject());
+	public function BackendOrderPostDispatch(Enlight_Event_EventArgs $args)
+	{
+		/** @var \Enlight_Controller_Action $controller */
+		$controller = $args->getSubject();
+		$view = $controller->View();
+		$request = $controller->Request();
 
-        // Add template directory
-        $view->addTemplateDir($this->Path() . 'Views/');
+		$view->addTemplateDir(__DIR__ . '/Views');
 
+		if ($request->getActionName() === 'load') {
+			$view->extendsTemplate('backend/order/view/attributeform.js');
+		}
 
-        if ($arguments->getRequest()->getActionName() === 'load') {
-            $view->extendsTemplate('backend/view/order/detail/communication.js');
-        }
+		
 
-        
-    }
+	}
 
 }

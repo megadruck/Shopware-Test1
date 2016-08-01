@@ -30,6 +30,29 @@ class Shopware_Controllers_Backend_Senderaddress extends Shopware_Controllers_Ba
 		$this->view->assign(['success' => true, 'data' => $data]);
 	}
 
+
+	public function getCustomerSenderDataAction()
+	{
+		$customerId = (int)$this->Request()->getParam('customerId');
+		$db = Shopware()->Db();
+
+		$sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
+		$userSenderAddressId = $db->fetchOne($sql, array($customerId));
+
+		/** @var Connection $connection */
+		$connection = $this->get('dbal_connection');
+
+		$em = Shopware()->Models();
+		$sql = "SELECT address, state, country FROM Shopware\Models\Customer\Address address ";
+		$sql .= " LEFT JOIN address.state state ";
+		$sql .= " LEFT JOIN address.country country ";
+		$sql .= " WHERE address.id = " . $userSenderAddressId;
+		$query = $em->createQuery($sql);
+		$data = $query->getResult ( Query::HYDRATE_ARRAY )[0];
+
+		$this->view->assign(['success' => true, 'data' => $data]);
+	}
+
 	/**
 	 * Get the update sender data
 	 */

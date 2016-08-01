@@ -13,7 +13,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	
 	public function getVersion()
     {
-        return '0.9.1';
+        return '0.9.3';
     }
 
 	/**
@@ -136,6 +136,12 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 
 		// Backend Events
+
+		$this->subscribeEvent(
+			'Enlight_Controller_Action_PostDispatch_Backend_Customer',
+			'onCustomerPostDispatch'
+		);
+
 		$this->subscribeEvent(
 			'Enlight_Controller_Action_PostDispatch_Backend_Order',
 			'onOrderPostDispatch'
@@ -285,6 +291,25 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		}
 	}
 
+
+	public function onCustomerPostDispatch(Enlight_Event_EventArgs $args)
+	{
+		/** @var \Enlight_Controller_Action $controller */
+		$controller = $args->getSubject();
+		$view = $controller->View();
+		$request = $controller->Request();
+
+		$view->addTemplateDir(__DIR__ . '/Views');
+
+		if ($request->getActionName() === 'index') {
+			$view->extendsTemplate('backend/customer/app.js');
+		}
+
+		if ($request->getActionName() === 'load') {
+			$view->extendsTemplate('backend/customer/view/detail/senderoverview.js');
+		}
+
+	}
 
 	public function onOrderPostDispatch(Enlight_Event_EventArgs $args)
 	{

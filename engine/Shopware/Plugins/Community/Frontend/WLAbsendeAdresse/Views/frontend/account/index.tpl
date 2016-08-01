@@ -40,7 +40,7 @@
 
                         {block name="frontend_account_index_primary_billing_actions"}
                             <div class="panel--actions is--wide">
-                                <p>{s name="ChangeBillingTextInfo"}Um Ihre Rechnungsadresse zu ändern kontaktieren Sie uns bitte telefonisch unter <br/>011111-1111{/s}</p>
+                                <p class="address--billinginfo">{s name="ChangeBillingTextInfo"}Zur Änderung der Rechnungsadresse kontaktieren Sie uns bitte telefonisch unter <br/>+49 (0) 44 88 52 54 00{/s}</p>
                             </div>
                         {/block}
                     </div>
@@ -90,13 +90,15 @@
                                    class="btn">
                                     {s name="AccountLinkChangeShipping"}{/s}
                                 </a>
-                                <br/>
+                                &nbsp;
                                 {/if}
+                                
+                                
                                 <a href="{url controller=address}"
                                        data-address-selection="true"
                                        data-setDefaultShippingAddress="1"
                                        data-id="{$sUserData.additional.user.default_shipping_address_id}"
-                                       title="{s name='AccountLinkChangeBilling'}{/s}">
+                                       title="{s name='AccountLinkChangeBilling'}{/s}" class="btn">
                                         {s name="AccountLinkSelectBilling"}{/s}
                                 </a>
 
@@ -149,13 +151,13 @@
                                        class="btn">
                                         {s name="AccountLinkEditSender"}Absendeadresse ändern{/s}
                                     </a>
-                                    <br/>
+                                    &nbsp;
                                 {/if}
                                 <a href="{url controller=address}"
                                    data-address-selection="true"
                                    data-setDefaultShippingAddress="1"
                                    data-id="{$sUserData.additional.user.default_shipping_address_id}"
-                                   title="{s name='AccountLinkChangeSenderTitle'}oder andere Adresse wählen{/s}">
+                                   title="{s name='AccountLinkChangeSenderTitle'}oder andere Adresse wählen{/s}" class="btn">
                                     {s name="AccountLinkSelectSender"}oder andere Adresse wählen{/s}
                                 </a>
                             </div>

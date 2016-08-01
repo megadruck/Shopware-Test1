@@ -4,6 +4,4 @@
 //{include file="backend/order/view/detail/sender.js"}
 
 
-
-
 //{/block}
