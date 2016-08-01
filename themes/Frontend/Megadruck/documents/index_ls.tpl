@@ -1,4 +1,4 @@
-{extends file="parent:documents/index_ls.tpl"}
+{extends file="documents/index.tpl"}
 
 {block name="document_index_table_head_tax"}
 {/block}
@@ -22,6 +22,7 @@
 
 
 {block name="document_index_head_right"}
+					{if $Senderaddress.company} {$Senderaddress.company} <br /> {/if}
 					{$Senderaddress.firstName} {$Senderaddress.lastName} <br />
 					{$Senderaddress.street} <br />
 					{$Senderaddress.zipCode} {$Senderaddress.city} <br />
