@@ -1,8 +1,8 @@
 {extends file='parent:frontend/index/main-navigation.tpl'}
 
-{*{block name='frontend_index_navigation_categories_top_home'}{/block}*}
+{block name='frontend_index_navigation_categories_top_home'}{/block}
 
-
+{*
 {block name='frontend_index_navigation_categories_top_home'}
     <li class="navigation--entry{if $sCategoryCurrent == $sCategoryStart && $Controller == 'index'} is--active{/if} is--home"
         role="menuitem">
@@ -13,3 +13,4 @@
         </a>
     </li>
 {/block}
+*}
