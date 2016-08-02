@@ -114,7 +114,7 @@ td.head  {
 		{/if}
 		</div>
 		<div id="head_right">
-				<strong>
+				
 				{block name="document_index_head_right"}
 					{$Containers.Header_Box_Right.value}
 					{s name="DocumentIndexCustomerID"}{/s} {$User.billing.customernumber|string_format:"%06d"}<br />
@@ -125,7 +125,7 @@ td.head  {
 					{s name="DocumentIndexDate"}{/s} {$Document.date}<br />
 					{if $Document.deliveryDate}{s name="DocumentIndexDeliveryDate"}{/s} {$Document.deliveryDate}<br />{/if}
 				{/block}
-				</strong>
+				
 		</div>
 	</div>
 	
