@@ -307,6 +307,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 		if ($request->getActionName() === 'load') {
 			$view->extendsTemplate('backend/customer/view/detail/senderoverview.js');
+			$view->extendsTemplate('backend/customer/view/address/senderlist.js');
 		}
 
 	}
