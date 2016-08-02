@@ -350,7 +350,7 @@ Ext.define('Shopware.apps.Order.view.detail.Sender', {
             valueField: 'id',
             displayField: 'name',
             forceSelection: true,
-            labelWidth:120,
+            labelWidth:155,
             store: Ext.create('Shopware.store.CountryState').load(),
             minWidth: 250,
             editable: false,
