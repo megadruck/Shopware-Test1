@@ -35,20 +35,60 @@ class Shopware_Controllers_Backend_Senderaddress extends Shopware_Controllers_Ba
 	{
 		$customerId = (int)$this->Request()->getParam('customerId');
 		$db = Shopware()->Db();
+		$em = Shopware()->Models();
+
 
 		$sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
 		$userSenderAddressId = $db->fetchOne($sql, array($customerId));
 
-		/** @var Connection $connection */
-		$connection = $this->get('dbal_connection');
+		if($userSenderAddressId == null || $userSenderAddressId == 0 || empty($userSenderAddressId)){
+			$sConfigs = Shopware()->Plugins()->Frontend()->WLAbsendeAdresse()->Config();
+			$vorname = $sConfigs->vorname;
+			$nachname = $sConfigs->nachname;
+			$strasse = $sConfigs->strasse;
+			$plz = $sConfigs->plz;
+			$stadt = $sConfigs->stadt;
 
-		$em = Shopware()->Models();
-		$sql = "SELECT address, state, country FROM Shopware\Models\Customer\Address address ";
-		$sql .= " LEFT JOIN address.state state ";
-		$sql .= " LEFT JOIN address.country country ";
-		$sql .= " WHERE address.id = " . $userSenderAddressId;
-		$query = $em->createQuery($sql);
-		$data = $query->getResult ( Query::HYDRATE_ARRAY )[0];
+			$bundesland = $sConfigs->bundesland;
+			$land = $sConfigs->land;
+
+			$query = $em->createQuery("SELECT state FROM Shopware\Models\Country\State state WHERE state.id = " . $bundesland);
+			$state = $query->getResult ( Query::HYDRATE_ARRAY );
+			if(!empty($state)){
+				$state = $state[0];
+			}
+
+
+			$query = $em->createQuery("SELECT country FROM Shopware\Models\Country\Country country WHERE country.id = " . $land);
+			$country = $query->getResult ( Query::HYDRATE_ARRAY );
+			if(!empty($country)){
+				$country = $country[0];
+			}
+
+
+			$data = array(
+				'company' => '',
+				'firstname' => $vorname,
+				'lastname' => $nachname,
+				'street' => $strasse,
+				'zipcode' => $plz,
+				'city' => $stadt,
+				'state' => $state,
+				'country' => $country,
+				'land' => $land,
+				'bundesland' => $bundesland
+
+			);
+		} else {
+			$sql = "SELECT address, state, country FROM Shopware\Models\Customer\Address address ";
+			$sql .= " LEFT JOIN address.state state ";
+			$sql .= " LEFT JOIN address.country country ";
+			$sql .= " WHERE address.id = " . $userSenderAddressId;
+			$query = $em->createQuery($sql);
+			$data = $query->getResult ( Query::HYDRATE_ARRAY )[0];
+		}
+
+
 
 		$this->view->assign(['success' => true, 'data' => $data]);
 	}
@@ -104,6 +144,7 @@ class Shopware_Controllers_Backend_Senderaddress extends Shopware_Controllers_Ba
 	{
 		return [
 			'getSenderData',
+			'getCustomerSenderDataAction',
 			'updateSenderData'
 		];
 	}

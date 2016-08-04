@@ -6,6 +6,45 @@ use Shopware\CustomModels\Order\OrderSenderAddress;
 
 class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
+
+	private $config_fields = array(
+			'vorname' => array(
+			'label' => 'Absendeadresse Vorname',
+			'value' => '',
+			'description' => 'Absendeadresse Vorname',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'nachname' => array(
+			'label' => 'Absendeadresse Nachname',
+			'value' => 'Megadruck',
+			'description' => 'Absendeadresse Nachname',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'strasse' => array(
+			'label' => 'Absendeadresse Strasse',
+			'value' => 'Eichendorffstraße 34',
+			'description' => 'Absendeadresse Strasse',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'plz' => array(
+			'label' => 'Absendeadresse PLZ',
+			'value' => '26655 ',
+			'description' => 'Absendeadresse PLZ',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'stadt' => array(
+			'label' => 'Absendeadresse Stadt',
+			'value' => 'Westerstede',
+			'description' => 'Absendeadresse Stadt',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		)
+	);
+
     public function getLabel()
     {
         return 'WL Absender Adresse';
@@ -13,7 +52,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	
 	public function getVersion()
     {
-        return '0.9.3';
+        return '1.0.1';
     }
 
 	/**
@@ -147,12 +186,41 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			'onOrderPostDispatch'
 		);
 
+		$this->subscribeEvent(
+			'Shopware_Controllers_Backend_Customer::getDetailAction::after',
+			'onGetDetailBackendCustomer'
+		);
+
+		$this->subscribeEvent(
+			'Shopware_Controllers_Backend_Address::save::before',
+			'onUpdateAddress'
+		);
+
+		$this->subscribeEvent(
+			'Shopware_Controllers_Backend_Address::getList::after',
+			'onAddressGetList'
+		);
+
 		// Dokumente
 		$this->subscribeEvent(
 			'Shopware_Components_Document::assignValues::after',
 			'onAssignValues'
 		);
 
+
+		$this->subscribeEvent(
+			'Enlight_Controller_Dispatcher_ControllerPath_Api_ASOrder',
+			'onOrderAPIController'
+		);
+
+
+		$this->subscribeEvent(
+			'Enlight_Controller_Front_StartDispatch',
+			'onEnlightControllerFrontStartDispatch'
+		);
+
+		// Standard-Absender-Daten setzen
+		$this->createConfigForm();
 
 		return array('success' => true, 'invalidateCache' => array('frontend', 'backend'));
 
@@ -183,6 +251,47 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
     	return true;
     }
+
+
+	public function createConfigForm(){
+		$form = $this->Form();
+		foreach($this->config_fields as $field_name=>$field){
+			$form->setElement($field['type'], $field_name, array(
+					'label' => $field['label'],
+					'value' => $field['value'],
+					'description' => $field['description'],
+					'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+				)
+			);
+		}
+		$form->setElement('combo', 'bundesland', array(
+			'label'=>'Absendeadresse Bundesland','value'=> 2,
+			'store' => 'base.CountryState'
+			, 'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP));
+		$form->setElement('combo', 'land', array(
+			'label'=>'Absendeadresse Land','value'=> 2,
+			'store' => 'base.Country'
+			, 'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP));
+	}
+
+	/**
+	 * @return string
+	 */
+	public function onOrderAPIController()
+	{
+		return $this->Path() . 'Controllers/Api/ASOrder.php';
+	}
+
+	/**
+	 * @param Enlight_Event_EventArgs $args
+	 */
+	public function onEnlightControllerFrontStartDispatch(Enlight_Event_EventArgs $args)
+	{
+		$this->Application()->Loader()->registerNamespace(
+			'Shopware\Components',
+			$this->Path() . 'Components/'
+		);
+	}
 
 
 	public function registerTemplates(Enlight_Event_EventArgs $args) {
@@ -267,7 +376,47 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			$addressID = $db->fetchOne($sql, array($userID));
 			if(empty($userSenderAddresses) || $userSenderAddresses == 0 || $userSenderAddresses == null){
 
-				$billingSame = true;
+				$sConfigs = Shopware()->Plugins()->Frontend()->WLAbsendeAdresse()->Config();
+				$vorname = $sConfigs->vorname;
+				$nachname = $sConfigs->nachname;
+				$strasse = $sConfigs->strasse;
+				$plz = $sConfigs->plz;
+				$stadt = $sConfigs->stadt;
+
+				$bundesland = $sConfigs->bundesland;
+				$land = $sConfigs->land;
+
+				$query = $em->createQuery("SELECT state FROM Shopware\Models\Country\State state WHERE state.id = " . $bundesland);
+				$state = $query->getResult ( Query::HYDRATE_ARRAY );
+				if(!empty($state)){
+					$state = $state[0];
+				}
+
+
+				$query = $em->createQuery("SELECT country FROM Shopware\Models\Country\Country country WHERE country.id = " . $land);
+				$country = $query->getResult ( Query::HYDRATE_ARRAY );
+				if(!empty($country)){
+					$country = $country[0];
+				}
+
+
+				$senderAddress = array(
+					'company' => '',
+					'firstname' => $vorname,
+					'lastname' => $nachname,
+					'street' => $strasse,
+					'zipcode' => $plz,
+					'city' => $stadt,
+					'state' => $state,
+					'country' => $country,
+					'land' => $land,
+					'bundesland' => $bundesland
+
+				);
+
+				$view->assign('senderAddress', $senderAddress);
+				// nicht aenderbar obv
+				$view->assign('billingSame', true);
 
 			} else {
 
@@ -276,13 +425,15 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				}
 				$addressID = $userSenderAddresses;
 
+				$query = $em->createQuery("SELECT address, attr, country, state FROM Shopware\Models\Customer\Address address LEFT JOIN address.attribute attr LEFT JOIN address.country country LEFT JOIN address.state state WHERE address.id = " . $addressID);
+				$senderAddress = $query->getResult ( Query::HYDRATE_ARRAY );
+
+				$view->assign('senderAddress', $senderAddress[0]);
+				$view->assign('billingSame', $billingSame);
+
 			}
 
-			$query = $em->createQuery("SELECT address, attr, country, state FROM Shopware\Models\Customer\Address address LEFT JOIN address.attribute attr LEFT JOIN address.country country LEFT JOIN address.state state WHERE address.id = " . $addressID);
-			$senderAddress = $query->getResult ( Query::HYDRATE_ARRAY );
 
-			$view->assign('senderAddress', $senderAddress[0]);
-			$view->assign('billingSame', $billingSame);
 
 
 		} catch (Exception $e) {
@@ -307,7 +458,10 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 		if ($request->getActionName() === 'load') {
 			$view->extendsTemplate('backend/customer/view/detail/senderoverview.js');
+			$view->extendsTemplate('backend/customer/view/model/addressmodel.js');
+			$view->extendsTemplate('backend/customer/view/address/senderaddress.js');
 			$view->extendsTemplate('backend/customer/view/address/senderlist.js');
+			//$view->extendsTemplate('backend/customer/view/address/senderlist2.js');
 		}
 
 	}
@@ -333,6 +487,60 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	}
 
 
+	public function onGetDetailBackendCustomer(Enlight_Event_EventArgs $args)
+	{
+		$db =  Shopware()->Db();
+		$em = Shopware()->Models();
+		$subject = $args->getSubject();
+		$request = $subject->Request();
+		$customerID = $request->getParam('customerID');
+		$view = $subject->View();
+		$data = $view->data;
+		$data['default_sender_address_id'] = $this->getSenderAddressId($db, $customerID);
+
+		$view->assign('data', $data);
+	}
+
+	public function onUpdateAddress(Enlight_Hook_HookArgs $arguments)
+	{
+		$db =  Shopware()->Db();
+		$em = Shopware()->Models();
+		$subject = $arguments->getSubject();
+		$request = $subject->Request();
+
+		$data = $arguments->get('data');
+
+
+		if (!empty($data['setDefaultSenderAddress'])) {
+			if($data['setDefaultSenderAddress'] == true){
+				$db->query('UPDATE a_wluser_senderaddress SET senderAdressID = ' .  $data['id'] . ' WHERE userID = ' . $data['customer'][0]['id']);
+			}
+		}
+	}
+
+
+	public function onAddressGetList(Enlight_Event_EventArgs $args)
+	{
+		//$db =  Shopware()->Db();
+		//$em = Shopware()->Models();
+		//$queryBuilder = $args->getReturn();
+		//$queryBuilder->leftJoin('Shopware\CustomModels\Order\UserSenderAddress', 'usa', 'WITH', 'usa.senderAdressID = address.id');
+		//$queryBuilder->addSelect(['usa']);
+		//$args->setReturn($queryBuilder);
+
+		$db =  Shopware()->Db();
+		$em = Shopware()->Models();
+		$result = $args->getReturn();
+
+		foreach ($result['data'] as &$data) {
+			$data['customer']['default_sender_address_id'] = $this->getSenderAddressId($db, $data['customer']['id']);
+		}
+		$args->setReturn($result);
+
+
+
+	}
+
 	public function afterOrderCreation(Enlight_Hook_HookArgs $args)
 	{
 		$db =  Shopware()->Db();
@@ -344,12 +552,78 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		$sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
 		$userSenderAddresses = $db->fetchOne($sql, array($userID));
 
+		$addressID = 0;
 
-		$sql = "SELECT default_billing_address_id FROM s_user WHERE s_user.id=?";
-		$addressID = $db->fetchOne($sql, array($userID));
+		// keine vorhanden
 		if(empty($userSenderAddresses) || $userSenderAddresses == 0 || $userSenderAddresses == null){
 
-			// nothing to do imo
+			$sConfigs = Shopware()->Plugins()->Frontend()->WLAbsendeAdresse()->Config();
+			$vorname = $sConfigs->vorname;
+			$nachname = $sConfigs->nachname;
+			$strasse = $sConfigs->strasse;
+			$plz = $sConfigs->plz;
+			$stadt = $sConfigs->stadt;
+
+			$bundesland = $sConfigs->bundesland;
+			$land = $sConfigs->land;
+
+			if($land != null){
+				$country = $land;
+			} else {
+				$country = 'NULL';
+			}
+
+			if($bundesland != null){
+				$state = $bundesland;
+			} else{
+				$state = 'NULL';
+			}
+
+			$company = '';
+			$department = '';
+			$salutation = '';
+
+
+			try {
+				$firstname = $vorname;
+			} catch (Exception $e) {
+				$firstname = '';
+			}
+
+			try {
+				$lastname = $nachname;
+			} catch (Exception $e) {
+				$lastname = '';
+			}
+
+			try {
+				$street = $strasse;
+			} catch (Exception $e) {
+				$street = '';
+			}
+
+			try {
+				$zipcode = $plz;
+			} catch (Exception $e) {
+				$zipcode = '';
+			}
+
+			try {
+				$city = $stadt;
+			} catch (Exception $e) {
+				$city = '';
+			}
+
+			$additional_address_line1 = '';
+			$additional_address_line2 = '';
+
+
+			$sql = 'INSERT INTO ';
+			$sql .= "`a_wlorder_senderaddress` ";
+			$sql .= "(`orderID`, `countryID`, `stateID`, `userID`, `company`, `department`, `salutation`, `firstname`, `lastname`, `street`, `zipcode`, `city`, `additional_address_line1`, `additional_address_line2`) VALUES ";
+			$sql .= "(" . $orderId. ", '" .$country.  "', '". $state . "', ". $userID .", '" . $company . "', '" . $department . "', '" . $salutation . "', '" . $firstname . "', '" . $lastname . "', '" . $street . "', '" . $zipcode . "', '" . $city . "', '" . $additional_address_line1 . "', '" . $additional_address_line2 . "') ";
+			$db->query($sql);
+			return $orderNumber;
 
 		} else {
 
@@ -456,6 +730,18 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		$sql .= " WHERE address.order = " . $orderId;
 		$query = $em->createQuery($sql);
 		return $query->getResult ( Query::HYDRATE_ARRAY )[0];
+	}
+
+	public function getSenderAddressId($db, $customerId){
+		$sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
+		$userSenderAddresses = $db->fetchOne($sql, array($customerId));
+
+		// keine vorhanden
+		if(empty($userSenderAddresses) || $userSenderAddresses == 0 || $userSenderAddresses == null){
+			return 0;
+		}
+
+		return number_format($userSenderAddresses);
 	}
 
 }

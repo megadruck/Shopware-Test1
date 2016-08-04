@@ -13,7 +13,7 @@
 {block name='frontend_detail_data_ordernumber'}
 {/block}
 
-{block name='frontend_detail_index_data' prepend}
+{block name='frontend_detail_index_data'}
     <li class="base-info--entry entry--sku">
         <strong class="entry--label">
             {s name="DetailDataId" namespace="frontend/detail/data"}{/s}

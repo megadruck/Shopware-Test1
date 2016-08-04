@@ -25,6 +25,30 @@ function registerAjaxListener(){
         });
     });
 
+    $(".address--box").on("click",function(){
+        var id = $(this).attr('id');
+        $(".address-selection").hide();
+        $(".address-selection-"+id).show();
+    });
+
+    $("#noSender").on("click",function(){
+        $.ajax({
+            type: "POST",
+            url: clearAddrUrl,
+            data: {},
+            success: function(){
+                location.reload();
+                window.location.reload();
+            },
+            error: function(){
+                location.reload();
+                window.location.reload();
+            },
+            dataType:"json"
+        });
+        return false;
+    });
+
 }
 
 

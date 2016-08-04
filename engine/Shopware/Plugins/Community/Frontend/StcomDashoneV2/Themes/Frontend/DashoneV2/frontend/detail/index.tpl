@@ -1,14 +1,11 @@
 {extends file='parent:frontend/detail/index.tpl'}
 
 {* Previous product *}
-{block name='frontend_detail_article_back'}
-    {/block}
+{block name='frontend_detail_article_back'}{/block}
     
     {* Next product *}
-{block name='frontend_detail_article_next'}
-    {/block}
-    
-    
+{block name='frontend_detail_article_next'}{/block}
+
 {* Product SKU *}
 {block name='frontend_detail_data_ordernumber'}
 {/block}

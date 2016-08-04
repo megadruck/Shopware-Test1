@@ -129,7 +129,7 @@
 																	<div class="address--actions-change">
 																		{block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change_address"}
 																			{if !$billingSame}
-																				<a href="{url controller=address action=edit id=$activeShippingAddressId sTarget=checkout sTargetAction=confirm}"
+																				<a href="{url controller=address action=edit id=$senderAddress.id sTarget=checkout sTargetAction=confirm}"
 																			   title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
 																			   data-title="{s name="ConfirmAddressSelectButton"}Change address{/s}"
 																			   data-address-editor="true"

@@ -313,7 +313,6 @@ Ext.define('Shopware.apps.Order.view.detail.Sender', {
             fieldLabel:me.snippets.salutation.label,
             mode:'local',
             editable:false,
-            allowBlank: false,
             valueField: 'key',
             displayField: 'label',
             store: Ext.create('Shopware.apps.Base.store.Salutation').load()
@@ -350,7 +349,7 @@ Ext.define('Shopware.apps.Order.view.detail.Sender', {
             valueField: 'id',
             displayField: 'name',
             forceSelection: true,
-            labelWidth:155,
+            labelWidth:120,
             store: Ext.create('Shopware.store.CountryState').load(),
             minWidth: 250,
             editable: false,

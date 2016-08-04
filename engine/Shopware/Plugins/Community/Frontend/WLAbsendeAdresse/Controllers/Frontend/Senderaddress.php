@@ -139,6 +139,17 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
     }
 
     /**
+     * Shortcut action for more fluent urls
+     */
+    public function clearSenderAction()
+    {
+        $this->Front()->Plugins()->ViewRenderer()->setNoRender();
+        $userId =  Shopware()->Session()->sUserId;
+        $db = Shopware()->Db();
+        $db->query("DELETE FROM a_wluser_senderaddress WHERE userID = " . $userId);
+    }
+
+    /**
      * Delete confirm action
      */
     public function deleteAction()
@@ -405,6 +416,9 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
             $this->addressService->setDefaultShippingAddress($address);
         }
     }
+
+
+
 
     /**
      * @param Address $address
