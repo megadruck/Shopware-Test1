@@ -1,13 +1,14 @@
-.navigation-main {
     .advanced-menu {
-         .teaser--headline {
-        .unitize(font-size, 14);
+          .teaser--image {
+            .unitize-height(100);
           }
-          
-        .teaser--image {
-        .unitize-height(100);
+         .teaser--headline {
+        .unitize(font-size, 16);
           }
         .menu--container {
+            &.menu--is-active {
+                background-color:#f3f4f6;
+            }
             .button-container {
                 background: @theme-secondary;
                 .button--category {
@@ -50,10 +51,11 @@
                                         .unitize-margin(5, 0, 0, 20);
                                         border-left: solid #d0d0d0 4px;
                                         padding-left: 4px;
-                                        }
-                                }
+    }
+                            }
                                 .item--level-1 {
                                 .menu--list-item-link {
+
                                 .unitize(font-size, 13);
                                 }
  }
@@ -63,7 +65,7 @@
             }
         }
     }
-}
+
 
 @media screen and (min-width: @phoneLandscapeViewportWidth) {
     // 480px

@@ -1,9 +1,14 @@
-.navigation-main {
     .advanced-menu {
+          .teaser--image {
+            .unitize-height(100);
+          }
          .teaser--headline {
-        .unitize(font-size, 14);
+        .unitize(font-size, 16);
           }
         .menu--container {
+            &.menu--is-active {
+                background-color:#f3f4f6;
+            }
             .button-container {
                 background: @theme-secondary;
                 .button--category {
@@ -60,7 +65,7 @@
             }
         }
     }
-}
+
 
 @media screen and (min-width: @phoneLandscapeViewportWidth) {
     // 480px

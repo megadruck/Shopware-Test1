@@ -8,7 +8,7 @@
 {block name="frontend_index_left_categories_my_account"}{/block}
 
 {* Account Sidebar *}
-{block name="frontend_index_left_categories" prepend}
+{block name="frontend_index_left_categories"}
 	{block name="frontend_account_sidebar"}
 		{include file="frontend/account/sidebar.tpl"}
 	{/block}
