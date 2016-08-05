@@ -41,11 +41,14 @@
 
                    
                 {* Link to the user Billing address settings *}
-                {block name="frontend_account_menu_link_billing"}
+                {block name="frontend_account_menu_link_billing"}{/block}
+                
+                  {* Link to the user Sender address settings *}
+                {block name="frontend_account_menu_link_sender"}
                     <li class="navigation--entry">
-                        <a href="{url controller='account' action='billing'}" title="{s name="AccountLinkBillingAddress"}{/s}"
-                           class="navigation--link{if $sAction == 'billing'} is--active{/if}"><i class="icon--text"></i>
-                            {s name="AccountLinkBillingAddress"}{/s}
+                        <a href="{url controller='account' action='sender'}" title="{s name="AccountLinkSenderAddress"}{/s}"
+                           class="navigation--link{if $sAction == 'sender'} is--active{/if}"><i class="icon--text"></i>
+                            {s name="AccountLinkSenderAddress"}{/s}
                         </a>
                     </li>
                 {/block}

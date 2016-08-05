@@ -48,6 +48,11 @@ class Shopware_Controllers_Backend_Senderaddress extends Shopware_Controllers_Ba
 			$strasse = $sConfigs->strasse;
 			$plz = $sConfigs->plz;
 			$stadt = $sConfigs->stadt;
+			$firma = $sConfigs->firma;
+			$abteilung = $sConfigs->abteilung;
+			$anrede = $sConfigs->anrede;
+			$addr1 = $sConfigs->addr1;
+			$addr2 = $sConfigs->addr2;
 
 			$bundesland = $sConfigs->bundesland;
 			$land = $sConfigs->land;
@@ -67,7 +72,11 @@ class Shopware_Controllers_Backend_Senderaddress extends Shopware_Controllers_Ba
 
 
 			$data = array(
-				'company' => '',
+				'company' => $firma,
+				'department' => $abteilung,
+				'anrede' => $anrede,
+				'additional_address_line1' => $addr1,
+				'additional_address_line2' => $addr2,
 				'firstname' => $vorname,
 				'lastname' => $nachname,
 				'street' => $strasse,

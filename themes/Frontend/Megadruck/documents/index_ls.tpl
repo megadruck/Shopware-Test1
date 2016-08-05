@@ -20,12 +20,12 @@
 {/block}
 {block name="document_index_table_each"}{if $position.modus == 0 || $position.modus == 1}{$smarty.block.parent}{/if}{/block}
 {block name="document_index_head_right"}
-					{if $Senderaddress.company} {$Senderaddress.company} <br /> {/if}
-					{$Senderaddress.firstName} {$Senderaddress.lastName} <br />
-					{$Senderaddress.street} <br />
-					{$Senderaddress.zipCode} {$Senderaddress.city} <br />
-					{$Senderaddress.country.name}<br /><br />
-					{s name="DocumentIndexDate"}Lieferscheindatum{/s} {$Document.date}<br />
-					{if $Document.deliveryDate}{s name="DocumentIndexDeliveryDate"}{/s} {$Document.deliveryDate}<br />{/if}
-					{if $Document.bid}{s name="DocumentIndexInvoiceID"}{/s} {$Document.bid}<br />{/if}
+{if $Senderaddress.company} {$Senderaddress.company} <br /> {/if}
+{$Senderaddress.firstName} {$Senderaddress.lastName} <br />
+{$Senderaddress.street} <br />
+{$Senderaddress.zipCode} {$Senderaddress.city} <br />
+{$Senderaddress.country.name}<br /><br />
+{s name="DocumentIndexDate"}Lieferscheindatum{/s} {$Document.date}<br />
+{if $Document.deliveryDate}{s name="DocumentIndexDeliveryDate"}{/s} {$Document.deliveryDate}<br />{/if}
+{if $Document.bid}{s name="DocumentIndexInvoiceID"}{/s} {$Document.bid}<br />{/if}
 {/block}

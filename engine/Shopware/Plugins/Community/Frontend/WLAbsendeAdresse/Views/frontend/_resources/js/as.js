@@ -3,8 +3,23 @@ function registerAjaxListener(){
     $(".address--btn-wl").off();
     $(".address--btn-wl").on("click",function(){
         var submitType = $(this).attr('data-type');
-        $(".address-manager--selection-form").append('<input type="hidden" name="extraData[addresstype]" value="'+submitType+'" />');
-        $(".address-manager--selection-form").submit();
+        var dataId = $(this).attr('data-id');
+        $(".address-manager--selection-form-"+dataId).append('<input type="hidden" name="extraData[addresstype]" value="'+submitType+'" />');
+        $.ajax({
+            type: "POST",
+            url: $(".address-manager--selection-form-"+dataId).attr('action'),
+            data: $(".address-manager--selection-form-"+dataId).serialize(),
+            success: function(){
+                location.reload();
+                window.location.reload();
+            },
+            error: function(){
+                location.reload();
+                window.location.reload();
+            },
+            dataType:"json"
+        });
+
     });
 
     // client side filtering

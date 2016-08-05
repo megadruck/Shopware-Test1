@@ -45,7 +45,7 @@
 
                         {block name='frontend_address_selection_modal_container_item_actions'}
                             <div class="panel--actions address-selection address-selection-{$address.id}" style="display:none;"">
-                                <form class="address-manager--selection-form" action="{url controller=senderaddress action=handleExtra}" method="post">
+                                <form class="address-manager--selection-form-{$address.id}" action="{url controller=senderaddress action=handleExtra}" method="post">
                                     <input type="hidden" name="id" value="{$address.id}" />
 
                                     {block name="frontend_address_selection_modal_container_item_extra_data"}
@@ -62,7 +62,10 @@
                                     <button class="btn is--block is--primary is--icon-right address--btn-wl"
                                             data-type="absendeadresse"
                                             data-checkFormIsValid="false"
-                                            data-preloader-button="true">
+                                            data-preloader-button="true"
+                                            data-id="{$address.id}"
+                                            >
+
                                         {s name="SelectSenderAddressButton"}Als Absendeadresse nutzen{/s}
                                         <span class="icon--arrow-right"></span>
                                     </button>
@@ -70,7 +73,9 @@
                                     <button class="btn is--block is--primary is--icon-right address--btn-wl"
                                             data-type="lieferadresse"
                                             data-checkFormIsValid="false"
-                                            data-preloader-button="true">
+                                            data-preloader-button="true"
+                                            data-id="{$address.id}"
+                                            >
                                         {s name="SelectShippingAddressButton"}Als Lieferadresse nutzen{/s}
                                         <span class="icon--arrow-right"></span>
                                     </button>

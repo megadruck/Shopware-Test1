@@ -374,7 +374,7 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
     private function handleExtraData(array $extraData, Address $address)
     {
 
-
+        $this->Front()->Plugins()->ViewRenderer()->setNoRender();
         if (!empty($extraData['sessionKey'])) {
 
             if ($extraData['addresstype'] == 'lieferadresse') {
@@ -391,20 +391,29 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
 
                     $this->get('session')->offsetSet($key, $address->getId());
                 }
-            } else {
-                $db =  Shopware()->Db();
-                $userID = Shopware()->Session()->sUserId;
-                try {
-                    $sql = "INSERT INTO `a_wluser_senderaddress` (`userID`, `senderAdressID`) VALUES ('" . $userID . "', '" . $address->getId() . "')";
-                    $db->query($sql);
-                } catch (Exception $e) {
-                    $sql = "UPDATE a_wluser_senderaddress SET senderAdressID = " . $address->getId() . " WHERE userID = " . $userID;
-                    $db->query($sql);
-                }
             }
 
 
 
+        } else {
+            if ($extraData['addresstype'] == 'lieferadresse') {
+
+                $db =  Shopware()->Db();
+                $userID = Shopware()->Session()->sUserId;
+                $db->query('UPDATE s_user SET default_shipping_address_id = ' .  $address->getId() . ' WHERE id = ' . $userID);
+
+            }
+        }
+
+        if ($extraData['addresstype'] == 'absendeadresse') {
+            $db =  Shopware()->Db();
+            $userID = Shopware()->Session()->sUserId;
+            $adressID = $this->getSenderAddressId($db, $userID);
+            if($adressID != 0){
+                $db->query('UPDATE a_wluser_senderaddress SET senderAdressID = ' .  $address->getId() . ' WHERE userID = ' . $userID);
+            } else {
+                $db->query("INSERT INTO `a_wluser_senderaddress` (`userID`, `senderAdressID`) VALUES ('" . $userID . "', '" . $address->getId() . "')");
+            }
         }
 
 
@@ -434,5 +443,17 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
         $this->get('session')->offsetSet('sArea', $areaId);
 
         $this->get('shopware_storefront.context_service')->initializeShopContext();
+    }
+
+    public function getSenderAddressId($db, $customerId){
+        $sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
+        $userSenderAddresses = $db->fetchOne($sql, array($customerId));
+
+        // keine vorhanden
+        if(empty($userSenderAddresses) || $userSenderAddresses == 0 || $userSenderAddresses == null){
+            return 0;
+        }
+
+        return number_format($userSenderAddresses);
     }
 }

@@ -8,7 +8,21 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 {
 
 	private $config_fields = array(
-			'vorname' => array(
+		'firma' => array(
+			'label' => 'Absendeadresse Firma',
+			'value' => 'Megadruck',
+			'description' => 'Absendeadresse Firma',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'abteilung' => array(
+			'label' => 'Absendeadresse Abteilung',
+			'value' => '',
+			'description' => 'Absendeadresse Abteilung',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'vorname' => array(
 			'label' => 'Absendeadresse Vorname',
 			'value' => '',
 			'description' => 'Absendeadresse Vorname',
@@ -17,7 +31,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		),
 		'nachname' => array(
 			'label' => 'Absendeadresse Nachname',
-			'value' => 'Megadruck',
+			'value' => '',
 			'description' => 'Absendeadresse Nachname',
 			'type' => 'text',
 			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
@@ -42,6 +56,20 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			'description' => 'Absendeadresse Stadt',
 			'type' => 'text',
 			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'addr1' => array(
+			'label' => 'Absendeadresse Freitext 1',
+			'value' => '',
+			'description' => 'Absendeadresse Freitext 1',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+		),
+		'addr2' => array(
+			'label' => 'Absendeadresse Freitext 2',
+			'value' => '',
+			'description' => 'Absendeadresse Freitext 2',
+			'type' => 'text',
+			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
 		)
 	);
 
@@ -52,7 +80,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	
 	public function getVersion()
     {
-        return '1.0.1';
+        return '1.0.2';
     }
 
 	/**
@@ -255,6 +283,18 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 	public function createConfigForm(){
 		$form = $this->Form();
+
+		$form->setElement('select', 'anrede',
+			array('label' => 'Absendeadresse Anrede',
+				'store' => array(
+					array('', ''),
+					array('mr', 'Herr'),
+					array('ms', 'Frau')
+				),
+				'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
+			)
+		);
+
 		foreach($this->config_fields as $field_name=>$field){
 			$form->setElement($field['type'], $field_name, array(
 					'label' => $field['label'],
@@ -264,10 +304,12 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				)
 			);
 		}
+
 		$form->setElement('combo', 'bundesland', array(
 			'label'=>'Absendeadresse Bundesland','value'=> 2,
 			'store' => 'base.CountryState'
 			, 'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP));
+
 		$form->setElement('combo', 'land', array(
 			'label'=>'Absendeadresse Land','value'=> 2,
 			'store' => 'base.Country'
@@ -381,6 +423,12 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				$nachname = $sConfigs->nachname;
 				$strasse = $sConfigs->strasse;
 				$plz = $sConfigs->plz;
+				$firma = $sConfigs->firma;
+				$abteilung = $sConfigs->abteilung;
+				$anrede = $sConfigs->anrede;
+				$addr1 = $sConfigs->addr1;
+				$addr2 = $sConfigs->addr2;
+
 				$stadt = $sConfigs->stadt;
 
 				$bundesland = $sConfigs->bundesland;
@@ -401,7 +449,11 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 
 				$senderAddress = array(
-					'company' => '',
+					'company' => $firma,
+					'department' => $abteilung,
+					'anrede' => $anrede,
+					'additional_address_line1' => $addr1,
+					'additional_address_line2' => $addr2,
 					'firstname' => $vorname,
 					'lastname' => $nachname,
 					'street' => $strasse,
@@ -513,7 +565,12 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 		if (!empty($data['setDefaultSenderAddress'])) {
 			if($data['setDefaultSenderAddress'] == true){
-				$db->query('UPDATE a_wluser_senderaddress SET senderAdressID = ' .  $data['id'] . ' WHERE userID = ' . $data['customer'][0]['id']);
+				$adressID = $this->getSenderAddressId($db, $data['customer'][0]['id']);
+				if($adressID != 0){
+					$db->query('UPDATE a_wluser_senderaddress SET senderAdressID = ' .  $data['id'] . ' WHERE userID = ' . $data['customer'][0]['id']);
+				} else {
+					$db->query("INSERT INTO `a_wluser_senderaddress` (`userID`, `senderAdressID`) VALUES ('" . $data['customer'][0]['id'] . "', '" . $data['id'] . "')");
+				}
 			}
 		}
 	}
@@ -521,12 +578,6 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 	public function onAddressGetList(Enlight_Event_EventArgs $args)
 	{
-		//$db =  Shopware()->Db();
-		//$em = Shopware()->Models();
-		//$queryBuilder = $args->getReturn();
-		//$queryBuilder->leftJoin('Shopware\CustomModels\Order\UserSenderAddress', 'usa', 'WITH', 'usa.senderAdressID = address.id');
-		//$queryBuilder->addSelect(['usa']);
-		//$args->setReturn($queryBuilder);
 
 		$db =  Shopware()->Db();
 		$em = Shopware()->Models();
@@ -563,6 +614,11 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			$strasse = $sConfigs->strasse;
 			$plz = $sConfigs->plz;
 			$stadt = $sConfigs->stadt;
+			$firma = $sConfigs->firma;
+			$abteilung = $sConfigs->abteilung;
+			$anrede = $sConfigs->anrede;
+			$addr1 = $sConfigs->addr1;
+			$addr2 = $sConfigs->addr2;
 
 			$bundesland = $sConfigs->bundesland;
 			$land = $sConfigs->land;
@@ -579,9 +635,25 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				$state = 'NULL';
 			}
 
-			$company = '';
-			$department = '';
-			$salutation = '';
+			if($firma != null){
+				$company = $firma;
+			} else{
+				$company = '';
+			}
+
+			if($abteilung != null){
+				$department = $abteilung;
+			} else{
+				$department = '';
+			}
+
+			if($anrede != null){
+				$salutation = $anrede;
+			} else{
+				$salutation = '';
+			}
+
+
 
 
 			try {
@@ -614,8 +686,18 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				$city = '';
 			}
 
-			$additional_address_line1 = '';
-			$additional_address_line2 = '';
+			if($addr1 != null){
+				$additional_address_line1 = $addr1;
+			} else{
+				$additional_address_line1 = '';
+			}
+
+			if($addr2 != null){
+				$additional_address_line2 = $addr2;
+			} else{
+				$additional_address_line2 = '';
+			}
+
 
 
 			$sql = 'INSERT INTO ';
