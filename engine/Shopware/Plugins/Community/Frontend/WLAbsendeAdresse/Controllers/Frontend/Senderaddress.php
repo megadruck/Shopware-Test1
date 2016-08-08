@@ -351,7 +351,6 @@ class Shopware_Controllers_Frontend_Senderaddress extends Enlight_Controller_Act
     public function handleExtraAction()
     {
         $this->Front()->Plugins()->ViewRenderer()->setNoRender();
-
         $address = $this->addressRepository->getOneByUser(
             $this->Request()->getPost('id'),
             $this->get('session')->get('sUserId')

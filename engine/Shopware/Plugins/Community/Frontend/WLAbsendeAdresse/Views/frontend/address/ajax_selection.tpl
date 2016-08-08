@@ -6,23 +6,25 @@
         <div class="filterbar">
             <p class="labeltag">Suche:</p><input type="text" id="searchField">
         </div>
-        <div class="modal--container-item address--box" id="0" data-tags="Marcelo Dit  Muster">
-            <div class="panel address--item-content has--border is--rounded block">
+        {if $sender_address_id != 0}
+            <div class="modal--container-item address--box" id="0" data-tags="Marcelo Dit  Muster">
+                <div class="panel address--item-content has--border is--rounded block">
 
-                <div class="address--item-body panel--body is--wide" style="height: auto;">
-                    <span class="address--firstname is--bold">Megadruck als Absender</span>
+                    <div class="address--item-body panel--body is--wide" style="height: auto;">
+                        <span class="address--firstname is--bold">Megadruck als Absender</span>
+                    </div>
+
+                   <div class="panel--actions address-selection address-selection-0" style="display: none; height: auto;" "="">
+
+                        <button class="btn is--block is--primary is--icon-right" id="noSender" data-type="absendeadresse" data-checkformisvalid="false" data-preloader-button="true">Keine Absendeadresse
+                         <span class="icon--arrow-right"></span>
+                        </button>
+
+                    </div>
+
                 </div>
-
-               <div class="panel--actions address-selection address-selection-0" style="display: none; height: auto;" "="">
-
-                    <button class="btn is--block is--primary is--icon-right" id="noSender" data-type="absendeadresse" data-checkformisvalid="false" data-preloader-button="true">Keine Absendeadresse
-                     <span class="icon--arrow-right"></span>
-                    </button>
-
-                </div>
-
             </div>
-        </div>
+        {/if}
         {foreach $addresses as $address}
             {block name='frontend_address_selection_modal_container_item'}
                 <div class="modal--container-item address--box" id="{$address.id}" data-tags="{$address.firstname} {$address.lastname} {$address.company} {$address.city}">

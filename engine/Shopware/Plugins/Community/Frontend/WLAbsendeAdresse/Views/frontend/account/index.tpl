@@ -92,7 +92,7 @@
                                 </a>
                                 <br/>
                                 {/if}
-                                <a href="{url controller=address}"
+                                <a href="{url controller=address}?shipping=true"
                                        data-address-selection="true"
                                        data-setDefaultShippingAddress="1"
                                        data-id="{$sUserData.additional.user.default_shipping_address_id}"

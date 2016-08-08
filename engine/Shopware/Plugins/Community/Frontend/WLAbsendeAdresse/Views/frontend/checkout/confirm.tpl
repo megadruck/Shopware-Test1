@@ -239,7 +239,7 @@
 			</div>
 			{/block}
 				{block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_select_address"}
-				<a href="{url controller=address}"
+				<a href="{url controller=address}?shipping=true"
                                                            data-address-selection="true"
                                                            data-sessionKey="checkoutShippingAddressId"
                                                            data-id="{$activeShippingAddressId}"

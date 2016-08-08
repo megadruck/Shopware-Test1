@@ -197,6 +197,11 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		);
 
 		$this->subscribeEvent(
+			'Shopware_Controllers_Frontend_Address::ajaxSelectionAction::after',
+			'onAjaxSelection'
+		);
+
+		$this->subscribeEvent(
 			'sOrder::sSaveOrder::after',
 			'afterOrderCreation'
 		);
@@ -245,6 +250,11 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		$this->subscribeEvent(
 			'Enlight_Controller_Front_StartDispatch',
 			'onEnlightControllerFrontStartDispatch'
+		);
+
+		$this->subscribeEvent(
+			'sOrder::sendMail::before',
+			'onSendMailBefore'
 		);
 
 		// Standard-Absender-Daten setzen
@@ -587,7 +597,169 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 			$data['customer']['default_sender_address_id'] = $this->getSenderAddressId($db, $data['customer']['id']);
 		}
 		$args->setReturn($result);
+	}
 
+	public function onAjaxSelection(Enlight_Event_EventArgs $args)
+	{
+		$db =  Shopware()->Db();
+		$em = Shopware()->Models();
+		$subject = $args->getSubject();
+		$customerID = Shopware()->Session()->sUserId;
+		$request = $subject->Request();
+		$shipping = $subject->Request()->getParam('shipping');
+		$view = $subject->View();
+		$sender_id = $this->getSenderAddressId($db, $customerID);
+		if(isset($shipping) && !empty($shipping)){
+			$sender_id = 0;
+		}
+
+		$view->assign('sender_address_id', $sender_id);
+	}
+
+	public function onSendMailBefore(Enlight_Event_EventArgs $arguments){
+
+		$db = Shopware()->Db();
+		$em = Shopware()->Models();
+
+
+		$variables = $arguments->get('variables');
+
+		//$orderID = $this->getOrderIdByNumber($db, $variables['sOrderNumber']);
+
+		//
+
+		$sql = "SELECT senderAdressID FROM a_wluser_senderaddress WHERE userID=?";
+		$userSenderAddresses = $db->fetchOne($sql, array($variables['additional']['user']['userID']));
+
+		$addressID = 0;
+
+		// keine vorhanden
+		if(empty($userSenderAddresses) || $userSenderAddresses == 0 || $userSenderAddresses == null){
+
+			$sConfigs = Shopware()->Plugins()->Frontend()->WLAbsendeAdresse()->Config();
+			$vorname = $sConfigs->vorname;
+			$nachname = $sConfigs->nachname;
+			$strasse = $sConfigs->strasse;
+			$plz = $sConfigs->plz;
+			$stadt = $sConfigs->stadt;
+			$firma = $sConfigs->firma;
+			$abteilung = $sConfigs->abteilung;
+			$anrede = $sConfigs->anrede;
+			$addr1 = $sConfigs->addr1;
+			$addr2 = $sConfigs->addr2;
+
+			$bundesland = $sConfigs->bundesland;
+			$land = $sConfigs->land;
+
+			if($land != null){
+				$query = $em->createQuery("SELECT country FROM Shopware\Models\Country\Country country WHERE country.id = " . $land);
+				$country = $query->getResult ( Query::HYDRATE_ARRAY)[0];
+			} else {
+				$country = '';
+			}
+
+			if($bundesland != null){
+				$query = $em->createQuery("SELECT state FROM Shopware\Models\Country\State state WHERE state.id = " . $bundesland);
+				$state = $query->getResult ( Query::HYDRATE_ARRAY)[0];
+			} else{
+				$state = '';
+			}
+
+			if($firma != null){
+				$company = $firma;
+			} else{
+				$company = '';
+			}
+
+			if($abteilung != null){
+				$department = $abteilung;
+			} else{
+				$department = '';
+			}
+
+			if($anrede != null){
+				$salutation = $anrede;
+			} else{
+				$salutation = '';
+			}
+
+			try {
+				$firstname = $vorname;
+			} catch (Exception $e) {
+				$firstname = '';
+			}
+
+			try {
+				$lastname = $nachname;
+			} catch (Exception $e) {
+				$lastname = '';
+			}
+
+			try {
+				$street = $strasse;
+			} catch (Exception $e) {
+				$street = '';
+			}
+
+			try {
+				$zipcode = $plz;
+			} catch (Exception $e) {
+				$zipcode = '';
+			}
+
+			try {
+				$city = $stadt;
+			} catch (Exception $e) {
+				$city = '';
+			}
+
+			if($addr1 != null){
+				$additional_address_line1 = $addr1;
+			} else{
+				$additional_address_line1 = '';
+			}
+
+			if($addr2 != null){
+				$additional_address_line2 = $addr2;
+			} else{
+				$additional_address_line2 = '';
+			}
+
+			$senderAddress = array(
+				'company' => $company,
+				'department' => $department,
+				'salutation' => $salutation,
+				'additional_address_line1' => $additional_address_line1,
+				'additional_address_line2' => $additional_address_line2,
+				'firstname' => $firstname,
+				'lastname' => $lastname,
+				'street' => $street,
+				'zipcode' => $zipcode,
+				'city' => $city,
+				'state' => $state,
+				'country' => $country,
+				'land' => $land,
+				'bundesland' => $bundesland
+
+			);
+			$variables['sOrderDetails'][0]['senderaddress'] = $senderAddress;
+			$arguments->set('variables', $variables);
+			//mail('s.vgroenheim@wistundlaumann.de','OnAssignValues', print_r($variables,TRUE) );
+			return;
+
+		} else {
+
+			$addressID = $userSenderAddresses;
+
+		}
+
+		$query = $em->createQuery("SELECT address, attr, country, state FROM Shopware\Models\Customer\Address address LEFT JOIN address.attribute attr LEFT JOIN address.country country LEFT JOIN address.state state WHERE address.id = " . $addressID);
+		$senderAddress = $query->getResult ( Query::HYDRATE_ARRAY)[0];
+
+
+		$variables['sOrderDetails'][0]['senderaddress'] = $senderAddress;
+		$arguments->set('variables', $variables);
+		//mail('s.vgroenheim@wistundlaumann.de','OnAssignValues', print_r($variables,TRUE) );
 
 
 	}
