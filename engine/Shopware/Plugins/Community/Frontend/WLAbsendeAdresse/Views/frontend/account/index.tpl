@@ -92,7 +92,7 @@
                                 </a>
                                 <br/>
                                 {/if}
-                                <a href="{url controller=address}?shipping=true"
+                                <a class="open-shippingaddress" href="{url controller=address}?shipping=true"
                                        data-address-selection="true"
                                        data-setDefaultShippingAddress="1"
                                        data-id="{$sUserData.additional.user.default_shipping_address_id}"
@@ -151,7 +151,7 @@
                                     </a>
                                     <br/>
                                 {/if}
-                                <a href="{url controller=address}"
+                                <a class="open-senderaddress" href="{url controller=address}"
                                    data-address-selection="true"
                                    data-setDefaultSenderAddress="1"
                                    data-id="{$senderAddress.id}"
@@ -166,4 +166,12 @@
 
 
             </div>
+
+        {/block}
+
+
+        {block name="frontend_index_header_javascript_jquery" append}
+            <script>
+                registerAddressTypeListener();
+            </script>
         {/block}

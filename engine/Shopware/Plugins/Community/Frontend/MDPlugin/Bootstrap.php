@@ -107,7 +107,7 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
 		$view->addTemplateDir(__DIR__ . '/Views');
 
 		if ($request->getActionName() === 'load') {
-			$view->extendsTemplate('backend/order/view/attributeform.js');
+			$view->extendsTemplate('backend/order/view/fadeout.js');
 		}
 
 		

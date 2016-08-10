@@ -518,8 +518,6 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
         var me = this;
 
         me.detailsForm = Ext.create('Ext.form.Panel', {
-            collapsed: true,
-            collapsible: true,
             flex:1,
             title: me.snippets.details.title,
             bodyPadding: 10,
@@ -767,7 +765,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
             dock: 'bottom',
             items: me.getEditFormButtons()
         });
-        return me.toolbar;
+        return me.toolbar; 
     },
 
     /**
@@ -777,8 +775,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
         var me = this;
         
         me.attributeForm = Ext.create('Shopware.attribute.Form', {
-            collapsed: true,
-            collapsible: true,
+
             flex:2,
             table: 's_order_attributes',
             name: 'order-attributes',

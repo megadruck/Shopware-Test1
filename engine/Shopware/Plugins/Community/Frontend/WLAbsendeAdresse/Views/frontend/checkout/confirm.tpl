@@ -57,7 +57,7 @@
                                                 </div>
                                             {/block}
 
-                                            {* Action buttons *}
+
                                             {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions"}
                                                 <div class="panel--actions is--wide">
                                                     {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions_change"}
@@ -84,14 +84,12 @@
 					{block name='frontend_checkout_confirm_information_addresses_sender_panel'}
 					<div class="panel has--border block information--panel sender--panel">
 
-						{* Headline *}
 						{block name='frontend_checkout_confirm_information_addresses_sender_panel_title'}
 						<div class="panel--title is--underline">
 							{s name="ConfirmHeaderSender" namespace="frontend/checkout/confirm"}Absendeadresse{/s}
 						</div>
 						{/block}
 
-						{* Content *}
 						{block name='frontend_checkout_confirm_information_addresses_sender_panel_body'}
 						<div class="panel--body is--wide">
 							{if $senderAddress.company}
@@ -122,7 +120,7 @@
 															</div>
 														{/block}
 
-														{* Action buttons *}
+
 														{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions"}
 															<div class="panel--actions is--wide">
 																{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions_change"}
@@ -144,10 +142,10 @@
 		</div>
 		{/block}
 			{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions_select_address"}
-			<a href="{url controller=address}"
+			<a class="open-senderaddress" href="{url controller=address}"
 																	   data-address-selection="true"
 																	   data-sessionKey="checkoutShippingAddressId"
-																	   data-id="{$activeShippingAddressId}"
+																	   data-id="{$senderAddress.id}"
 																	   title="{s name="ConfirmAddressSelectLink"}{/s}">
 																		{s name="ConfirmAddressSelectLink"}{/s}
 			</a>
@@ -170,14 +168,14 @@
 			{block name='frontend_checkout_confirm_information_addresses_shipping_panel'}
 			<div class="panel has--border block information--panel shipping--panel">
 
-				{* Headline *}
+
 				{block name='frontend_checkout_confirm_information_addresses_shipping_panel_title'}
 				<div class="panel--title is--underline">
 					{s name="ConfirmHeaderShipping" namespace="frontend/checkout/confirm"}{/s}
 				</div>
 				{/block}
 
-				{* Content *}
+
 				{block name='frontend_checkout_confirm_information_addresses_shipping_panel_body'}
 				<div class="panel--body is--wide">
 					{if $sUserData.shippingaddress.company}
@@ -217,7 +215,7 @@
                                                 </div>
                                             {/block}
 
-                                            {* Action buttons *}
+
                                             {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions"}
                                                 <div class="panel--actions is--wide">
                                                     {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change"}
@@ -239,7 +237,7 @@
 			</div>
 			{/block}
 				{block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_select_address"}
-				<a href="{url controller=address}?shipping=true"
+				<a class="open-shippingaddress" href="{url controller=address}?shipping=true"
                                                            data-address-selection="true"
                                                            data-sessionKey="checkoutShippingAddressId"
                                                            data-id="{$activeShippingAddressId}"
@@ -255,7 +253,13 @@
 		{/block}
 
 
+{/block}
 
+
+{block name="frontend_index_header_javascript_jquery" append}
+<script>
+registerAddressTypeListener();
+</script>
 {/block}
 
                     

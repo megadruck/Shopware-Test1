@@ -4,19 +4,21 @@
  * Joerg Frintrop
  * j.frintrop@megadruck.de
  */
-//{namespace name=backend/order/main}
 //{block name="backend/order/view/detail/overview" append}
 
-Ext.define('Shopware.apps.Order.view.detail.Overview', {
-    override:'Shopware.attribute.Form',
+Ext.define('Shopware.apps.Order.view.detail.Fadeout', {
+    override:'Shopware.apps.Order.view.detail.Overview',
  /**
      * @returns { Shopware.attribute.Form }
      */
-    createAttributeForm: function() {
+    initComponent: function() {
         var me = this;
         
         me.attributeForm = Ext.create('Shopware.attribute.Form', {
-            table: 's_order_attributes',
+            collapsed: true,
+            collapsible: true, 
+            flex:2,
+            table: 's_order_attributes', 
             name: 'order-attributes',
             title: '{s name="attribute_title"}{/s}',
             border: true,

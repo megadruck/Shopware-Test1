@@ -80,7 +80,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	
 	public function getVersion()
     {
-        return '1.0.2';
+        return '1.0.5';
     }
 
 	/**
@@ -208,7 +208,6 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 
 		// Backend Events
-
 		$this->subscribeEvent(
 			'Enlight_Controller_Action_PostDispatch_Backend_Customer',
 			'onCustomerPostDispatch'
@@ -742,9 +741,9 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 				'bundesland' => $bundesland
 
 			);
-			$variables['sOrderDetails'][0]['senderaddress'] = $senderAddress;
+			$variables['additional']['senderaddress'] = $senderAddress;
 			$arguments->set('variables', $variables);
-			//mail('s.vgroenheim@wistundlaumann.de','OnAssignValues', print_r($variables,TRUE) );
+
 			return;
 
 		} else {
@@ -757,9 +756,9 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 		$senderAddress = $query->getResult ( Query::HYDRATE_ARRAY)[0];
 
 
-		$variables['sOrderDetails'][0]['senderaddress'] = $senderAddress;
+		$variables['additional']['senderaddress'] = $senderAddress;
 		$arguments->set('variables', $variables);
-		//mail('s.vgroenheim@wistundlaumann.de','OnAssignValues', print_r($variables,TRUE) );
+
 
 
 	}

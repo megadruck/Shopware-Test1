@@ -7,7 +7,7 @@
             <p class="labeltag">Suche:</p><input type="text" id="searchField">
         </div>
         {if $sender_address_id != 0}
-            <div class="modal--container-item address--box" id="0" data-tags="Marcelo Dit  Muster">
+            <div class="modal--container-item address--box noSenderBox" id="0" data-tags="Marcelo Dit  Muster">
                 <div class="panel address--item-content has--border is--rounded block">
 
                     <div class="address--item-body panel--body is--wide" style="height: auto;">
@@ -61,7 +61,7 @@
                                 {block name="frontend_address_selection_modal_container_item_select_button"}
 
 
-                                    <button class="btn is--block is--primary is--icon-right address--btn-wl"
+                                    <button class="btn is--block is--primary is--icon-right address--btn-wl absender-address-btn"
                                             data-type="absendeadresse"
                                             data-checkFormIsValid="false"
                                             data-preloader-button="true"
@@ -72,7 +72,7 @@
                                         <span class="icon--arrow-right"></span>
                                     </button>
 
-                                    <button class="btn is--block is--primary is--icon-right address--btn-wl"
+                                    <button class="btn is--block is--primary is--icon-right address--btn-wl liefer-address-btn"
                                             data-type="lieferadresse"
                                             data-checkFormIsValid="false"
                                             data-preloader-button="true"
