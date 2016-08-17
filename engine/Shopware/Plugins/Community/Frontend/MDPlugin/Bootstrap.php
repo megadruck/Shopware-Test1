@@ -55,7 +55,7 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
  
     public function getVersion()
     {
-        return '1.0.0';
+        return '1.0.1';
     }
  
     public function getInfo()
@@ -107,7 +107,7 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap
 		$view->addTemplateDir(__DIR__ . '/Views');
 
 		if ($request->getActionName() === 'load') {
-			$view->extendsTemplate('backend/order/view/fadeout.js');
+			$view->extendsTemplate('backend/order/view/detail/fadeout.js');
 		}
 
 		
