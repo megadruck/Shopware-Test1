@@ -1,0 +1,91 @@
+.container--ajax-cart {
+    .ajax--cart {
+        .buttons--off-canvas {
+            .close--off-canvas {
+                background: @theme-secondary;
+                .icon--arrow-left {
+                }
+            }
+        }
+        .alert {
+            .alert--icon {
+            }
+            .alert--content {
+            }
+        }
+        .item--container {
+            .cart--item {
+                .thumbnail--container {
+                    .thumbnail--image {
+                    }
+                }
+                .action--container {
+                    .btn {
+                        i {
+                        }
+                        &.action--remove {
+                            border: 0 none;
+                            background: none;
+                            i {
+                                color: @theme-secondary;
+                                font-size: 27px;
+                            }
+                        }
+                    }
+                }
+                .item--link {
+                    .item--quantity {
+                    }
+                    .item--name {
+                    }
+                    .item--price {
+                    }
+                }
+            }
+        }
+        .prices--container {
+            .prices--articles {
+                .prices--articles-text {
+                }
+                .prices--articles-amount {
+                }
+            }
+        }
+        .button--container {
+            .btn {
+                border-radius: 0;
+                .transition(all .2s ease);
+                border: 0 none;
+                font-weight: 600;
+                &:hover {
+                }
+                &.button--checkout {
+                    background: @theme-primary;
+                    color: #FFF;
+                    &:hover {
+                        color: @theme-secondary;
+                    }
+                }
+                &.button--open-basket {
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

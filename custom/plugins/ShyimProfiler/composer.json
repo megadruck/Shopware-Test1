@@ -1,0 +1,10 @@
+{
+  "name": "shyim/shopware-profiler",
+  "keywords": ["shopware", "profiling", "plugin"],
+  "description": "Profiling for Shopware",
+  "license": "MIT",
+  "require": {
+    "symfony/var-dumper": "3.1.x-dev",
+    "jdorn/sql-formatter": "1.3.x-dev"
+  }
+}

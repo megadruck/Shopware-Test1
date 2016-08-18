@@ -1,0 +1,28 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .finish--content {
+        padding-top: 0;
+        .finish--teaser {
+            border-width: 7px;
+            border-color: @theme-bg-light;
+        }
+        .btn {
+            border-radius: 0;
+            &.is--primary {
+                .btn-dark();
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

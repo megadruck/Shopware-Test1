@@ -1,0 +1,92 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .box--slider .product--price-info .price--unit {
+        height: 24px;
+    }
+    .product--box {
+        .box--content {
+            .transition(all 0.2s ease);
+            box-shadow: inset 0px 0px 1px 1px @theme-bg-light;
+            .product--badges {
+
+            }
+            .product--info {
+                .product--image {
+                    .image--element {
+                        .image--media {
+                            img {
+
+                            }
+                        }
+                    }
+                }
+                .product--title {
+                    margin: 0;
+                    text-overflow: ellipsis;
+                   height: 3rem;
+                    text-transform: uppercase;
+                    overflow: hidden;
+                    white-space: normal;
+                    font-weight: 300;
+                    color: @theme-content-text;
+                    padding: 7px 0;
+                    font-size: 16px;
+                    &:hover {
+                        color: @theme-primary;
+                    }
+                }
+                .product--price-info {
+                    .price--unit {
+
+                    }
+                    .product--price {
+                        padding: 0;
+                        text-align: left;
+                        .price--default {
+                            font-size: 16px;
+                            font-weight: 600;
+                            color: @theme-content-text;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                box-shadow: inset 0px 0px 1px 1px @theme-primary;
+                border-color: @theme-primary;
+            }
+        }
+        &.box--minimal {
+            width: 33.3%;
+            .product--image {
+                .unitize-height(145);
+                .image--element {
+                    .image--media {
+                        img {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
+@media screen and (min-width: 78.75em){
+  .box--basic .box--content{
+    padding: 0rem .625rem 1.25rem .625rem;
+  }
+  .box--basic .product--image{
+    padding-top: 1.25rem;
+  }
+}

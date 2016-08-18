@@ -1,0 +1,22 @@
+.btn-dark (@time: .2s) {
+    border-radius: 0;
+    border: 0 none;
+    color: #FFF;
+    background: @theme-primary;
+    .transition(all @time ease);
+    &:hover {
+        color: @theme-text-dark;
+    }
+}
+
+.btn-light (@time: .2s) {
+    border-radius: 0;
+    border: 0 none;
+    color: #FFF;
+    background: @theme-primary;
+    .transition(all @time ease);
+    &:hover {
+        color: @theme-primary;
+        background: none;
+    }
+}

@@ -1,0 +1,75 @@
+
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .is--ctl-note {
+        .categories--headline {
+            display: none !important;
+        }
+    }
+    .note--content {
+        .account--welcome {
+            .panel--title {
+                .unitize-padding(0, 0, 12, 0);
+            }
+        }
+        .note--overview {
+            .panel--table {
+                border: 0 none;
+                padding: 0;
+                .note--item {
+                    border: 1px solid @theme-bg-light;
+                    box-shadow: inset 0px 0px 1px 1px @theme-bg-light;
+                    .unitize-padding(20, 20);
+                    .unitize(margin-bottom, 20);
+                    .transition(all 0.2s ease);
+                    &:hover {
+                        box-shadow: inset 0px 0px 1px 1px @theme-primary;
+                        border-color: @theme-primary;
+                    }
+                    .note--image-container {
+                        .unitize-width(200);
+                        .note--image-link {
+                            margin: 0;
+                            display: block;
+                            .unitize-height(120);
+                            .unitize-width(110);
+                            padding: 0;
+                            border: 0 none;
+                            img {
+                                .unitize-max-height(145);
+                                .unitize-max-width(200);
+                            }
+                        }
+                    }
+                    .note--delete {
+                        position: absolute;
+                        right: -6px;
+                        top: 0;
+                        border: 0 none;
+                        background: 0 none;
+                        padding: 0;
+                        margin: 0;
+                        line-height: 0;
+                        i {
+                            font-size: 30px;
+                            color: @theme-secondary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

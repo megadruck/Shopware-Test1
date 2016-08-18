@@ -1,0 +1,34 @@
+{
+    "label": {
+        "de": "Custom Products (v2)",
+        "en": "Custom Products (v2)"
+    },
+    "copyright": "(c) by Shopware AG",
+    "license": "proprietary",
+    "link": "http://store.shopware.com",
+    "author": "Shopware AG",
+
+    "currentVersion": "1.0.3",
+
+    "changelog": {
+        "de": {
+            "1.0.3": "PT-6427 - Bugfix: Eingegebene Werte auf Rechnung bei doppelten Optionen;",
+            "1.0.2": "PT-6102 - Bugfix: Zugewiesene Artikel werden im Backend Modul separat geladen; PT-6146 - Bugfix: Bestellungen wiederholen Button ausblenden; PT-6210, PT-6377 - Bugfix: Custom Products Artikel in den Warenkorb legen; PT-6247 - Bugfix: Eingegebene Werte auf Rechnung; PT-6338 - Bugfix: Custom Products Modul vom Artikel Modul aus öffnen;",
+            "1.0.1": "Bugfix: PT-6188 - Fehlerbehebung bei leeren Bestellnummern;Bugfix: PT-6164 - Designfixes im StepByStep-Modus;Bugfix: PT-6170, PT-6174 - Migrations-Probleme behoben;Bugfix: PT-6193 - Options-Übersetzungen in die Preis-Übersicht eingefügt;Bugfix: PT-6194 - Öffnen von zwei Vorlagen gleichzeitig verhindert;Bugfix: PT-6216 - Zurücksetzen von Optionen funktioniert nun korrekt mit der Preisübersicht;Bugfix: PT-6249 - Versehentliches Löschen einer Vorlage lässt sich nun korrekt abbrechen;Bugfix: PT-6241 - Staffelpreise & Mindestabnahme in Preisübersicht berücksichtigt;",
+            "1.0.0": "Erstveröffentlichung"
+        },
+        "en": {
+            "1.0.3": "PT-6247 - Bugfix: Inserted values on invoice at doubled values;",
+            "1.0.2": "PT-6102 - Bugfix: Assigned products are loaded separately in the backend module; PT-6146 - Bugfix: Hide repeat order button; PT-6210, PT-6377 - Bugfix: Add Custom Products item to basket; PT-6247 - Bugfix: Inserted values on invoice; PT-6338 - Bugfix: Open Custom Products module from product module;",
+            "1.0.1": "Bugfix: PT-6188 - Fixed empty option ordernumbers;Bugfix: PT-6164 - Designfixes for the step-by-step mode;Bugfix: PT-6170, PT-6174 - Fixed migration-issues;Bugfix: PT-6193 - Inserted option translations into price-overview;Bugfix: PT-6194 - Prevented opening more than one template at a time;Bugfix: PT-6216 - Resetting an option works properly with price-overview now;Bugfix: PT-6249 - Accidentally deleting a template is now properly cancelable;Bugfix: PT-6241 - Bulk prices & minimum purchase quantity are considered in price-overview now;",
+            "1.0.0": "First release"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "5.2.0",
+        "maximumVersion": null,
+        "blacklist": [
+        ]
+    }
+}

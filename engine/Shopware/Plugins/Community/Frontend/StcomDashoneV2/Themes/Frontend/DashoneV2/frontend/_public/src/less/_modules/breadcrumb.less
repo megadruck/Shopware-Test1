@@ -1,0 +1,50 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .content--breadcrumb {
+        border: 0 none;
+        .container {
+            .breadcrumb--list {
+                .breadcrumb--entry {
+                    .breadcrumb--link {
+                        color: @theme-text-dark;
+                        padding: 0;
+                        line-height: 33px;
+                        .breadcrumb--title {
+
+                        }
+                    }
+                }
+                .breadcrumb--separator {
+                    .icon--arrow-right {
+                        position: relative;
+                        top: -5px;
+                        margin: 0;
+                        font-size: 8px;
+                    }
+                }
+            }
+            .breadcrumb--button {
+                position: relative;
+                top: 5px;
+                padding: 0;
+                margin: 0;
+                .unitize(margin-right, 50);
+                .icon--arrow-left {
+                    top: -1px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
