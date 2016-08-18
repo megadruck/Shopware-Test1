@@ -1,0 +1,88 @@
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .is--ctl-register {
+        .register--content {
+            border: 0 none !important;
+            background-color: @theme-bg-light;
+            padding: 0;
+            .register--supplier {
+                .panel--title {
+                    .panel-title();
+                }
+                .panel--body {
+                    input,
+                    textarea {
+                        .form-input();
+                    }
+                    .js--fancy-select {
+                        .form-select();
+                        .unitize(margin-bottom, 8);
+                    }
+                }
+                .btn {
+                    .btn-dark();
+                }
+            }
+            .register--form {
+                background-color: @theme-bg-light;
+            }
+            .panel--title {
+                .panel-title();
+            }
+            .panel--body {
+                input,
+                textarea {
+                    .form-input();
+                }
+                .js--fancy-select {
+                    .form-select();
+                    .unitize(margin-bottom, 8);
+                }
+            }
+            .btn {
+                .btn-dark();
+            }
+            .register--personal,
+            .register--address,
+            .register--company {
+                background: none;
+            }
+        }
+
+        .register--login {
+            .register--existing-customer {
+                border: 0 none;
+                background: @theme-secondary;
+                .panel--title {
+                    .panel-title();
+                }
+                .panel--body {
+                    .register--login-description {
+                        color: #FFF;
+                    }
+                    input {
+                        .form-input();
+                    }
+                    a {
+                        color: #FFF;
+                    }
+                    .btn {
+                        .btn-dark();
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

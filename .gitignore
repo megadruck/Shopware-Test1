@@ -1,0 +1,6 @@
+var/*
+config.*
+web/*
+*.log
+nbproject/*
+/files/*

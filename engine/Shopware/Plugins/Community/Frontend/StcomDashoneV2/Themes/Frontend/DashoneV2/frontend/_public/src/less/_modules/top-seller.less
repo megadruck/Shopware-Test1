@@ -1,0 +1,85 @@
+.topseller {
+    .topseller--content {
+        .product-slider--arrow {
+            .unitize-width(28);
+            background: none;
+            border: 0 none;
+            color: rgba(0, 0, 0, 0.8);
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+            .transition(all .1s ease);
+            font-size: 42px;
+            &.arrow--prev {
+            }
+            &.arrow--next {
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .topseller {
+        border: 0 none !important;
+        border-radius: 0;
+        .topseller--title {
+            .panel-title();
+        }
+        .topseller--content {
+            .box--content {
+                border: 0 none;
+                box-shadow: none;
+                &:hover {
+                    border: 0 none;
+                    box-shadow: none;
+                }
+                .product--price {
+                    .price--default {
+                        font-size: 20px !important;
+                        font-weight: 600 !important;
+                        color: #5A5A5A !important;
+                    }
+                }
+            }
+            .product-slider--arrow {
+                .unitize-width(28);
+                opacity: 0;
+                background: none;
+                border: 0 none;
+                color: rgba(0, 0, 0, 0.8);
+                text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+                .transition(all .1s ease);
+                &.arrow--prev {
+
+                }
+                &.arrow--next {
+
+                }
+                &::before {
+                    font-size: 42px;
+                }
+                &:hover {
+                    color: @theme-primary;
+                    opacity: 1;
+                }
+            }
+            &:hover {
+                .product-slider--arrow {
+                    opacity: 1;
+                    .unitize-width(68);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

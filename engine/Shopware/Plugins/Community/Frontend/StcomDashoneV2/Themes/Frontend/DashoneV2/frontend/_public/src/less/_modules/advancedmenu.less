@@ -1,0 +1,87 @@
+    .advanced-menu {
+          .teaser--image {
+            .unitize-height(100);
+          }
+         .teaser--headline {
+        .unitize(font-size, 16);
+          }
+        .menu--container {
+            &.menu--is-active {
+                background-color:#f3f4f6;
+            }
+            .button-container {
+                background: @theme-secondary;
+                .button--category {
+                    .icon--arrow-right {
+                        &::before {
+
+                        }
+                    }
+                }
+            }
+            .button--close {
+                .icon--cross {
+                    &::before {
+
+                    }
+                }
+            }
+            .content--wrapper {
+                .menu--list {
+                    .menu--list-item {
+                        .menu--level-1 {
+                            .menu--list-item {
+                                &:hover {
+                                    background: #f3f4f6;
+                                }
+                                .menu--list-item-link {
+                                     //.unitize-padding(5, 0);
+                                    .unitize(font-size, 14);
+                                    &:hover {
+                                        color: #3f4c58;
+                                    // .unitize-padding(5, 0, 5, 3);
+                                    text-decoration:underline;
+                                    }
+                                }
+                                .button-container {
+                                .unitize-padding(4, 5, 4, 0);
+                                 }
+                                 
+                                     .menu--level-1 {
+                                        .unitize-margin(5, 0, 0, 20);
+                                        border-left: solid #d0d0d0 4px;
+                                        padding-left: 4px;
+    }
+                            }
+                                .item--level-1 {
+                                .menu--list-item-link {
+
+                                .unitize(font-size, 13);
+                                }
+ }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+        .advanced-menu .content--wrapper {
+        .unitize-margin(0, 0,0,10);
+    }
+}

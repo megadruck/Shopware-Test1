@@ -1,0 +1,31 @@
+.content-main {
+    .unitize(margin-top, 20);
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+    .content-main {
+        .unitize(margin-top, 20);
+    }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+    .content-main {
+        .unitize(margin-top, 20);
+        .content-main--inner {
+            padding: 0;
+        }
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+    .content-main {
+        .unitize(margin-top, 20);
+    }
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}

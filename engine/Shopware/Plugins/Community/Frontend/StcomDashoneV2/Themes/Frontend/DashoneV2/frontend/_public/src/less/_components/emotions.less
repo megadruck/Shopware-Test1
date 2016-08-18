@@ -1,0 +1,63 @@
+.content--emotions {
+    .emotion--wrapper {
+        .emotion--container {
+            .emotion--element {
+                .arrow {
+                    .unitize-width(28);
+                    opacity: 0;
+                    background: none;
+                    border: 0 none;
+                    color: rgba(0, 0, 0, 0.8);
+                    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+                    .transition(all .1s ease);
+                    &.is--left {
+                    }
+                    &.is--right {
+                    }
+                    &::before {
+                        font-size: 42px;
+                    }
+                    &:hover {
+                        color: @theme-primary;
+                        opacity: 1;
+                    }
+                }
+                &:hover {
+                    .arrow {
+                        opacity: 1;
+                        .unitize-width(68);
+                    }
+                }
+                .emotion--product-slider {
+                    border: 1px solid @theme-bg-light;
+                    box-shadow: inset 0px 0px 1px 1px @theme-bg-light;
+                    .transition(all .2s ease);
+                    &:hover {
+                        border: 1px solid @theme-primary;
+                        box-shadow: inset 0px 0px 1px 1px @theme-primary;
+                    }
+                    .box--content {
+                        box-shadow: none;
+                        border: 0 none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    // 480px
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    // 768px
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    // 1024px
+}
+
+@media screen and (min-width: @desktopViewportWidth) {
+    // 1260px changed to 998px
+}
