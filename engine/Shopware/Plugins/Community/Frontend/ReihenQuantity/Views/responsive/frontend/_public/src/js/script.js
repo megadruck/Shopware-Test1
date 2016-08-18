@@ -1,1 +1,0 @@
-jQuery.fn.ForceNumbersOnly=function(){return this.each(function(){$(this).keydown(function(n){var e=n.charCode||n.keyCode||0;return 8==e||9==e||46==e||e>=37&&40>=e||e>=48&&57>=e||e>=96&&105>=e})})};
