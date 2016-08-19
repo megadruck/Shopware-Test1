@@ -262,7 +262,7 @@
                 delete me.hoverDelayTimeoutId;
             }
 
-            me.closeMenu();
+           me.closeMenu();
         },
 
         /**

@@ -70,9 +70,6 @@ Ext.define('Shopware.apps.Order.view.detail.Fadeout', {
                         '<p>',
                             '<span>{description}</span>',
                         '</p>',                       
-                        '<p>',
-                            '<span>{invoiceAmount}</span>',
-                        '</p>',
                     '</div>',
                 '</div>',
             '</tpl>{/literal}'
