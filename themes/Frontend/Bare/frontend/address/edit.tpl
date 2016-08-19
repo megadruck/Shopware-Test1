@@ -13,7 +13,9 @@
         {* Address headline *}
         {block name="frontend_address_form_headline"}
             <div class="account--welcome">
-                <h1 class="panel--title">{s name="AddressesTitleEdit"}Change address{/s}</h1>
+                <h1 class="panel--title">
+                    {s name="AddressesTitleEdit"}Change address{/s}
+                </h1>
             </div>
         {/block}
 

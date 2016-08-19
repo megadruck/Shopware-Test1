@@ -48,7 +48,7 @@
     }
 
     .teaser--image {
-        .unitize-height(100);
+        .unitize-height(250);
         width: 100%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -81,21 +81,21 @@
     }
 
     .menu--list-item-link {
-        //.unitize-padding(5, 0);
-        .unitize(font-size, 14);
+        .unitize-padding(5, 0);
+        .unitize(font-size, 16);
         .transition(all 0.1s ease);
         color: @adv-menu-link-color;
         display: block;
 
         &:hover {
-           // .unitize-padding(5, 0, 5, 3);
-            color: #3f4c58;
+            .unitize-padding(5, 0, 5, 3);
+            color: @adv-menu-link-hover-color;
         }
     }
 
     .button-container {
         .unitize(font-size, 16);
-        .unitize-padding(4, 5, 4, 0);
+        .unitize-padding(20, 30, 20, 0);
         background: @adv-menu-header-bg;
         color: @adv-menu-header-text-color;
         font-weight: bold;
@@ -155,8 +155,6 @@
 
     .menu--level-1 {
         .unitize-margin(5, 0, 0, 20);
-        border-left: solid #d0d0d0 4px;
-        padding-left: 4px;
     }
 
     .menu--level-2 {
@@ -174,7 +172,6 @@
     }
 
     .item--level-1 {
-        .unitize(font-size, 13);
         &:last-child {
             margin: 0;
         }
@@ -210,7 +207,7 @@
 }
 
 @media screen and (min-width: @desktopViewportWidth) {
-       .advanced-menu .content--wrapper {
-        .unitize-margin(0, 0,0,10);
+    .advanced-menu .content--wrapper {
+        .unitize-margin(40, 40);
     }
 }
