@@ -71,14 +71,14 @@ Ext.define('Shopware.apps.Order.view.detail.Fadeout', {
                             '<span>{description}</span>',
                         '</p>',                       
                         '<p>',
-                            '<span>'+me.renderInvoiceAmount+'</span>',
+                            '<span>{invoiceAmount}</span>',
                         '</p>',
                     '</div>',
                 '</div>',
             '</tpl>{/literal}'
         );
     }
-        
+
         
     }); 
 //{/block}
