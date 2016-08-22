@@ -7,7 +7,7 @@
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="PHP 5.6">
-        <phpinfo binary_type="PHP" php_cgi="D:\webserver\php\php-cgi.exe" php_cli="D:\webserver\php\php.exe" path_separator=";" version="5.6.25" warning="Failed loading D:\webserver\php\ioncube\ioncube_loader_win_5.6.dll&#10;">
+        <phpinfo binary_type="PHP" php_cgi="D:\webserver\php\php-cgi.exe" php_cli="D:\webserver\php\php.exe" path_separator=";" version="5.6.25" warning="Cannot load the ionCube PHP Loader - it was built with configuration API220131226,TS,VC11, whereas running engine is API220131226,NTS,VC11&#10;">
           <additional_php_ini />
           <configuration_file>D:\webserver\php\php.ini</configuration_file>
           <configuration_options>
