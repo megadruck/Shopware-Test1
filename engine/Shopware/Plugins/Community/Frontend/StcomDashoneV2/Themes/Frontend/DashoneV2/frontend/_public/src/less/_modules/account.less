@@ -1,112 +1,123 @@
+
+
 @media screen and (min-width: @phoneLandscapeViewportWidth) {
     // 480px
-}
 
-@media screen and (min-width: @tabletViewportWidth) {
+  }
+
+  @media screen and (min-width: @tabletViewportWidth) {
     // 768px
+
+
     .is--ctl-account {
-        .account--welcome {
-            .panel--title {
-                padding: 0;
-                color: @theme-primary !important;
-                font-size: 21px;
-                font-weight: 700 !important;
-                text-transform: none !important;
-            }
+      .account--welcome {
+        .panel--title {
+          padding: 0;
+          color: @theme-primary !important;
+          font-size: 21px;
+          font-weight: 700 !important;
+          text-transform: none !important;
         }
-        .panel.has--border {
-            border: 0 none;
+      }
+      .panel.has--border {
+        border: 0 none;
+      }
+      .account--box,
+      .register--payment,
+      .register--personal,
+      .register--address,
+      .register--shipping,
+      .register--billing {
+        background: @theme-bg-light;
+        border: 0 none;
+        .panel--title {
+          .panel-title();
+          .unitize(margin-bottom, 15);
         }
-        .account--box,
-        .register--payment,
-        .register--personal,
-        .register--address,
-        .register--shipping,
-        .register--billing {
-            background: @theme-bg-light;
-            border: 0 none;
-            .panel--title {
-                .panel-title();
-                .unitize(margin-bottom, 15);
-            }
-            .panel--body {
-                padding: 0 10px;
-                .unitize-padding(0, 10, 0, 10);
-                input {
-                    .form-input();
-                }
-                .js--fancy-select {
-                    .form-select();
-                    .unitize(margin-bottom, 6);
-                }
-            }
-            .panel--actions {
-                .unitize-padding(6, 10, 6, 10);
-                .btn {
-                    .btn-dark();
-                }
-            }
+        .panel--body {
+          padding: 0 10px;
+          .unitize-padding(0, 10, 0, 10);
+          input {
+            .form-input();
+          }
+          .js--fancy-select {
+            .form-select();
+            .unitize(margin-bottom, 6);
+          }
         }
-        .account--actions {
-            padding: 0;
-            .unitize-margin(20, 0, 20, 0);
-            .btn {
-                .btn-dark();
-            }
+        .panel--actions {
+          .unitize-padding(6, 10, 6, 10);
+          .btn {
+            .btn-dark();
+          }
         }
-        .required_fields {
-            .unitize(margin-top, 20);
+      }
+      .account--actions {
+        padding: 0;
+        .unitize-margin(20, 0, 20, 0);
+        .btn {
+          .btn-dark();
         }
-        .account--info {
-            .panel--body {
-                height: auto;
-                .unitize-min-height(80);
-            }
+      }
+      .required_fields {
+        .unitize(margin-top, 20);
+      }
+      .account--info {
+        .panel--body {
+          height: auto;
+          .unitize-min-height(80);
         }
-        .account--payment {
-            .panel--body {
-                height: auto;
-                .unitize-min-height(80);
-            }
+      }
+      .account--payment {
+        .panel--body {
+          height: auto;
+          .unitize-min-height(80);
         }
-        .account--email {
-            .panel--body {
+      }
+      .account--email {
+        .panel--body {
 
-            }
         }
-        .account--password {
-            .panel--body {
+      }
+      .account--password {
+        .panel--body {
 
-            }
         }
-        .account--billing {
-            .panel--body {
-                height: auto;
-                .unitize-min-height(140);
-            }
+      }
+      .account--billing {
+        .panel--body {
+          height: auto;
+          .unitize-min-height(140);
         }
-        .account--shipping {
-            .panel--body {
-                height: auto;
-                .unitize-min-height(140);
-            }
+      }
+      .account--shipping {
+        .panel--body {
+          height: auto;
+          .unitize-min-height(140);
         }
-        .account--newsletter {
-            .panel--body {
-                height: auto;
-                .unitize-min-height(36);
-                input {
-                    .unitize-height(13);
-                }
-            }
+      }
+      .account--newsletter {
+        .panel--body {
+          height: auto;
+          .unitize-min-height(36);
+          input {
+            .unitize-height(13);
+          }
         }
+      }
+      .account--menu .navigation--link.link--logout {
+            background: @gray;
+            margin:0 !important;
+
+      }
     }
-}
+  }
 
-@media screen and (min-width: @tabletLandscapeViewportWidth) {
+  @media screen and (min-width: @tabletLandscapeViewportWidth) {
     // 1024px
-}
+  }
 
-@media screen and (min-width: @desktopViewportWidth) {
+  @media screen and (min-width: @desktopViewportWidth) {
     // 1260px changed to 998px
-}
+  }
+

@@ -7,7 +7,7 @@
             </div>
         {else}
             <a href="{url controller='account'}" class="entry--link js--account">
-                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMySignOut'}Mein Konto{/s}
+                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMyAccount'}Mein Konto{/s}
             </a>
         {/if}
     </div>

@@ -1,5 +1,6 @@
-{extends file='parent:frontend/logo-container.tpl'}
-<div class="logo-main block-group" role="banner">
+
+{extends file='parent:frontend/index/logo-container.tpl'}
+
 
 	{* Main shop logo *}
 	{block name='frontend_index_logo'}
@@ -16,15 +17,3 @@
 		</div>
 	{/block}
 
-	{* Support Info *}
-	{block name='frontend_index_logo_supportinfo'}
-        {if $theme.checkoutHeader && {controllerName|lower} === 'checkout' && {controllerAction|lower} !== 'cart'}
-            <div class="logo--supportinfo block">
-                {s name='RegisterSupportInfo' namespace='frontend/register/index'}{/s}
-            </div>
-        {/if}
-	{/block}
-
-	{* Trusted Shops *}
-	{block name='frontend_index_logo_trusted_shops'}{/block}
-</div>

@@ -50,9 +50,8 @@
             {* Link to the user billing address settings *}
             {block name="frontend_account_menu_link_billing"}
                 <li class="navigation--entry">
-                    <a href="{url controller='account' action='billing'}" title="{s name="AccountLinkBillingAddress"}{/s}"
-                       class="navigation--link{if $sAction == 'billing'} is--active{/if}">
-                        {s name="AccountLinkBillingAddress"}{/s}
+                    <a href="{url controller='address'}" title="{s name="AccountLinkSenderAddress"}{/s}"
+                       class="navigation--link">{s name="AccountLinkSenderAddress"}{/s}
                     </a>
                 </li>
             {/block}
@@ -60,9 +59,8 @@
             {* Linkt to the user shipping address settings *}
             {block name="frontend_account_menu_link_shipping"}
                 <li class="navigation--entry">
-                    <a href="{url controller='account' action='shipping'}" title="{s name="AccountLinkShippingAddress"}{/s}"
-                       class="navigation--link{if $sAction == 'shipping'} is--active{/if}">
-                        {s name="AccountLinkShippingAddress"}{/s}
+                    <a href="{url controller='address'}?shipping=true" title="{s name="AccountLinkShippingAddress"}{/s}"
+                       class="open-shippingaddres navigation--link">{s name="AccountLinkShippingAddress"}{/s}
                     </a>
                 </li>
             {/block}
