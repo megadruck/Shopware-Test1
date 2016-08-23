@@ -6,8 +6,8 @@
                 <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMyAccount'}Mein Konto{/s}
             </div>
         {else}
-            <a href="{url controller='account' action='logout'}" class="entry--link js--account">
-                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMySignOut'}Abmelden{/s}
+            <a href="{url controller='account'}" class="entry--link js--account">
+                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMySignOut'}Mein Konto{/s}
             </a>
         {/if}
     </div>
