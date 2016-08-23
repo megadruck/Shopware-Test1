@@ -1,14 +1,8 @@
-{namespace name='frontend/account/sidebar'}
+{extends file='parent:frontend/account/menu.tpl'}
 
+{namespace name='frontend/account/sidebar'}
 <div class="account--menu is--rounded">
     {block name="frontend_account_menu"}
-
-        {* Sidebar navigation headline *}
-        {block name="frontend_account_menu_title"}
-            <h2 class="navigation--headline">
-                {s name="AccountHeaderNavigation"}{/s}
-            </h2>
-        {/block}
 
         {* Sidebar menu container *}
         <div class="account--menu-container">
@@ -46,7 +40,7 @@
                   {* Link to the user Sender address settings *}
                 {block name="frontend_account_menu_link_sender"}
                     <li class="navigation--entry">
-                        <a href="{url controller='account' action='sender'}" title="{s name="AccountLinkSenderAddress"}{/s}"
+                        <a href="{url controller=address}" title="{s name="AccountLinkSenderAddress"}{/s}"
                            class="navigation--link{if $sAction == 'sender'} is--active{/if}"><i class="icon--text"></i>
                             {s name="AccountLinkSenderAddress"}{/s}
                         </a>
@@ -56,7 +50,7 @@
                 {* Linkt to the user shipping address settings *}
                 {block name="frontend_account_menu_link_shipping"}
                     <li class="navigation--entry">
-                        <a href="{url controller='account' action='shipping'}" title="{s name="AccountLinkShippingAddress"}{/s}"
+                        <a href="{url controller=address}?shipping=true" title="{s name="AccountLinkShippingAddress"}{/s}"
                            class="navigation--link{if $sAction == 'shipping'} is--active{/if}"><i class="icon--truck"></i>
                             {s name="AccountLinkShippingAddress"}{/s}
                         </a>

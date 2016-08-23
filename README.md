@@ -1,6 +1,6 @@
 # Shopware 5
 
-[![Build Status](https://travis-ci.org/shopware/shopware.svg?branch=5.1)](https://travis-ci.org/shopware/shopware)
+[![Build Status](https://travis-ci.org/shopware/shopware.svg?branch=5.2)](https://travis-ci.org/shopware/shopware)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/shopware/localized.svg)](https://crowdin.com/project/shopware)
 
 - **License**: Dual license AGPL v3 / Proprietary
@@ -18,11 +18,28 @@ Visit the forum at <http://forum.shopware.com/>
 
 ### Shopware Server Requirements
 
-- PHP 5.4.0 or above
-- PHP's `cURL` and `GD` library
-- An Apache web server
+- PHP 5.6.4 or above
+- [Apache 2.2 or 2.4](https://httpd.apache.org/)
 - Apache's `mod_rewrite` module
 - MySQL 5.5.0 or above
+
+#### Required PHP extensions:
+
+-   <a href="http://php.net/manual/en/book.ctype.php" target="_blank">ctype</a>
+-   <a href="http://php.net/manual/en/book.curl.php" target="_blank">curl</a>
+-   <a href="http://php.net/manual/en/book.dom.php" target="_blank">dom</a>
+-   <a href="http://php.net/manual/en/book.hash.php" target="_blank">hash</a>
+-   <a href="http://php.net/manual/en/book.iconv.php" target="_blank">iconv</a>
+-   <a href="http://php.net/manual/en/book.image.php" target="_blank">gd</a> (with freetype and libjpeg)
+-   <a href="http://php.net/manual/en/book.json.php" target="_blank">json</a>
+-   <a href="http://php.net/manual/en/book.mbstring.php" target="_blank">mbstring</a>
+-   <a href="http://php.net/manual/en/book.openssl.php" target="_blank">OpenSSL</a>
+-   <a href="http://php.net/manual/en/book.session.php" target="_blank">session</a>
+-   <a href="http://php.net/manual/en/book.simplexml.php" target="_blank">SimpleXML</a>
+-   <a href="http://php.net/manual/en/book.xml.php" target="_blank">xml</a>
+-   <a href="http://php.net/manual/en/book.zip.php" target="_blank">zip</a>
+-   <a href="http://php.net/manual/en/book.zlib.php" target="_blank">zlib</a>
+-   <a href="http://php.net/manual/en/ref.pdo-mysql.php" target="_blank">PDO/MySQL</a>
 
 ### Installation via Git
 
@@ -32,11 +49,10 @@ Follow the instruction below if you want to install Shopware 5 using Git.
 
     git clone https://github.com/shopware/shopware.git
 
-In case you wish to contribute to Shopware, fork the `5.1` branch rather than cloning it, and create a pull request via Github. For further information please read the section "Get involved" of this document.
+In case you wish to contribute to Shopware, fork the `5.2` branch rather than cloning it, and create a pull request via Github. For further information please read the section "Get involved" of this document.
 
 2.) Set the correct directory permissions:
 
-    chmod 755 config.php
     chmod -R 755 var
     chmod -R 755 web
     chmod -R 755 files
@@ -64,6 +80,9 @@ Unzip the files to the checkout directory:
 
 You can now access your shop
 
+# Backend
+
+The backend is located at `/backend` example `http://your.shop.com/backend`.
 Backend Login: demo/demo
 
 The test_images.zip file includes thumbnails for the new responsive theme and the old deprecated template.
@@ -93,7 +112,7 @@ Shopware is distributed under a dual license (AGPL v3 and proprietary license). 
 
 # Changelog
 
-The changelog and all available commits are located under <https://github.com/shopware/shopware/commits/5.1>.
+The changelog and all available commits are located under <https://github.com/shopware/shopware/commits/5.2>.
 
 ## Further reading
 

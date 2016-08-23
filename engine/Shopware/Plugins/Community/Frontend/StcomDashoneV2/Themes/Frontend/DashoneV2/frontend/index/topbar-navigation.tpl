@@ -1,10 +1,15 @@
 {extends file='parent:frontend/index/topbar-navigation.tpl'}
-
 {block name="frontend_index_checkout_actions_service_menu" prepend}
     <div class="navigation--entry entry--account" role="menuitem">
-        <div href="{url controller='account'}" class="entry--link js--account">
-            <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMyAccount'}Mein Konto{/s}
-        </div>
+        {if !$sUserLoggedIn || $Action == 'logout'}
+            <div href="{url controller='account'}" class="entry--link js--account">
+                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMyAccount'}Mein Konto{/s}
+            </div>
+        {else}
+            <a href="{url controller='account' action='logout'}" class="entry--link js--account">
+                <i class="icon--cog"></i> {s namespace='frontend/index/checkout_actions' name='IndexLinkMySignOut'}Abmelden{/s}
+            </a>
+        {/if}
     </div>
     <div class="navigation--entry entry--note" role="menuitem">
         <a href="{url controller='note'}" class="entry--link">
@@ -29,3 +34,4 @@
         {/block}
     </div>
 {/block}
+

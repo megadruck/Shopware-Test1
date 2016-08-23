@@ -1,3 +1,4 @@
+{extends file='parent:frontend/logo-container.tpl'}
 <div class="logo-main block-group" role="banner">
 
 	{* Main shop logo *}
