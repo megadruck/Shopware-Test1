@@ -51,7 +51,7 @@
             {block name="frontend_account_menu_link_billing"}
                 <li class="navigation--entry">
                     <a href="{url controller='address'}" title="{s name="AccountLinkSenderAddress"}{/s}"
-                       class="navigation--link">{s name="AccountLinkSenderAddress"}{/s}
+                       class="navigation--link" data-address-selection="true" data-setDefaultSenderAddress="1">{s name="AccountLinkSenderAddress"}{/s}
                     </a>
                 </li>
             {/block}
@@ -60,7 +60,7 @@
             {block name="frontend_account_menu_link_shipping"}
                 <li class="navigation--entry">
                     <a href="{url controller='address'}?shipping=true" title="{s name="AccountLinkShippingAddress"}{/s}"
-                       class="open-shippingaddres navigation--link">{s name="AccountLinkShippingAddress"}{/s}
+                       class="open-shippingaddres navigation--link" data-address-selection="true" data-setDefaultShippingAddress="1">{s name="AccountLinkShippingAddress"}{/s}
                     </a>
                 </li>
             {/block}

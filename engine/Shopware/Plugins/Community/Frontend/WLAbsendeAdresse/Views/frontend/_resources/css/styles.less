@@ -1,8 +1,11 @@
 .address--box{
     width:100% !important;
 }
+
+.address--item-content:nth-child(odd) {background: #CCC !important;}
+
 .address--item-content:hover{
-    background: #ee838f
+    background: lightgray;
 }
 .address--btn-wl{
     margin-top: 3% !important;
@@ -18,11 +21,16 @@
     margin-top: 3%;
 }
 input{
-    line-height: 2.1775rem;
+  border-radius: 0;
+  height: 30px;
+  background: #FFF;
+  box-shadow: none;
 }
-
 .BillingInfo{
     line-height: 13px;
     font-size: 11px;
     font-style: italic;
+}
+.address-manager--modal .address--item-content {
+padding:0;
 }
