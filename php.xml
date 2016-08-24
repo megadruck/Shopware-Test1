@@ -7,7 +7,7 @@
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="PHP 5.6">
-        <phpinfo binary_type="PHP" php_cgi="D:\webserver\php\php-cgi.exe" php_cli="D:\webserver\php\php.exe" path_separator=";" version="5.6.25">
+        <phpinfo binary_type="PHP" php_cgi="D:\webserver\php\php-cgi.exe" php_cli="D:\webserver\php\php.exe" path_separator=";" version="5.6.25" warning="Cannot load the ionCube PHP Loader - it was built with configuration API220131226,TS,VC11, whereas running engine is API220131226,NTS,VC11&#10;">
           <additional_php_ini />
           <configuration_file>D:\webserver\php\php.ini</configuration_file>
           <configuration_options>
@@ -73,7 +73,6 @@
             <configuration_option name="include_path" value="D:\webserver\php\PEAR" />
             <configuration_option name="input_encoding" value="" />
             <configuration_option name="internal_encoding" value="" />
-            <configuration_option name="ioncube.loader.encoded_paths" value="" />
             <configuration_option name="log_errors" value="1" />
             <configuration_option name="log_errors_max_len" value="1024" />
             <configuration_option name="mail.add_x_header" value="1" />
@@ -117,8 +116,6 @@
             <configuration_option name="phar.cache_list" value="" />
             <configuration_option name="phar.readonly" value="1" />
             <configuration_option name="phar.require_hash" value="1" />
-            <configuration_option name="phpd" value="1" />
-            <configuration_option name="phpd.t" value="1" />
             <configuration_option name="post_max_size" value="8M" />
             <configuration_option name="precision" value="14" />
             <configuration_option name="realpath_cache_size" value="16K" />
@@ -203,7 +200,6 @@
             <extension name="ftp" />
             <extension name="hash" />
             <extension name="iconv" />
-            <extension name="ionCube Loader" />
             <extension name="json" />
             <extension name="libxml" />
             <extension name="mcrypt" />
