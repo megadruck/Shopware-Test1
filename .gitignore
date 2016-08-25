@@ -5,3 +5,5 @@ web/*
 nbproject/*
 /files/*
 /.idea/
+/admns.php
+/composer.lock

@@ -22,7 +22,7 @@
                                                 {/if}
                                                 {if $sUserData.additional.user.default_billing_address_id == $address.id}
                                                     <div>{s name="AddressesTitleDefaultBillingAddress"}Default billing address{/s}</div>
-                                                {/if}
+                                                {/if}Als Absendeadresse nutzen
                                             </div>
                                         {/if}
                                     {/block}
