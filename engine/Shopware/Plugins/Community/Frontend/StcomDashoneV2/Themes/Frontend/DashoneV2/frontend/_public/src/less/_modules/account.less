@@ -7,8 +7,7 @@
 
   @media screen and (min-width: @tabletViewportWidth) {
     // 768px
-
-
+    .account--profile{padding-top:0px !important;}
     .is--ctl-account {
       .account--welcome {
         .panel--title {
@@ -105,11 +104,16 @@
           }
         }
       }
-      .account--menu .navigation--link.link--logout {
-            background: @gray;
-            margin:0 !important;
 
-      }
+    }
+    .account--menu .navigation--link.link--logout {
+      background: @gray;
+      margin:0 !important;
+
+    }
+    .account--address.account--content,
+    .address-manager--modal.account--content{
+      padding-top:0px !important;
     }
   }
 
