@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Anpassungen Megadruck</label>
     <label lang="en">Anpassungen Megadruck</label>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <copyright>Megadruck</copyright>
     <license>Megadruck</license>
     <author>Megadruck</author>
