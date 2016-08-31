@@ -7,3 +7,16 @@ nbproject/*
 /.idea/
 /admns.php
 /composer.lock
+/ignore.xml
+/databaseSettings.xml
+/web-browsers.xml
+/notifications.xml
+/baseRefactoring.xml
+/ide.general.xml
+/IntelliLang.xml
+/debugger.xml
+/diff.xml
+/ui.lnf.xml
+/keyboard.xml
+/_windows/
+/inspection/
