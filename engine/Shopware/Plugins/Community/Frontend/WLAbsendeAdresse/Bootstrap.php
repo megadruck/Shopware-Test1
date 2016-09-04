@@ -10,7 +10,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	private $config_fields = array(
 		'firma' => array(
 			'label' => 'Absendeadresse Firma',
-			'value' => 'Megadruck',
+			'value' => 'MegaDruck.de Produktions- und Vertriebs GmbH',
 			'description' => 'Absendeadresse Firma',
 			'type' => 'text',
 			'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
@@ -80,7 +80,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 	
 	public function getVersion()
     {
-        return '1.0.5';
+        return '1.0.6';
     }
 
 	/**

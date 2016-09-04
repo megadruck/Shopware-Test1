@@ -348,7 +348,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
             title: me.getShippingPanelTitle(),
             bodyPadding: 10,
             flex: 1,
-            style: 'padding: 0 8 0 0 !important;',
+            paddingRight: 5,
             items: [
                 {
                     xtype: 'container',

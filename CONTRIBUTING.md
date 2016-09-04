@@ -1,4 +1,5 @@
 # Get involved
+
 Shopware is available under dual license (AGPL v3 and proprietary license). If you want to contribute code (features or bugfixes), you have to create a pull request and include valid license information. You can either contribute your code under New BSD or MIT license.
 
 If you want to contribute to the backend part of Shopware, and your changes affect or are based on ExtJS code, they must be licensed under GPL V3, as per license requirements from Sencha Inc.
@@ -49,7 +50,7 @@ To keep your master up to date:
     git pull --rebase
     php composer.phar self-update
     php composer.phar install
-    php build/ApplyDeltas.php
+    php bin/console sw:migrations:migrate
     php bin/console sw:snippets:to:db
 
 Checkout a new topic-branch and you're ready to start hacking and contributing to Shopware:

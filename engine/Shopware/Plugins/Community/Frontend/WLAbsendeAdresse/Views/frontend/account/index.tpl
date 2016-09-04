@@ -39,8 +39,7 @@
                         {/block}
 
                         {block name="frontend_account_index_primary_billing_actions"}
-                            <div class="panel--actions is--wide">
-                                <p>{s name="ChangeBillingTextInfo"}Um Ihre Rechnungsadresse zu ändern kontaktieren Sie uns bitte telefonisch unter <br/>011111-1111{/s}</p>
+                            <div class="panel--actions is--wide BillingInfo">{s name="ChangeBillingTextInfo"}Um diese Daten zu ändern kontaktieren Sie uns bitte unter <br/>+49 (0) 44 88 52 54 00 o. per Email: vertrieb@megadruck.de{/s}
                             </div>
                         {/block}
                     </div>
@@ -90,9 +89,8 @@
                                    class="btn">
                                     {s name="AccountLinkChangeShipping"}{/s}
                                 </a>
-                                <br/>
                                 {/if}
-                                <a class="open-shippingaddress" href="{url controller=address}?shipping=true"
+                                <a class="open-shippingaddress btn" href="{url controller=address}?shipping=true"
                                        data-address-selection="true"
                                        data-setDefaultShippingAddress="1"
                                        data-id="{$sUserData.additional.user.default_shipping_address_id}"
@@ -149,13 +147,12 @@
                                        class="btn">
                                         {s name="AccountLinkEditSender"}Absendeadresse ändern{/s}
                                     </a>
-                                    <br/>
                                 {/if}
-                                <a class="open-senderaddress" href="{url controller=address}"
+                                <a class="open-senderaddress btn" href="{url controller=address}"
                                    data-address-selection="true"
                                    data-setDefaultSenderAddress="1"
                                    data-id="{$senderAddress.id}"
-                                   title="{s name='AccountLinkChangeSenderTitle'}oder andere Adresse wählen{/s}">
+                                   title="{s name='AccountLinkChangeSenderTitle'}oder andere Adresse wählen{/s}" >
                                     {s name="AccountLinkSelectSender"}oder andere Adresse wählen{/s}
                                 </a>
                             </div>

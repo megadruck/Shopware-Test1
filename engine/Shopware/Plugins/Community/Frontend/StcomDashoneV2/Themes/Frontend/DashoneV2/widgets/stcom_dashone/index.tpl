@@ -29,7 +29,5 @@
                     <i class="icon--arrow-right"></i></button>
             </div>
         </form>
-    {else}
-        {include file='frontend/account/menu.tpl'}
     {/if}
 </nav>

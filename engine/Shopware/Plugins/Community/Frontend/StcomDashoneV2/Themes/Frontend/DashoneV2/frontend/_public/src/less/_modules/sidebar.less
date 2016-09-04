@@ -7,6 +7,7 @@
     .sidebar-main {
         padding: 0;
         &.off-canvas {
+            background: @gray;
         }
         .sidebar--categories-wrapper {
             .categories--headline {
@@ -107,12 +108,11 @@
     .is--ctl-account {
         &.is--user {
             .sidebar-main {
-                display: none;
+                padding-top:0;
             }
             .content-main {
                 .content-main--inner {
                     .content--wrapper {
-                        margin-left: 0;
                     }
                 }
             }

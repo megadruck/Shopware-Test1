@@ -1,6 +1,8 @@
 .header-main {
-    background: @theme-secondary;
+    background: @theme-secondary  url('/media/image/header1-test.png') no-repeat top center;
     border: 0 none;
+
+
     .top-bar {
         .container {
             .top-bar--navigation {
@@ -332,10 +334,12 @@
                                 }
                                 .main-search--results {
                                     .results--list {
-                                        background: #3b3f42;
-                                        border: 0 none;
+                                        background: #ffffff;
+                                        -webkit-box-shadow: 0px 0px 13px 11px rgba(59,59,59,0.75);
+                                        -moz-box-shadow: 0px 0px 13px 11px rgba(59,59,59,0.75);
+                                        box-shadow: 0px 0px 13px 11px rgba(59,59,59,0.75);
                                         padding: 0;
-                                        border-radius: 0;
+                                        border-radius: 2px;
                                         .list--entry {
                                             border: 0 none;
                                             .transition(background 0.2s ease);
@@ -346,10 +350,10 @@
                                                     }
                                                 }
                                                 .entry--name {
-                                                    color: #FFF;
+                                                    color: #000000;
                                                 }
                                                 .entry--price {
-                                                    color: #FFF;
+                                                    color: #000000;
                                                     .product--price {
                                                     }
                                                 }
@@ -367,8 +371,11 @@
                                             }
                                         }
                                         .entry--all-results {
+                                            border-top:1px solid black;
                                             .unitize-padding(3, 12);
                                             .entry--all-results-link {
+
+
                                                 padding: 0;
                                                 .icon--arrow-right {
                                                     &::before {
@@ -376,15 +383,14 @@
                                                 }
                                             }
                                             .entry--all-results-number {
-
                                             }
                                             &:hover {
-                                                background: @theme-secondary;
+                                                background: #grey !important;
                                             }
                                         }
                                         &::after {
-                                            background: #3b3f42;
-                                            border-color: #3b3f42;
+                                            background: #ffffff;
+                                            border-color: #ffffff;
                                         }
                                     }
                                 }

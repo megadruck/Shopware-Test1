@@ -67,7 +67,7 @@ class MDPlugin extends Plugin
     }
     
     
-    
+
 
 	public function BackendOrderPostDispatch(Enlight_Event_EventArgs $args)
 	{
@@ -80,6 +80,8 @@ class MDPlugin extends Plugin
 
 		if ($request->getActionName() === 'load') {
 			$view->extendsTemplate('backend/order/view/detail/fadeout.js');
+            $view->extendsTemplate('backend/order/view/detail/mdcommunication.js');
+//            $view->extendsTemplate('backend/order/view/detail/mdposition.js');
 		}
 
 		

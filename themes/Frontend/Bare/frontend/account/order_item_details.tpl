@@ -1,6 +1,6 @@
 {namespace name="frontend/account/order_item"}
 
-<div id="order{$offerPosition.ordernumber}" class="order--details panel--table">
+<div id="order{$offerPosition.ordernumber}" class="order--details panel--table" style="border:2px dashed black;">
 
 {block name="frontend_account_order_item_detail_table"}
 

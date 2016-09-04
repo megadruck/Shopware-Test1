@@ -2,21 +2,22 @@
 
 
 {block name="frontend_address_selection_modal_container"}
+
     <div class="modal--container" data-panel-auto-resizer="true">
         <div class="filterbar">
-            <p class="labeltag">Suche:</p><input type="text" id="searchField">
+            <input type="text" id="searchField" placeholder="Adressbuchsuche">
         </div>
         {if $sender_address_id != 0}
             <div class="modal--container-item address--box noSenderBox" id="0" data-tags="Marcelo Dit  Muster">
                 <div class="panel address--item-content has--border is--rounded block">
 
-                    <div class="address--item-body panel--body is--wide" style="height: auto;">
-                        <span class="address--firstname is--bold">Megadruck als Absender</span>
+                    <div class="address--item-body panel--body-row is--wide" style="height: auto;">
+                        <span class="address--firstname is--bold"><i class="icon--star" style="color:red"></i> Megadruck als Absender</span>
                     </div>
 
                    <div class="panel--actions address-selection address-selection-0" style="display: none; height: auto;" "="">
 
-                        <button class="btn is--block is--primary is--icon-right" id="noSender" data-type="absendeadresse" data-checkformisvalid="false" data-preloader-button="true">Keine Absendeadresse
+                        <button class="is--block is--primary is--icon-right" id="noSender" data-type="absendeadresse" data-checkformisvalid="false" data-preloader-button="true">Als Absendeadresse nutzen
                          <span class="icon--arrow-right"></span>
                         </button>
 
@@ -26,12 +27,13 @@
             </div>
         {/if}
         {foreach $addresses as $address}
+
             {block name='frontend_address_selection_modal_container_item'}
                 <div class="modal--container-item address--box" id="{$address.id}" data-tags="{$address.firstname} {$address.lastname} {$address.company} {$address.city}">
                     <div class="panel address--item-content has--border is--rounded block">
                         {block name='frontend_address_selection_modal_container_item_body'}
-                            <div class="address--item-body panel--body is--wide">
-                                <span class="address--firstname is--bold">{$address.firstname}</span> <span class="address--lastname is--bold">{$address.lastname},</span>
+                            <div class="address--item-body panel--body-row is--wide">
+                                <span class="address--firstname is--bold"><i class="icon--users"></i> {$address.firstname}</span> <span class="address--lastname is--bold">{$address.lastname},</span>
                                 {if $address.company} <span class="address--company">{$address.company},</span>{/if}
                                 <span class="address--street"> {$address.street},</span>
                                 {if $address.additionalAddressLine1} <span class="address--additional-one">{$address.additionalAddressLine1},</span>{/if}
@@ -61,7 +63,7 @@
                                 {block name="frontend_address_selection_modal_container_item_select_button"}
 
 
-                                    <button class="btn is--block is--primary is--icon-right address--btn-wl absender-address-btn"
+                                    <button class="btn-xs is--block is--primary is--icon-right address--btn-wl absender-address-btn"
                                             data-type="absendeadresse"
                                             data-checkFormIsValid="false"
                                             data-preloader-button="true"
@@ -72,7 +74,7 @@
                                         <span class="icon--arrow-right"></span>
                                     </button>
 
-                                    <button class="btn is--block is--primary is--icon-right address--btn-wl liefer-address-btn"
+                                    <button class="btn-xs is--block is--primary is--icon-right address--btn-wl liefer-address-btn"
                                             data-type="lieferadresse"
                                             data-checkFormIsValid="false"
                                             data-preloader-button="true"
