@@ -1,5 +1,5 @@
 var/*
-config.*
+/config.php
 web/*
 *.log
 nbproject/*
@@ -18,3 +18,7 @@ nbproject/*
 /keyboard.xml
 /_windows/
 /inspection/
+/vcs.xml
+/diff.xml
+/php.xml
+/ide.general.xml
