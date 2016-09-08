@@ -498,7 +498,7 @@ class Shopware_Plugins_Frontend_WLAbsendeAdresse_Bootstrap extends Shopware_Comp
 
 
 		} catch (Exception $e) {
-			mail('s.vgroenheim@wistundlaumann.de','Test',$e->getMessage());
+//			mail('s.vgroenheim@wistundlaumann.de','Test',$e->getMessage());
 			// besteht schon
 		}
 	}

@@ -4,7 +4,7 @@
 namespace MDPlugin;
 
 use Shopware\Components\Plugin;
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 Megadruck.de
@@ -51,20 +51,21 @@ class MDPlugin extends Plugin
     }
     
      public static function getSubscribedEvents()
-     {
-         return [
-            'Enlight_Controller_Action_PostDispatch_Backend_Order' => 'BackendOrderPostDispatch'
-        ];
+{
+    return [
+        'Enlight_Controller_Action_PostDispatch_Backend_Order' => 'BackendOrderPostDispatch',
+        'Shopware_Modules_Basket_GetBasket_FilterItemStart'   => 'MDGetBasketAttribute'
+    ];
 
-             
-        //    config (Einstellungen, Templates und Textbausteine)
-        //    frontend (HttpProxy + Query-Cache - Artikel, Kategorien)
-        //    backend (Backend-Cache)
-        //    router (SEO-URL-Cache)
-        //    search (Intelligente Suche Index/Keywords)
-        //    proxy (Proxy/Model-Cache Nur für Entwicklungszwecke)
 
-    }
+    //    config (Einstellungen, Templates und Textbausteine)
+    //    frontend (HttpProxy + Query-Cache - Artikel, Kategorien)
+    //    backend (Backend-Cache)
+    //    router (SEO-URL-Cache)
+    //    search (Intelligente Suche Index/Keywords)
+    //    proxy (Proxy/Model-Cache Nur für Entwicklungszwecke)
+
+}
     
     
 
@@ -88,4 +89,35 @@ class MDPlugin extends Plugin
 
 	}
 
+
+	public function MDGetBasketAttribute(Enlight_Event_EventArgs $arguments)
+    {
+        $s = $arguments->getReturn();
+
+        try {
+            $db = Shopware()->Db();
+            if ($s['articleDetailId'] == '') {
+                // articleDetailId ist leer
+                return;
+            }
+        } catch (Exception $e) { }
+
+        $sql = "SELECT
+                  s_article_configurator_groups.name as name,
+                  s_article_configurator_options.name as value
+                FROM
+                  s_article_configurator_option_relations,
+                  s_article_configurator_options,
+                  s_article_configurator_groups
+                WHERE
+                  option_id =s_article_configurator_options.id 
+                AND s_article_configurator_groups.id = s_article_configurator_options.group_id 
+                AND s_article_configurator_option_relations.article_id = ? ";
+
+        $variation = $db->fetchAll($sql, array($s['articleDetailId']));
+
+
+        $s['variation'] = $variation;
+        return $s;
+    }
 }

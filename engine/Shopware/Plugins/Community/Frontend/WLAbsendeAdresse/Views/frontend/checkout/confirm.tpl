@@ -1,6 +1,6 @@
 {extends file="parent:frontend/checkout/confirm.tpl"}
 
-
+{block name='frontend_checkout_confirm_information_payment'}{/block}
 {block name='frontend_checkout_confirm_information_addresses'}
 
 
@@ -9,7 +9,7 @@
 		<div class="information--panel-item information--panel-item-billing">
 			{* Billing address *}
 			{block name='frontend_checkout_confirm_information_addresses_billing_panel'}
-			<div class="panel has--border block information--panel billing--panel">
+			<div class="panel has--border block information--panel billing--panel  graybg">
 
 				{* Headline *}
 				{block name='frontend_checkout_confirm_information_addresses_billing_panel_title'}
@@ -57,21 +57,35 @@
                                                 </div>
                                             {/block}
 
+ {block name='frontend_checkout_confirm_left_payment_content'}
+                <div class="panel--body">
+                    {block name='frontend_checkout_confirm_left_payment_method'}
+                    <strong class="payment--title">{s name="ConfirmInfoPaymentMethod" namespace="frontend/checkout/confirm"}{/s}</strong>
+                    <span class="payment--description"><a style="text-decoration:underline;" href="{url controller=checkout action=shippingPayment sTarget=checkout}">{$sUserData.additional.payment.description}</a></span>
+                       {if !$sUserData.additional.payment.esdactive && {config name="showEsd"}}
+                        <p class="payment--confirm-esd">{s name="ConfirmInfoInstantDownload" namespace="frontend/checkout/confirm"}{/s}</p>
+                        {/if}
+                    {/block}
 
-                                            {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions"}
-                                                <div class="panel--actions is--wide">
+                    {block name='frontend_checkout_confirm_left_shipping_method'}
+                    <br><strong class="shipping--title">{s name="ConfirmHeadDispatch"}{/s}</strong>
+                    <span class="shipping--description" title="{$sDispatch.name}"><a style="text-decoration:underline;" href="{url controller=checkout action=shippingPayment sTarget=checkout}">{$sDispatch.name|truncate:25:"...":true}</a></span>
+
+                    {/block}
+                </div>
+                {/block}
+                                            {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions"}{/block}
+
                                                     {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions_change"}
-                                                        <div class="address--actions-change">
+
                                                             {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions_change_address"}
-                                                            	<p>{s name="ChangeBillingTextInfo"}Um Ihre Rechnungsadresse zu ändern kontaktieren Sie uns bitte telefonisch unter <br/>011111-1111{/s}</p>
-			</a>
-			{/block}
-			</div>
-			{/block}
-				{block name="frontend_checkout_confirm_information_addresses_billing_panel_actions_select_address"}
-				{/block}
-			</div>
-			{/block}
+                                                                                                           			{/block}
+			                                        {/block}
+				                                    {block name="frontend_checkout_confirm_information_addresses_billing_panel_actions_select_address"}{/block}
+
+
+
+
 			</div>
 			{/block}
 		</div>
@@ -82,7 +96,7 @@
 		{block name='frontend_checkout_confirm_information_addresses_sender'}
 				<div class="information--panel-item information--panel-item-sender">
 					{block name='frontend_checkout_confirm_information_addresses_sender_panel'}
-					<div class="panel has--border block information--panel sender--panel">
+					<div class="panel has--border block information--panel sender--panel graybg">
 
 						{block name='frontend_checkout_confirm_information_addresses_sender_panel_title'}
 						<div class="panel--title is--underline">
@@ -91,7 +105,7 @@
 						{/block}
 
 						{block name='frontend_checkout_confirm_information_addresses_sender_panel_body'}
-						<div class="panel--body is--wide">
+						<div class="panel--body is--wide bgArrowRight">
 							{if $senderAddress.company}
 							<span class="address--company is--bold">{$senderAddress.company}</span>{if $senderAddress.department}<br /><span class="address--department is--bold">{$senderAddress.department}</span>{/if}
 							<br />
@@ -120,9 +134,8 @@
 															</div>
 														{/block}
 
-
 														{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions"}
-															<div class="panel--actions is--wide">
+															<div class="panel--actions">
 																{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions_change"}
 																	<div class="address--actions-change">
 																		{block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change_address"}
@@ -133,7 +146,7 @@
 																			   data-address-editor="true"
 																			   data-id="{$activeShippingAddressId}"
 																			   data-sessionKey="checkoutShippingAddressId"
-																			   class="btn">
+																			   class="btn is--primary is--large">
 																				{s name="ConfirmAddressSelectButton"}Change address{/s}
 																			{/if}
 
@@ -141,8 +154,10 @@
 		{/block}
 		</div>
 		{/block}
+
+
 			{block name="frontend_checkout_confirm_information_addresses_sender_panel_actions_select_address"}
-			<a class="open-senderaddress" href="{url controller=address}"
+			<a class="open-senderaddress btn is--primary is--large" href="{url controller=address}"
 																	   data-address-selection="true"
 																	   data-sessionKey="checkoutShippingAddressId"
 																	   data-id="{$senderAddress.id}"
@@ -166,7 +181,7 @@
 		{block name='frontend_checkout_confirm_information_addresses_shipping'}
 		<div class="information--panel-item information--panel-item-shipping">
 			{block name='frontend_checkout_confirm_information_addresses_shipping_panel'}
-			<div class="panel has--border block information--panel shipping--panel">
+			<div class="panel has--border block information--panel shipping--panel graybg">
 
 
 				{block name='frontend_checkout_confirm_information_addresses_shipping_panel_title'}
@@ -217,7 +232,7 @@
 
 
                                             {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions"}
-                                                <div class="panel--actions is--wide">
+                                                <div class="panel--actions">
                                                     {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change"}
                                                         <div class="address--actions-change">
                                                             {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_change_address"}
@@ -228,29 +243,30 @@
 																	   data-address-editor="true"
 																	   data-id="{$activeShippingAddressId}"
 																	   data-sessionKey="checkoutShippingAddressId"
-																	   class="btn">
+																	   class="btn is--primary is--large">
 																		{s name="ConfirmAddressSelectButton"}Change address{/s}
 																	</a>
 																{/if}
 
-			{/block}
-			</div>
-			{/block}
-				{block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_select_address"}
-				<a class="open-shippingaddress" href="{url controller=address}?shipping=true"
-                                                           data-address-selection="true"
-                                                           data-sessionKey="checkoutShippingAddressId"
-                                                           data-id="{$activeShippingAddressId}"
-                                                           title="{s name="ConfirmAddressSelectLink"}{/s}">
-                                                            {s name="ConfirmAddressSelectLink"}{/s}
-				</a>
-				{/block}
-			</div>
-			{/block}
-			</div>
-			{/block}
-		</div>
-		{/block}
+                                                            {/block}
+
+                                                        {block name="frontend_checkout_confirm_information_addresses_shipping_panel_actions_select_address"}
+                                                        <a class="btn  is--primary is--large open-shippingaddress" href="{url controller=address}?shipping=true"
+                                                                                                   data-address-selection="true"
+                                                                                                   data-sessionKey="checkoutShippingAddressId"
+                                                                                                   data-id="{$activeShippingAddressId}"
+                                                                                                   title="{s name="ConfirmAddressSelectLink"}{/s}">
+                                                                                                    {s name="ConfirmAddressSelectLink"}{/s}
+                                                        </a>
+                                                        {/block}
+            </div>
+            {/block}
+			                                    </div>
+			                                {/block}
+			                </div>
+			            {/block}
+		            </div>
+		        {/block}
 
 
 {/block}

@@ -58,10 +58,8 @@
             {* Product information *}
             {block name='frontend_checkout_cart_item_details'}
                 <div class="panel--td table--content">
-
                     {* Product name *}
                     {block name='frontend_checkout_cart_item_details_title'}
-
                         <a class="content--title" href="{$detailLink}" title="{$sBasketItem.articlename|strip_tags|escape}"
                             {if {config name=detailmodal} && {controllerAction|lower} === 'confirm'}
                                data-modalbox="true"
