@@ -1,61 +1,69 @@
 <?php
-
+/**
+ * Copyright (c) 2016
+ * Megadruck.de Produktions- und Vertriebs GmbH
+ * Joerg Frintrop
+ * j.frintrop@megadruck.de
+ *
+ * Eichendorffstrasse 34b
+ * 26655 Westerstede
+ * Tel. 04488 52540-25
+ * Fax. 04488 52540-14
+ *
+ * www.megadruck.de
+ */
 
 namespace MDPlugin;
 
 use Shopware\Components\Plugin;
-/*
- * The MIT License
- *
- * Copyright 2016 Megadruck.de
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+use Shopware\Components\Plugin\Context\InstallContext;
+
+
 
 class MDPlugin extends Plugin
 {
     
     
     /**
-     * @return \Shopware\Components\Model\ModelManager
+     * @return \Shopware\Components\Model\Mode"lManager
      */
     protected function getEntityManager()
     {
         return Shopware()->Models();
     }
-    
-    
+
+    /**
+     * @param InstallContext $context
+     */
+
+    public function install(InstallContext $context)
+    {
+        $this->AddAttributes();
+        parent::install($context);
+    }
+
+    /**
+     * @return array
+     */
     public function getCapabilities()
     {
          return array(
         'install' => true,
         'update' => true,
-        'enable' => true
-    );
+        'enable' => true);
     }
-    
-     public static function getSubscribedEvents()
-{
+
+
+    public static function getSubscribedEvents()
+    {
     return [
-        'Enlight_Controller_Action_PostDispatch_Backend_Order' => 'BackendOrderPostDispatch',
-        'Shopware_Modules_Basket_GetBasket_FilterItemStart'   => 'MDGetBasketAttribute'
+        'Enlight_Controller_Action_PostDispatch_Backend_Order'  => 'BackendOrderPostDispatch',
+        'Shopware_Modules_Basket_GetBasket_FilterItemStart'     => 'GetBasketAttribute'
     ];
+
+    //s_order_details_attributes
+    //    ,
+    //    'Shopware_Modules_Order_SendMail_FilterVariables'      =>'MDSetNewVariables'
 
 
     //    config (Einstellungen, Templates und Textbausteine)
@@ -65,12 +73,13 @@ class MDPlugin extends Plugin
     //    search (Intelligente Suche Index/Keywords)
     //    proxy (Proxy/Model-Cache Nur für Entwicklungszwecke)
 
-}
-    
-    
+    }
 
 
-	public function BackendOrderPostDispatch(Enlight_Event_EventArgs $args)
+    /**
+     * @param Enlight_Event_EventArgs $arg
+     */
+    public function BackendOrderPostDispatch(Enlight_Event_EventArgs $args)
 	{
 		/** @var \Enlight_Controller_Action $controller */
 		$controller = $args->getSubject();
@@ -79,10 +88,11 @@ class MDPlugin extends Plugin
 
 		$view->addTemplateDir(__DIR__ . '/Views');
 
-		if ($request->getActionName() === 'load') {
+		if ($request->getActionName() === 'load')
+		{
 			$view->extendsTemplate('backend/order/view/detail/fadeout.js');
             $view->extendsTemplate('backend/order/view/detail/mdcommunication.js');
-//            $view->extendsTemplate('backend/order/view/detail/mdposition.js');
+//          $view->extendsTemplate('backend/order/view/detail/mdposition.js');
 		}
 
 		
@@ -90,7 +100,27 @@ class MDPlugin extends Plugin
 	}
 
 
-	public function MDGetBasketAttribute(Enlight_Event_EventArgs $arguments)
+    public function AddAttributes()
+    {
+           try {
+                $this->container->get('models')->addAttribute(
+                's_order_details_attributes',
+                'md',
+                'variation',
+                'VARCHAR(255)');
+            }
+            catch (Exception $e)
+            {
+            }
+
+             $this->container->get('models')->generateAttributeModels(array('s_order_details_attributes'));
+    }
+
+    /**
+     * @param Enlight_Event_EventArgs $arguments
+     * reading variation of basket products
+     */
+    public function GetBasketAttribute(Enlight_Event_EventArgs $arguments)
     {
         $s = $arguments->getReturn();
 
