@@ -115,7 +115,8 @@ use Shopware\Components\Plugin\Context\InstallContext;
             {
             }
 
-             $this->container->get('models')->generateAttributeModels(array('s_order_details_attributes'));
+            $this->container->get('models')->generateAttributeModels(array('s_order_details_attributes'));
+            $this->container->get('models')->generateAttributeModels(array('s_order_attributes'));
     }
 
 
