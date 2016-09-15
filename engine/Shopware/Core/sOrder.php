@@ -728,6 +728,8 @@ class sOrder
             $attributeData = $this->attributeLoader->load('s_order_basket_attributes', $basketRow['id']);
             $this->attributePersister->persist($attributeData, 's_order_details_attributes', $orderdetailsID);
             $detailAttributes = $this->attributeLoader->load('s_order_details_attributes', $orderdetailsID) ?: [];
+
+
             unset($detailAttributes['id']);
             unset($detailAttributes['detailID']);
             $this->sBasketData['content'][$key]['attributes'] = $detailAttributes;

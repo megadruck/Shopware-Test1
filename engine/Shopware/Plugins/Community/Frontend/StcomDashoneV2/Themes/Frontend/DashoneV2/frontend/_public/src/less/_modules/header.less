@@ -1,5 +1,5 @@
 .header-main {
-    background: @theme-secondary  url('/media/image/header1-test.png') no-repeat top center;
+    background: @theme-secondary;
     border: 0 none;
 
 
@@ -22,6 +22,7 @@
         &.header--navigation {
             .logo-main {
                 text-align: center;
+
                 .logo--shop {
                     width: 100%;
                 }
@@ -290,7 +291,12 @@
                     text-align: left;
                     padding: 0;
                     .logo--link {
-                        .unitize(margin-top, 6);
+                        //.unitize(margin-top, 6);
+                        max-width:75% !important;
+                        max-height: 300px !important;
+                        height:114px !important;
+                        margin-top:-38px !important;
+
                     }
                 }
                 .shop--navigation {

@@ -359,7 +359,7 @@ class ModelManager extends EntityManager
             throw new \InvalidArgumentException('No table name passed');
         }
         if (strpos($table, '_attributes') === false) {
-            throw new \InvalidArgumentException('The passed table name is no attribute table');
+            throw new \InvalidArgumentException('The passed table '.$table.' name is no attribute table');
         }
         if (empty($prefix)) {
             throw new \InvalidArgumentException('No column prefix passed');
