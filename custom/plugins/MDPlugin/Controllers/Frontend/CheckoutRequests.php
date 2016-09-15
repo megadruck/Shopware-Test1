@@ -27,7 +27,7 @@ class Shopware_Controllers_Frontend_CheckoutRequests extends Enlight_Controller_
             parent:checkoutAction();
 //        $rawBody = $this->Request()->getRawBody();
 //        $params = json_decode($rawBody, true); // jsonbody decodieren als array}
-        mail('j.frintrop@megadruck.de', 'Debug_FORM', print_r($params , true));
+        mail('EMAIL ADRESSE', 'Debug_FORM', print_r($params , true));
 
     }
 }
