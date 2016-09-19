@@ -76,8 +76,8 @@ class ASOrder extends Resource
      */
     public function getOneByNumber($number)
     {
-        $id = $this->getIdFromNumber($number);
-        return $this->getOne($id);
+        //$id = $this->getIdFromNumber($number);
+        return $this->getOne($number);
     }
 
     /**
@@ -94,7 +94,7 @@ class ASOrder extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        $filters = array(array('property' => 'orders.id','expression' => '=','value' => $id));
+        $filters = array(array('property' => 'orders.number','expression' => '=','value' => $id));
         $builder = $this->getRepository()->getOrdersQueryBuilder($filters);
         /** @var $order \Shopware\Models\Order\Order */
         $order = $builder->getQuery()->getOneOrNullResult($this->getResultMode());

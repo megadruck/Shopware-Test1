@@ -14,16 +14,13 @@
  */
 
 namespace MDPlugin;
-
-use Enlight_Event_EventArgs;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UpdateContext;
 
 
     class MDPlugin extends Plugin
     {
-
-
     /**
      * @param InstallContext $context
      */
@@ -34,9 +31,10 @@ use Shopware\Components\Plugin\Context\InstallContext;
         parent::install($context);
     }
 
-    /**
-     * @return array
-     */
+    public function update(UpdateContext $context)
+    {
+    }
+
     public function getCapabilities()
     {
         return array(
@@ -52,7 +50,7 @@ use Shopware\Components\Plugin\Context\InstallContext;
             'Enlight_Controller_Action_PostDispatch_Backend_Order'                      => 'BackendOrderPostDispatch',
             'Shopware_Modules_Basket_GetBasket_FilterItemStart'                         => 'GetBasketAttribute',
             'Shopware_Modules_Order_SaveOrder_ProcessDetails'                           => 'SaveBasketAttribute',
-            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_CheckoutRequests'    => 'onGetFrontendController'
+            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_CheckoutRequest'    => 'GetFrontendController'
         ];
 
         //    config (Einstellungen, Templates und Textbausteine)
@@ -64,14 +62,15 @@ use Shopware\Components\Plugin\Context\InstallContext;
 
     }
 
-        /**
-         * @param Enlight_Event_EventArgs $args
-         * @return string
-         */
-    public function onGetFrontendController(Enlight_Event_EventArgs $args)
+    /**
+     * @param Enlight_Event_EventArgs $args
+     * @return string
+     */
+    public function GetFrontendController(Enlight_Event_EventArgs $args)
     {
-        $this->container->get('template')->addTemplateDir($this->getPath() . '/Resources/Views');
-        return $this->getPath() . '/Controllers/Frontend/CheckoutRequests.php';
+        Shopware()->PluginLogger()->info("test");
+        mail('nach@email.de', 'Debug_FORM', 'TEST','FROM:meine@email.de');
+        return $this->getPath() . '/Controllers/Frontend/CheckoutRequest.php';
     }
 
     /**
@@ -79,8 +78,7 @@ use Shopware\Components\Plugin\Context\InstallContext;
      */
     public function BackendOrderPostDispatch(Enlight_Event_EventArgs $args)
 	{
-		/** @var \Enlight_Controller_Action $controller */
-		$controller = $args->getSubject();
+        $controller = $args->getSubject();
 		$view = $controller->View();
 		$request = $controller->Request();
 
@@ -104,6 +102,12 @@ use Shopware\Components\Plugin\Context\InstallContext;
                 'variation',
                 'VARCHAR(255)');
 
+//               $this->container->get('models')->addAttribute(
+//                   's_order_basket_attributes',
+//                   'md',
+//                   'variation',
+//                   'VARCHAR(255)');
+
 
                $this->container->get('models')->addAttribute(
                    's_order_attributes',
@@ -116,12 +120,14 @@ use Shopware\Components\Plugin\Context\InstallContext;
             }
 
             $this->container->get('models')->generateAttributeModels(array('s_order_details_attributes'));
+//            $this->container->get('models')->generateAttributeModels(array('s_order_basket_attributes'));
             $this->container->get('models')->generateAttributeModels(array('s_order_attributes'));
     }
 
 
     /**
      * @param Enlight_Event_EventArgs $arguments
+     * @return mixed|void
      * reading variation of basket products
      */
     public function GetBasketAttribute(\Enlight_Event_EventArgs $arguments)
@@ -164,7 +170,8 @@ use Shopware\Components\Plugin\Context\InstallContext;
      */
     public function SaveBasketAttribute(Enlight_Event_EventArgs $arguments)
     {
-        $db =  Shopware()->Db();
+
+        $BasketArticle = $arguments->getDetails();
         foreach ($BasketArticle  as $key => $value)
         {
             if($BasketArticle[$key]['variation'] != '') {
@@ -180,7 +187,7 @@ use Shopware\Components\Plugin\Context\InstallContext;
                  WHERE 
                     detailID=?";
 
-
+                $db =  Shopware()->Db();
                 $db->query($sql, array($BasketArticle[$key]['orderDetailId']));
             }
         }
