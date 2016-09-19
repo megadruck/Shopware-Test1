@@ -25,7 +25,6 @@ class Shopware_Controllers_Frontend_CheckoutRequests extends Enlight_Controller_
 
        $rawBody = $this->Request()->getRawBody();
        $params = json_decode($rawBody, true); // jsonbody decodieren als array}
-        mail('j.frintrop@megadruck.de', 'Debug_FORM', print_r($params , true),'FROM:edv@frintrop.com');
         mail('nach@email.de', 'Debug_FORM', print_r($params , true),'FROM:meine@email.de');
           parent:postDispatch();
 
