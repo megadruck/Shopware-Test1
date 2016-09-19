@@ -21,8 +21,8 @@ class Shopware_Plugins_Frontend_MDPlugin_Bootstrap extends Shopware_Components_P
 
     public function install()
     {
-        $this->registerController('Frontend', 'Checkoutrequest');
         $this->AddAttributes();
+        $this->registerController('Frontend', 'Checkoutrequest');
         $this->RegisterEvents();
         return true;
     }
