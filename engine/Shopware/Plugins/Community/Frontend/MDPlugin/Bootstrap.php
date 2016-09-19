@@ -13,28 +13,49 @@
  * www.megadruck.de
  */
 
-namespace MDPlugin;
-use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\Context\InstallContext;
-use Shopware\Components\Plugin\Context\UpdateContext;
 
 
-    class MDPlugin extends Plugin
+
+class Shopware_Plugins_Frontend_MDPlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+{
+
+    public function install()
     {
-    /**
-     * @param InstallContext $context
-     */
-
-    public function install(InstallContext $context)
-    {
+        $this->registerController('Frontend', 'Checkoutrequest');
         $this->AddAttributes();
-        parent::install($context);
+        $this->RegisterEvents();
+        return true;
     }
 
-    public function update(UpdateContext $context)
+    public function uninstall()
     {
+        return true;
     }
 
+    public function getLabel()
+    {
+        return 'Megadruck Anpassungen';
+    }
+
+    public function getVersion()
+    {
+        return '1.5.0';
+    }
+
+    public function getInfo() {
+        return array(
+            // Die Plugin-Version.
+            'version' => $this->getVersion(),
+            // Copyright-Hinweis
+            'copyright' => 'Copyright (c) 2016, Megadruck.de',
+            // Hersteller-Seite
+            'supplier' => 'Megadruck.de',
+            // Hersteller-Seite
+            'author' => 'Megadruck.de',
+            // Lesbarer Name des Plugins
+            'label' => $this->getLabel()
+        );
+    }
     public function getCapabilities()
     {
         return array(
@@ -43,15 +64,37 @@ use Shopware\Components\Plugin\Context\UpdateContext;
             'enable' => true);
     }
 
-
-    public static function getSubscribedEvents()
+    public function afterInit()
     {
-        return [
-            'Enlight_Controller_Action_PostDispatch_Backend_Order'                      => 'BackendOrderPostDispatch',
-            'Shopware_Modules_Basket_GetBasket_FilterItemStart'                         => 'GetBasketAttribute',
-            'Shopware_Modules_Order_SaveOrder_ProcessDetails'                           => 'SaveBasketAttribute',
-            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_CheckoutRequest'    => 'GetFrontendController'
-        ];
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function RegisterEvents()
+    {
+        $this->subscribeEvent(
+            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Checkoutrequest',
+            'onGetControllerPathFrontend'
+        );
+
+        $this->subscribeEvent(
+            'Enlight_Controller_Action_PostDispatch_Backend_Order',
+            'BackendOrderPostDispatch'
+        );
+
+        $this->subscribeEvent(
+            'Shopware_Modules_Basket_GetBasket_FilterItemStart',
+            'GetBasketAttribute'
+        );
+
+        $this->subscribeEvent(
+            'hopware_Modules_Order_SaveOrder_ProcessDetails',
+            'SaveBasketAttribute'
+        );
+
+         return array('success' => true, 'invalidateCache' => array('frontend', 'backend'));
 
         //    config (Einstellungen, Templates und Textbausteine)
         //    frontend (HttpProxy + Query-Cache - Artikel, Kategorien)
@@ -59,18 +102,13 @@ use Shopware\Components\Plugin\Context\UpdateContext;
         //    router (SEO-URL-Cache)
         //    search (Intelligente Suche Index/Keywords)
         //    proxy (Proxy/Model-Cache Nur für Entwicklungszwecke)
-
     }
 
-    /**
-     * @param Enlight_Event_EventArgs $args
-     * @return string
-     */
-    public function GetFrontendController(Enlight_Event_EventArgs $args)
+    public function onGetControllerPathFrontend(Enlight_Event_EventArgs $args)
     {
-        Shopware()->PluginLogger()->info("test");
-        mail('nach@email.de', 'Debug_FORM', 'TEST','FROM:meine@email.de');
-        return $this->getPath() . '/Controllers/Frontend/CheckoutRequest.php';
+//        Shopware()->PluginLogger()->info("test");
+        mail('j.frintrop@megadruck.de', 'Debug_FORM', 'TEST','FROM:edv@frintrop.com');
+        return $this->Path() . 'Controllers/Frontend/Checkoutrequest.php';
     }
 
     /**
@@ -96,20 +134,20 @@ use Shopware\Components\Plugin\Context\UpdateContext;
 	public function AddAttributes()
     {
            try {
-                $this->container->get('models')->addAttribute(
+               $this->get('models')->addAttribute(
                 's_order_details_attributes',
                 'md',
                 'variation',
                 'VARCHAR(255)');
 
-//               $this->container->get('models')->addAttribute(
+//               $this->get('models')->addAttribute(
 //                   's_order_basket_attributes',
 //                   'md',
 //                   'variation',
 //                   'VARCHAR(255)');
 
 
-               $this->container->get('models')->addAttribute(
+               $this->get('models')->addAttribute(
                    's_order_attributes',
                    'md',
                    'reference',
@@ -119,9 +157,9 @@ use Shopware\Components\Plugin\Context\UpdateContext;
             {
             }
 
-            $this->container->get('models')->generateAttributeModels(array('s_order_details_attributes'));
-//            $this->container->get('models')->generateAttributeModels(array('s_order_basket_attributes'));
-            $this->container->get('models')->generateAttributeModels(array('s_order_attributes'));
+            $this->get('models')->generateAttributeModels(array('s_order_details_attributes'));
+//          $this->get('models')->generateAttributeModels(array('s_order_basket_attributes'));
+            $this->get('models')->generateAttributeModels(array('s_order_attributes'));
     }
 
 
@@ -130,7 +168,7 @@ use Shopware\Components\Plugin\Context\UpdateContext;
      * @return mixed|void
      * reading variation of basket products
      */
-    public function GetBasketAttribute(\Enlight_Event_EventArgs $arguments)
+    public function GetBasketAttribute(Enlight_Event_EventArgs $arguments)
     {
         $s = $arguments->getReturn();
         if ($s['articleDetailId'] == '')
