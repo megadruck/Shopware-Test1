@@ -91,7 +91,6 @@
 
                         {* Hidden field for the user comment *}
                         <textarea class="is--hidden user-comment--hidden" rows="1" cols="1" name="sComment">{$sComment|escape}</textarea>
-
                         <ul class="list--checkbox list--unstyled">
 
                             {* Terms of service *}
@@ -708,4 +707,5 @@
         </div>
     {/block}
 </div>
+
 {/block}

@@ -66,7 +66,7 @@ Ext.override(Ext.button.Button, {
 
         if (me.menu) {
             // Flag that we'll have a splitCls
-            me.split = true
+            me.split = true;
 
 
             // retrieve menu by id or instantiate instance if needed

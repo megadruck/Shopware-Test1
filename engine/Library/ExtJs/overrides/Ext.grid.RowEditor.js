@@ -79,4 +79,4 @@ Ext.override(Ext.grid.RowEditor, {
        }
        return me.floatingButtons;
    }
-})
+});

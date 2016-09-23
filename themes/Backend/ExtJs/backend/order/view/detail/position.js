@@ -312,7 +312,6 @@ Ext.define('Shopware.apps.Order.view.detail.Position', {
             {
                 header: grid.snippets.articleName,
                 dataIndex: 'articleName',
-
                 flex:2,
                 editor: me.articleNameSearch
             },

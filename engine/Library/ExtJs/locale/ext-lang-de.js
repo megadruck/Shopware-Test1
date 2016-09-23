@@ -521,7 +521,7 @@ Ext.onReady(function() {
     Ext.define('Shopware.grid.de.Association', {
         override: 'Shopware.grid.Association',
         searchComboLabel: 'Suche nach'
-    })
+    });
     Ext.define('Shopware.grid.de.Controller', {
         override: 'Shopware.grid.Controller',
         deleteConfirmTitle: 'Einträge löschen',

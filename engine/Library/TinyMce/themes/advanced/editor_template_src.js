@@ -28,9 +28,8 @@
 		// Removes any variables since these can't be previewed
 		function removeVars(val) {
 			return val.replace(/%(\w+)/g, '');
-		};
-
-		// Create block/inline element to use for preview
+        }
+        // Create block/inline element to use for preview
 		name = fmt.block || fmt.inline || 'span';
 		previewElm = dom.create(name);
 
@@ -88,9 +87,8 @@
 		dom.remove(previewElm);
 
 		return previewCss;
-	};
-
-	// Tell it to load theme specific language pack(s)
+    }
+    // Tell it to load theme specific language pack(s)
 	tinymce.ThemeManager.requireLangPack('advanced');
 
 	tinymce.create('tinymce.themes.AdvancedTheme', {
@@ -1004,9 +1002,8 @@
 							height = startHeight + (e.screenY - startY);
 
 							t.resizeTo(width, height);
-						};
-
-						function endResize(e) {
+                        }
+                        function endResize(e) {
 							// Stop listening
 							Event.remove(DOM.doc, 'mousemove', mouseMoveHandler1);
 							Event.remove(ed.getDoc(), 'mousemove', mouseMoveHandler2);
@@ -1016,9 +1013,8 @@
 							width = startWidth + (e.screenX - startX);
 							height = startHeight + (e.screenY - startY);
 							t.resizeTo(width, height, true);
-						};
-
-						e.preventDefault();
+                        }
+                        e.preventDefault();
 
 						// Get the current rect size
 						startX = e.screenX;
@@ -1067,9 +1063,8 @@
 					if (func(parents[i]))
 						return parents[i];
 				}
-			};
-
-			cm.setActive('visualaid', ed.hasVisual);
+            }
+            cm.setActive('visualaid', ed.hasVisual);
 			t._updateUndoStatus(ed);
 			cm.setDisabled('outdent', !ed.queryCommandState('Outdent'));
 
@@ -1186,9 +1181,8 @@
 							c.displayColor(color);
 						}
 					}
-				};
-
-				updateColor('forecolor', fc);
+                }
+                updateColor('forecolor', fc);
 				updateColor('backcolor', bc);
 			}
 
@@ -1266,7 +1260,7 @@
 						ti += 'id: ' + v + ' ';
 
 					if (v = n.className) {
-						v = v.replace(/\b\s*(webkit|mce|Apple-)\w+\s*\b/g, '')
+						v = v.replace(/\b\s*(webkit|mce|Apple-)\w+\s*\b/g, '');
 
 						if (v) {
 							ti += 'class: ' + v + ' ';

@@ -161,7 +161,7 @@ Ext.define('Enlight.app.SubApplication', {
             controller = Ext.create(name, controller);
         }
 
-        controller.$controllerId = Ext.id()
+        controller.$controllerId = Ext.id();
         controllers.add(controller.$controllerId, controller);
 
         if (!skipInit) {

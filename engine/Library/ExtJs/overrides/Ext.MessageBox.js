@@ -39,4 +39,4 @@ Ext.override(Ext.MessageBox, {
 
         me.callOverridden(arguments);
     }
-})
+});
