@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     $baseDir . '/engine/Library',
+    $vendorDir . '/phpunit/dbunit',
+    $vendorDir . '/symfony/yaml',
 );
