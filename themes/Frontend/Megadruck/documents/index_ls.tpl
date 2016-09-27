@@ -163,8 +163,8 @@
 				{s name="DocumentIndexCustomerID"}{/s} {$User.billing.customernumber|string_format:"%06d"}<br />
 				{if $User.billing.ustid}{s name="DocumentIndexUstID"}{/s} {$User.billing.ustid|replace:" ":""|replace:"-":""}<br />{/if}
 				{$page+1}/{$Pages|@count}<br /><br />
-				{php}echo "TEST";{/php}
-				<img src="/misc/barcode/barcode.php?print=1&amp;code={$Order._order.ordernumber}&amp;scale=1&amp;mode=png&amp;encoding=128&amp;random=1317699478" alt="Barcode-Result"><BR>
+				{$barcode}
+
 
 			{/block}
 			{block name="document_index_info_net"}

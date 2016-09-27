@@ -2,7 +2,7 @@
 
 
 {block name='frontend_checkout_confirm_tos_revocation_notice' prepend}
-<input type="text" name="o_attr_1">
+<input type="text" name="md_reference" class="is--hidden user-reference--hidden">
 {/block}
 
 
@@ -27,9 +27,9 @@
                         {* Additional feature - Add reference / o_attr_1 *}
                         {block name="frontend_checkout_confirm_additional_features_add_product"}
                             <div class="feature--add-product">
-                                {s name='ConfirmAttribute1Text' namespace='frontend/checkout/confirm'}{/s}
+                                {s name='ConfirmAttribute1Text' namespace='frontend/checkout/confirm'}Dies erscheint auf Ihrer Rechnung{/s}
                                 {block name='frontend_checkout_confirm_add_product_field'}
-                                    <input type="text" class="user-reference--field add-product--field block" placeholder="{s name='ConfirmAttribute1Field' namespace='frontend/checkout/confirm'}{/s}" data-pseudo-text="true" data-selector=".user-reference--hidden">
+                                    <input type="text" class="user-reference--field add-product--field block" placeholder="{s name='ConfirmAttribute1Field' namespace='frontend/checkout/confirm'}Stichwort/Referenz{/s}" data-pseudo-text="true" data-selector=".user-reference--hidden">
                                 {/block}
                                 {block name='frontend_checkout_confirm_add_product_button'}{/block}
                             </div>
