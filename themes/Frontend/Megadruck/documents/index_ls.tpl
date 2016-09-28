@@ -175,7 +175,6 @@
 
 
 	<div id="content">
-
 		<table cellpadding="0" cellspacing="0" width="98%" align="center">
 			<tbody valign="top">
 			<tr>
@@ -248,10 +247,13 @@
 
 		{if $smarty.foreach.pagingLoop.last}
 			{block name="document_index_amount"}{/block}
-			{if $Document.comment || $Document.voucher || $Order._currency.factor > 1}
+			{if $Document.comment || $Document.voucher || $Order._currency.factor > 1 || $Order._order.attributes.md_reference}
 				{block name="document_index_info"}
 					<div id="info">
 						<strong>Information:</strong><br /></strong>
+						{if $Order._order.attributes.md_reference}
+						<table><tr><td>{s name="DocumentReferenceText"}Objekt/Referenz:{/s} {$Order._order.attributes.md_reference}</td></tr></table>
+						{/if}
 						{block name="document_index_info_comment"}
 							{if $Document.comment}
 								<div style="font-size:11px;color:#333;font-weight:bold">
