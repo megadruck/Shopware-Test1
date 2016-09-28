@@ -24,7 +24,7 @@
                 {block name="frontend_checkout_confirm_additional_features_add_voucher"}
                     <div class="feature--group block">
 
-                        {* Additional feature - Add reference / o_attr_1 *}
+                        {* Additional feature - Add reference / md_reference *}
                         {block name="frontend_checkout_confirm_additional_features_add_product"}
                             <div class="feature--add-product">
                                 {s name='ConfirmAttribute1Text' namespace='frontend/checkout/confirm'}Dies erscheint auf Ihrer Rechnung{/s}

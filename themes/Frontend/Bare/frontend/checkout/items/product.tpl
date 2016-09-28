@@ -48,6 +48,10 @@
                                             {/if}
                                         {/block}
                                     </div>
+
+
+
+
                                 {/block}
                             </div>
                         {/block}
@@ -92,6 +96,7 @@
                     {block name='frontend_checkout_cart_item_details_inline'}{/block}
                 </div>
             {/block}
+
         </div>
     {/block}
 

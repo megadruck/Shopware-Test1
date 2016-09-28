@@ -163,16 +163,10 @@
 				{s name="DocumentIndexCustomerID"}{/s} {$User.billing.customernumber|string_format:"%06d"}<br />
 				{if $User.billing.ustid}{s name="DocumentIndexUstID"}{/s} {$User.billing.ustid|replace:" ":""|replace:"-":""}<br />{/if}
 				{$page+1}/{$Pages|@count}<br /><br />
-				{$barcode}
 
 
 			{/block}
-			{block name="document_index_info_net"}
-				{if $Document.netto == true}
-					<p>{s name="DocumentIndexAdviceNet"}{/s}</p>
-				{/if}
-				{s name="DocumentIndexSelectedPayment"}Zahlart:{/s} {$Order._payment.description}<br />
-			{/block}
+			{block name="document_index_info_net"}{/block}
 			{block name="document_index_info_dispatch"}{/block}
 		</div>
 
@@ -209,10 +203,11 @@
 				{block name="document_index_table_head_price"}{/block}
 			</tr>
 			{foreach from=$postions item=position key=number}
+				{if $position.name != 'Versandkosten' AND $position.articleID != '0'}
 				{block name="document_index_table_each"}
 					<tr>
 						{block name="document_index_table_pos"}
-							<td align="left" width="5%" valign="top">
+							<td align="left" width="5%" valign="top">{assign var="z" value=$number}
 								&nbsp;{$number+1}
 							</td>
 						{/block}
@@ -223,26 +218,30 @@
 						{/block}
 						{block name="document_index_table_name"}
 							<td align="left" width="48%" valign="top">
-								{if $position.name != 'Versandkosten'}
 									{s name="DocumentIndexPositionNameDefault"}<strong>{$position.meta.articleName|nl2br}{/s}</strong>
 										{if $position.attributes.attribute6}<br />
 											{foreach $position.attributes.attribute6|json_decode:true as $value}
 												{$value.name}: <strong>{$value.value}</strong><br />
 											{/foreach}
 										{/if}
-
+								<br />
+								{if $Barcode.$z}
+									<img src="{$Barcode.$z}"><br />
+									{$position.articleordernumber}/{$Order._order.ordernumber}
 								{/if}
 							</td>
 						{/block}
 						{block name="document_index_table_quantity"}
 							<td align="center" width="5%" valign="top">
 								{$position.quantity}
+
 							</td>
 						{/block}
 						{block name="document_index_table_tax"}{/block}
 						{block name="document_index_table_price"}{/block}
 					</tr>
 				{/block}
+				{/if}
 			{/foreach}
 			</tbody>
 		</table>
