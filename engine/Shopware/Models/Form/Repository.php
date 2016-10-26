@@ -56,8 +56,9 @@ class Repository extends ModelRepository
     public function getListQueryBuilder($filter = null, $orderBy = null)
     {
         $builder = $this->getEntityManager()->createQueryBuilder();
-        $builder->select(array('form'))
-            ->from($this->getEntityName(), 'form');
+        $builder->select(['form', 'attribute'])
+            ->from($this->getEntityName(), 'form')
+            ->leftJoin('form.attribute', 'attribute');
 
         $this->addFilter($builder, $filter);
         $this->addOrderBy($builder, $orderBy);
@@ -105,7 +106,7 @@ class Repository extends ModelRepository
                     $builder->expr()->isNull('forms.shopIds')
                 )
             )
-            ->setParameter('shopId',  '%|' . $shopId . '|%');
+            ->setParameter('shopId', '%|' . $shopId . '|%');
         }
 
         return $builder;

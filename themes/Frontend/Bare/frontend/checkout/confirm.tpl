@@ -91,6 +91,7 @@
 
                         {* Hidden field for the user comment *}
                         <textarea class="is--hidden user-comment--hidden" rows="1" cols="1" name="sComment">{$sComment|escape}</textarea>
+
                         <ul class="list--checkbox list--unstyled">
 
                             {* Terms of service *}
@@ -276,8 +277,10 @@
                                                                     {/block}
                                                                 {/if}
                                                             {/block}
+                                                        </div>
+                                                    {/block}
 
- {block name='frontend_checkout_confirm_information_addresses_equal_panel_shipping'}
+                                                    {block name='frontend_checkout_confirm_information_addresses_equal_panel_shipping'}
                                                         <div class="shipping--panel">
                                                             {block name='frontend_checkout_confirm_information_addresses_equal_panel_shipping_select_address'}
                                                                 <a href="{url controller=address}"
@@ -287,14 +290,10 @@
                                                                    data-id="{$activeShippingAddressId}"
                                                                    title="{s name="ConfirmAddressChooseDifferentShippingAddress"}{/s}">
                                                                     {s name="ConfirmAddressChooseDifferentShippingAddress"}{/s}
-                                                    </a>
-                                                    {/block}
-                                                    </div>
-                                                    {/block}
+                                                                </a>
+                                                            {/block}
                                                         </div>
                                                     {/block}
-
-
                                                 </div>
 
                                                 {block name='frontend_checkout_confirm_information_addresses_equal_panel_actions'}
@@ -709,5 +708,4 @@
         </div>
     {/block}
 </div>
-
 {/block}

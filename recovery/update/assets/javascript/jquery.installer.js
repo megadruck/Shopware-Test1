@@ -108,7 +108,7 @@
         $('.alert-error').show().html('<h2>Error</h2> Received an error message.<br><strong>URL:</strong> ' + settings.url + '<br><strong>Message:</strong> ' + exception + "<br><br>Please try to fix this error and restart the update.");
         $('.alert-error').append("<h3>Response</h3>");
         $('.alert-error').append("<pre>" + jqxhr.responseText + "</pre>");
-        return;
+
     });
 
     $(document).ready(function() {

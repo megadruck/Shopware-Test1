@@ -348,7 +348,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
             title: me.getShippingPanelTitle(),
             bodyPadding: 10,
             flex: 1,
-            paddingRight: 5,
+            style: 'padding: 0 8 0 0 !important;',
             items: [
                 {
                     xtype: 'container',
@@ -400,7 +400,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
                 tag: 'span',
                 html: me.snippets.shipping.title,
                 style: 'color: #ff0000;'
-            }
+            };
 
             return helper.markup(headerSpec) +  helper.markup(iconSpec);
         } else {
@@ -487,7 +487,7 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
                 ]
             });
         } else {
-            return;
+
         }
     },
 
@@ -526,7 +526,8 @@ Ext.define('Shopware.apps.Order.view.detail.Overview', {
             },
             margin: '10 0',
             items: [
-                createInnerDetailContainer            ]
+                me.createInnerDetailContainer()
+            ]
         });
         return me.detailsForm;
     },

@@ -208,16 +208,16 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
         if(record.get('status')==4)
         {
             Ext.Msg.alert(me.snippets.failureTitle, me.snippets.editOffer.isAccepted);
-            return;
+
         }
         else{
             //open the order listing window
             me.createOfferWindow = me.getView('Shopware.apps.sKUZOOffer.view.list.Window').create({
                 offerId: offerId,
                 record: record,
-                taxStore: me.getStore('Shopware.apps.sKUZOOffer.store.Tax').load(),
-                {if $swVersion4}variantStore: me.getStore('Shopware.apps.sKUZOOffer.store.Variant').load(),{/if}
-                positionStore: me.getStore('Shopware.apps.sKUZOOffer.model.Position')
+                taxStore: me.getStore('Shopware.apps.sKUZOOffer.store.Tax').load(),;
+                {if $swVersion4}me.getStore('Shopware.apps.sKUZOOffer.store.Variant').load(), { /if};
+                me.getStore('Shopware.apps.sKUZOOffer.model.Position')
             }).show();
         }
     },
@@ -284,7 +284,7 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
      */
     onSearchOffers: function(value,store) {
         var me = this,
-            searchString = Ext.String.trim(value)
+            searchString = Ext.String.trim(value);
 
         //scroll the store to first page
         store.currentPage = 1;
@@ -312,15 +312,14 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
         offerId = 0;
         //open the order listing window
         me.createOfferWindow = Ext.create('Shopware.apps.sKUZOOffer.view.list.Window',{
-            taxStore:  me.getStore('Shopware.apps.sKUZOOffer.store.Tax').load(),
-            {if $swVersion4}variantStore: me.getStore('Shopware.apps.sKUZOOffer.store.Variant').load(),{/if}
-            positionStore: me.getStore('Shopware.apps.sKUZOOffer.store.Position'),
-            offerId: offerId,
+            taxStore:  me.getStore('Shopware.apps.sKUZOOffer.store.Tax').load(),;
+            {if $swVersion4}me.getStore('Shopware.apps.sKUZOOffer.store.Variant').load(), { /if};
+            me.getStore('Shopware.apps.sKUZOOffer.store.Position'),
+                offerId: offerId,
             record: record,
             customerRecord: customerRecord,
             mode: 'multi'
-        });
-
+    })
         me.getOfferPositionWindow().offerPositionGrid.setDisabled(true);
         me.createOfferWindow.show();
     },
@@ -460,7 +459,7 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
         else
         {
             Ext.Msg.alert(me.snippets.failureTitle, ' Please Inseret CustomrId or ShopId or paymentId');
-            return;
+
         }
     },
 
@@ -538,6 +537,7 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
             },
             success: function(response, operation) {
                 var data = Ext.JSON.decode(response.responseText);
+                columns[4].setValue(data.minPurchase);
                 columns[5].setValue(data.articlePrice);
                 columns[6].setValue(data.articlePrice);
                 columns[11].setValue(data.articleTax);
@@ -731,7 +731,7 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
         config.set('displayDate', new Date());
         config.set('documentType', 0);
         config.set('offerId', me.getOfferPositionWindow().offerId);
-        config.set('documentFormat', docFormat)
+        config.set('documentFormat', docFormat);
 
         store.add(config);
         store.sync({
@@ -871,5 +871,5 @@ Ext.define('Shopware.apps.Customer.controller.Offer', {
             }
         });
     }
-});
+});;;;;
 

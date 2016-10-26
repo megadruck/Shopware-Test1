@@ -33,9 +33,9 @@ use Shopware\Components\DependencyInjection\Container;
  */
 class Shopware extends Enlight_Application
 {
-    const VERSION      = '5.2.5';
+    const VERSION      = '5.2.8';
     const VERSION_TEXT = '';
-    const REVISION     = '201608150941';
+    const REVISION     = '201610051330';
 
     /**
      * @var string

@@ -22,9 +22,14 @@
  * our trademarks remain entirely with us.
  */
 
+use Shopware\Bundle\AttributeBundle\Repository\SearchCriteria;
+use Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface;
+use Shopware\Bundle\StoreFrontBundle\Service\ShopPageServiceInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
 use Shopware\Components\MemoryLimit;
 use Shopware\Components\Model\ModelManager;
 use Shopware\Components\Slug\SlugInterface;
+use Shopware\Models\Article\Supplier;
 
 /**
  * Deprecated Shopware Class that handles url rewrites
@@ -103,6 +108,16 @@ class sRewriteTable
     private $slug;
 
     /**
+     * @var ContextServiceInterface
+     */
+    private $contextService;
+    
+    /**
+     * @var ShopPageServiceInterface
+     */
+    private $shopPageService;
+
+    /**
      * @param Enlight_Components_Db_Adapter_Pdo_Mysql $db
      * @param Shopware_Components_Config $config
      * @param ModelManager $modelManager
@@ -110,6 +125,8 @@ class sRewriteTable
      * @param Enlight_Template_Manager $template
      * @param Shopware_Components_Modules $moduleManager
      * @param SlugInterface $slug
+     * @param ContextServiceInterface $contextService
+     * @param ShopPageServiceInterface $shopPageService
      */
     public function __construct(
         Enlight_Components_Db_Adapter_Pdo_Mysql $db = null,
@@ -118,7 +135,9 @@ class sRewriteTable
         sSystem $systemModule = null,
         Enlight_Template_Manager $template = null,
         Shopware_Components_Modules $moduleManager = null,
-        SlugInterface $slug = null
+        SlugInterface $slug = null,
+        ContextServiceInterface $contextService = null,
+        ShopPageServiceInterface $shopPageService = null
     ) {
         $this->db = $db ?: Shopware()->Db();
         $this->config = $config ?: Shopware()->Config();
@@ -127,6 +146,8 @@ class sRewriteTable
         $this->template = $template ?: Shopware()->Template();
         $this->moduleManager = $moduleManager ?: Shopware()->Modules();
         $this->slug = $slug ?: Shopware()->Container()->get('shopware.slug');
+        $this->contextService = $contextService ?: Shopware()->Container()->get('shopware_storefront.context_service');
+        $this->shopPageService = $shopPageService ?: Shopware()->Container()->get('shopware_storefront.shop_page_service');
     }
 
     /**
@@ -235,14 +256,16 @@ class sRewriteTable
     {
         $this->baseSetup();
 
+        $context = $this->contextService->createShopContext(Shopware()->Shop()->getId());
+
         $this->sCreateRewriteTableCleanup();
         $this->sCreateRewriteTableStatic();
         $this->sCreateRewriteTableCategories();
         $this->sCreateRewriteTableBlog();
         $this->sCreateRewriteTableCampaigns();
         $lastUpdate = $this->sCreateRewriteTableArticles($lastUpdate);
-        $this->sCreateRewriteTableContent();
-        $this->sCreateRewriteTableSuppliers(Shopware()->Shop());
+        $this->sCreateRewriteTableContent(null, null, $context);
+        $this->sCreateRewriteTableSuppliers(null, null, $context);
 
         return $lastUpdate;
     }
@@ -540,29 +563,42 @@ class sRewriteTable
     }
 
     /**
-     * Create emotion rewrite rules
-     * Used in multiple locations
-     *
+     * @deprecated since 5.2 will be removed in 5.3, use \sRewriteTable::createManufacturerUrls
      * @param null $offset
      * @param null $limit
+     * @param ShopContextInterface $context
      */
-    public function sCreateRewriteTableSuppliers($offset = null, $limit = null)
+    public function sCreateRewriteTableSuppliers($offset = null, $limit = null, ShopContextInterface $context = null)
+    {
+        $context = $this->createFallbackContext($context);
+        $this->createManufacturerUrls($context, $offset, $limit);
+    }
+
+    /**
+     * @param ShopContextInterface $context
+     * @param null $offset
+     * @param null $limit
+     * @throws Exception
+     * @throws SmartyException
+     */
+    public function createManufacturerUrls(ShopContextInterface $context, $offset = null, $limit = null)
     {
         $seoSupplier = $this->config->get('sSEOSUPPLIER');
         if (empty($seoSupplier)) {
             return;
         }
 
-        $suppliers = $this->modelManager->getRepository('Shopware\Models\Article\Supplier')
-            ->getFriendlyUrlSuppliersQuery($offset, $limit)->getArrayResult();
+        $ids = $this->getManufacturerIds($offset, $limit);
+        $manufacturers = Shopware()->Container()->get('shopware_storefront.manufacturer_service')->getList($ids, $context);
 
         $seoSupplierRouteTemplate = $this->config->get('seoSupplierRouteTemplate');
-        foreach ($suppliers as $supplier) {
-            $this->data->assign('sSupplier', $supplier);
+        foreach ($manufacturers as $manufacturer) {
+            $manufacturer = json_decode(json_encode($manufacturer), true);
+            $this->data->assign('sSupplier', $manufacturer);
             $path = $this->template->fetch('string:' . $seoSupplierRouteTemplate, $this->data);
             $path = $this->sCleanupPath($path);
 
-            $org_path = 'sViewport=listing&sAction=manufacturer&sSupplier=' . (int)$supplier['id'];
+            $org_path = 'sViewport=listing&sAction=manufacturer&sSupplier=' . (int)$manufacturer['id'];
             $this->sInsertUrl($org_path, $path);
         }
     }
@@ -641,14 +677,15 @@ class sRewriteTable
      *
      * @param int $offset
      * @param int $limit
+     * @param ShopContextInterface $context
      */
-    public function sCreateRewriteTableContent($offset = null, $limit = null)
+    public function sCreateRewriteTableContent($offset = null, $limit = null, ShopContextInterface $context = null)
     {
         //form urls
         $this->insertFormUrls($offset, $limit);
 
         //static pages urls
-        $this->insertStaticPageUrls($offset, $limit);
+        $this->insertStaticPageUrls($offset, $limit, $context);
     }
 
     /**
@@ -799,16 +836,23 @@ class sRewriteTable
      *
      * @param $offset
      * @param $limit
+     * @param ShopContextInterface $context
+     * @throws Exception
+     * @throws SmartyException
      */
-    private function insertStaticPageUrls($offset, $limit)
+    private function insertStaticPageUrls($offset, $limit, ShopContextInterface $context = null)
     {
-        $shopId = Shopware()->Shop()->getId();
+        $context = $this->createFallbackContext($context);
 
         $sitesData = $this->modelManager->getRepository('Shopware\Models\Site\Site')
-            ->getSitesWithoutLinkQuery($shopId, $offset, $limit)
+            ->getSitesWithoutLinkQuery($context->getShop()->getId(), $offset, $limit)
             ->getArrayResult();
 
-        foreach ($sitesData as $site) {
+        $pages = $this->shopPageService->getList(array_column($sitesData, 'id'), $context);
+
+        foreach ($pages as $site) {
+            $site = json_decode(json_encode($site), true);
+
             $org_path = 'sViewport=custom&sCustom=' . $site['id'];
             $this->data->assign('site', $site);
             $path = $this->template->fetch('string:' . $this->config->get('seoCustomSiteRouteTemplate'), $this->data);
@@ -851,8 +895,12 @@ class sRewriteTable
                 'name' => 'txtArtikel',
                 'description_long' => 'txtlangbeschreibung',
                 'description' => 'txtshortdescription',
-                'keywords' => 'keywords',
+                'keywords' => 'txtkeywords',
+                'metaTitle' => 'metaTitle',
             ]);
+
+            $article = $this->mapArticleObjectAttributeFields($article, $objectDataFallback);
+            $article = $this->mapArticleObjectAttributeFields($article, $objectData);
         }
 
         return $articles;
@@ -884,5 +932,70 @@ class sRewriteTable
             }
         }
         return $article;
+    }
+
+    /**
+     * map article attribute translation including fallback fields for given article
+     *
+     * @param array $article
+     * @param array $translations
+     * @return array $article
+     */
+    private function mapArticleObjectAttributeFields($article, $translations)
+    {
+        foreach ($translations as $key => $value) {
+            if (strpos($key, '__attribute_') === false || empty($value)) {
+                continue;
+            }
+
+            $articleKey = str_replace('__attribute_', '', $key);
+
+            $article[$articleKey] = $value;
+        }
+
+        return $article;
+    }
+
+    /**
+     * @param int $offset
+     * @param int $limit
+     * @return array
+     */
+    private function getManufacturerIds($offset = null, $limit = null)
+    {
+        $criteria = new SearchCriteria(Supplier::class);
+        $registry = Shopware()->Container()->get('shopware_attribute.repository_registry');
+        $repo = $registry->getRepository($criteria);
+
+        if ($offset !== null) {
+            $criteria->offset = $offset;
+        }
+        if ($limit !== null) {
+            $criteria->limit = $limit;
+        }
+
+        $result = $repo->search($criteria);
+        $suppliers = $result->getData();
+        $ids = array_column($suppliers, 'id');
+        return $ids;
+    }
+
+    /**
+     * @param ShopContextInterface $context
+     * @return ShopContextInterface
+     */
+    private function createFallbackContext(ShopContextInterface $context = null)
+    {
+        if ($context) {
+            return $context;
+        }
+
+        /** @var \Shopware\Models\Shop\Shop $shop */
+        if (Shopware()->Container()->has('shop')) {
+            $shop = Shopware()->Container()->get('shop');
+            return $this->contextService->createShopContext($shop->getId());
+        }
+
+        return $this->contextService->createShopContext(1);
     }
 }

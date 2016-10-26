@@ -87,8 +87,12 @@ abstract class ShopwareCommand extends Command implements ContainerAwareInterfac
         );
 
         set_error_handler(function ($errno, $errstr, $errfile, $errline) use ($output, $errorNameMap) {
-
             if ($errno === E_RECOVERABLE_ERROR) {
+                return true;
+            }
+
+            // Ignore suppressed errors/warnings
+            if (error_reporting() === 0) {
                 return true;
             }
 

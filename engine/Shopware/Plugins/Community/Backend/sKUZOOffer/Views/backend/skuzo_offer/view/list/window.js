@@ -104,13 +104,13 @@ Ext.define('Shopware.apps.sKUZOOffer.view.list.Window', {
                     emailPreview: me.emailPreview,
                     ePost: me.ePost,
                     showPurchasePrice: me.showPurchasePrice
-                    {if $swVersion4},variantStore: me.variantStore{/if}
+                    {if $swVersion4},variantStore: me.variantStore{/if};
                 }), Ext.create('Shopware.apps.sKUZOOffer.view.list.Communication',{
                     title: me.snippets.communication,
                     record: me.record
-                })
+                });
             ]
-        });
+    })
     }
-});
+});;
 

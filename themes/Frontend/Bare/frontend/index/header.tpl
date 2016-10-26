@@ -40,30 +40,29 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-title" content="{if $theme.appleWebAppTitle != ""}{$theme.appleWebAppTitle|escapeHtml}{else}{{config name=sShopname}|escapeHtml}{/if}">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
 	{/block}
 {/block}
 
 {* Set favicons and touch icons for all different sizes *}
 {block name="frontend_index_header_favicons"}
-    <meta name="apple-mobile-web-app-status-bar-style" content="none">
     <link rel="apple-touch-icon{if $theme.setPrecomposed}-precomposed{/if}" href="{link file=$theme.appleTouchIcon}">
 	<link rel="shortcut icon" href="{link file=$theme.favicon}">
 {/block}
 
 {* Internet Explorer 9 specific meta tags *}
 {block name='frontend_index_header_meta_tags_ie9'}
-	<meta name="msapplication-navbutton-color" content="{$theme['_brand-primary']}" />{* Navbutton color *}
+	<meta name="msapplication-navbutton-color" content="{$theme['brand-primary']}" />{* Navbutton color *}
 	<meta name="application-name" content="{{config name=shopName}|escapeHtml}" />{* Pinned name *}
 	<meta name="msapplication-starturl" content="{url controller='index'}" />{* Start url to launch from the shortcut *}
 	<meta name="msapplication-window" content="width=1024;height=768" />{* Size of the window to launch *}
     <meta name="msapplication-TileImage" content="{link file=$theme.win8TileImage}"> {* Image of the Windows 8 tile *}
-    <meta name="msapplication-TileColor" content="{$theme['_brand-primary']}"> {* Backgroud Color of the Windows 8 tile *}
+    <meta name="msapplication-TileColor" content="{$theme['brand-primary']}"> {* Backgroud Color of the Windows 8 tile *}
 {/block}
 
 {* Android specifc meta tags *}
 {block name='frontend_index_header_meta_tags_android'}
-    <meta name="theme-color" content="{$theme['_brand-primary']}" />
+    <meta name="theme-color" content="{$theme['brand-primary']}" />
 {/block}
 
 {* Canonical link *}

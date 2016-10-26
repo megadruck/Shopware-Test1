@@ -79,6 +79,7 @@ class Repository extends ModelRepository
                 'customer.firstname as firstname',
                 'customer.firstLogin as firstLogin',
                 'customer.lastname as lastname',
+                'customer.accountMode as accountMode',
                 'customergroups.name as customerGroup',
                 'billing.company as company',
                 'billing.zipCode as zipCode',
@@ -109,7 +110,7 @@ class Repository extends ModelRepository
                     ->orWhere('billing.company LIKE ?2')        //Full text search for the company of the customer
                     ->orWhere('billing.city LIKE ?2')           //Full text search for the city of the customer
                     ->orWhere('billing.zipCode LIKE ?1')        //Search only the beginning of the customer number.
-                    ->setParameter(1,       $filter . '%')
+                    ->setParameter(1, $filter . '%')
                     ->setParameter(2, '%' . $filter . '%')
                     ->setParameter(3, '%' . $filter);
         }
@@ -164,7 +165,7 @@ class Repository extends ModelRepository
                     ->orWhere('billing.company LIKE ?2')        //Full text search for the company of the customer
                     ->orWhere('billing.city LIKE ?2')           //Full text search for the city of the customer
                     ->orWhere('billing.zipCode LIKE ?1')        //Search only the beginning of the customer number.
-                    ->setParameter(1,       $filter . '%')
+                    ->setParameter(1, $filter . '%')
                     ->setParameter(2, '%' . $filter . '%')
                     ->setParameter(3, '%' . $filter);
         }
@@ -324,7 +325,7 @@ class Repository extends ModelRepository
                     )
                 )
             )
-            ->setParameter(1,       $filter . '%')
+            ->setParameter(1, $filter . '%')
             ->setParameter(2, '%' . $filter)
             ->setParameter(3, str_replace(".", "_", str_replace(",", "_", $filter)) . '%');
         } else {

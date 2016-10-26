@@ -31,6 +31,15 @@ When coding and committing, please:
 All contributions should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding
 standards.
 
+To check for CS issues:
+
+    composer cs-check
+
+You can also fix reported errors automatically:
+
+    composer cs-fix
+
+If you use `composer cs-fix` to fix issues, make certain you add and commit any files changed!
 
 # Start hacking
 
@@ -70,19 +79,19 @@ If you're done hacking, filling bugs or building fancy new features, push your c
 For most tests a configured database connection is required.
 
 ## Running the tests
-The tests are located in the `tests/Shopware/` directory
+The tests are located in the `tests/` directory
 You can run the entire test suite with the following command:
 
-    vendor/bin/phpunit -c tests/Shopware
+    vendor/bin/phpunit -c tests
 
 If you want to test a single component, add its path after the phpunit command, e.g.:
 
-    vendor/bin/phpunit -c tests/Shopware tests/Shopware/Tests/Components/Api/
+    vendor/bin/phpunit -c tests tests/Functional/Components/Api/
 
 # Documentation
 
 Developer documentation for Shopware is available [here](https://developers.shopware.com/). You can also contribute to the documentation project by submitting your pull requests to our [Devdocs Github project](https://github.com/shopware/devdocs)
- 
+
 # Translations
 
-Shopware translations are done by the community and can be installed from the plugin store. If you wish to improve Shopware's translations, you can do so in our [Crowdin project page](https://crowdin.com/project/shopware). 
+Shopware translations are done by the community and can be installed from the plugin store. If you wish to improve Shopware's translations, you can do so in our [Crowdin project page](https://crowdin.com/project/shopware).

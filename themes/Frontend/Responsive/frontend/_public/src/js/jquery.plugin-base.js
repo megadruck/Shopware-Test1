@@ -17,7 +17,7 @@
     };
 }(jQuery));
 
-;(function ($, window) {
+(function ($, window) {
     'use strict';
 
     var numberRegex = /^\-?\d*\.?\d*$/,

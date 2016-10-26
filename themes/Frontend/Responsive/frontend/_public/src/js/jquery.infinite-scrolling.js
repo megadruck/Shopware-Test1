@@ -23,7 +23,7 @@
             var key, value;
 
             qpart = qparts[i].split('=');
-            key = decodeURIComponent(qpart[0])
+            key = decodeURIComponent(qpart[0]);
             value = decodeURIComponent(qpart[1] || '');
             qparams[key] = ($.isNumeric(value) ? parseFloat(value, 10) : value);
         }

@@ -17,8 +17,6 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
  * Elasticsearch Span not query.
  *
  * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-not-query.html
- *
- * @todo Add options support
  */
 class SpanNotQuery implements SpanQueryInterface
 {
@@ -64,6 +62,6 @@ class SpanNotQuery implements SpanQueryInterface
             'exclude' => $this->exclude->toArray(),
         ];
 
-        return [$this->getType() => $query];
+        return [$this->getType() => $this->processArray($query)];
     }
 }

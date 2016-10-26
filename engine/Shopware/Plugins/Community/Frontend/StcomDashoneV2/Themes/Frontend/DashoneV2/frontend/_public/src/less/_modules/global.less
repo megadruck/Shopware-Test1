@@ -46,58 +46,69 @@ input[type="tel"]:focus {
     background: #fff;
     color: @theme-secondary;
 }
+.panel .floating {
 
-@media screen and (min-width: @phoneLandscapeViewportWidth) {
-    // 480px
+    background:#f8f8fa;
+
 }
 
-@media screen and (min-width: @tabletViewportWidth) {
-    // 768px
-    .notes--quantity {}
-    textarea,
-    input[type="text"],
-    input[type="search"],
-    input[type="password"],
-    input[type="number"],
-    input[type="email"],
-    input[type="tel"] {
-        padding: 0px 10px;
+    @media screen and (min-width: @phoneLandscapeViewportWidth) {
+        // 480px
+
+
     }
 
-    .content-main {
-        padding: 0 10px;
-    }
+    @media screen and (min-width: @tabletViewportWidth) {
+        // 768px
 
-    .under--navigation {
-        background: @theme-bg-light;
-        .container {
-            background: none;
-            .unitize-height(30);
-            color: @theme-text-dark;
-            line-height: 30px;
-            font-size: 12px;
-            text-transform: uppercase;
-            a {
+        .notes--quantity {}
+        textarea,
+        input[type="text"],
+        input[type="search"],
+        input[type="password"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"] {
+            padding: 0px 10px;
+        }
+
+        .content-main {
+            padding: 0 10px;
+        }
+
+        .under--navigation {
+            background: @theme-bg-light;
+            .container {
+                background: none;
+                .unitize-height(30);
                 color: @theme-text-dark;
-            }
-            i {
-                font-size: 19px;
-                position: relative;
-                top: 5px;
-                .unitize(margin-right, 10);
+                line-height: 30px;
+                font-size: 12px;
+                text-transform: uppercase;
+                a {
+                    color: @theme-text-dark;
+                }
+                i {
+                    font-size: 19px;
+                    position: relative;
+                    top: 5px;
+                    .unitize(margin-right, 10);
+                }
             }
         }
     }
-}
 
-@media screen and (min-width: @tabletLandscapeViewportWidth) {
-    // 1024px
-}
-
-@media screen and (min-width: @desktopViewportWidth) {
-    // 1260px changed to 998px
-    .content-main {
-        padding: 0;
+    @media screen and (min-width: @tabletLandscapeViewportWidth) {
+        // 1024px
 
     }
-}
+
+    @media screen and (min-width: @desktopViewportWidth) {
+        // 1260px changed to 998px
+
+        .content-main {
+            padding: 0;
+
+        }
+    }
+

@@ -479,7 +479,7 @@ Ext.define('Shopware.apps.PluginManager.controller.Plugin', {
                 }
 
                 callback();
-                return;
+
             }
         });
     },

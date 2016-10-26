@@ -1391,6 +1391,7 @@ class sArticles
                 $value = $this->getRandomArticle($mode, $category);
                 break;
             case "fix":
+            default:
                 break;
         }
 
@@ -1468,6 +1469,7 @@ class sArticles
     public function sOptimizeText($text)
     {
         $text = html_entity_decode($text, ENT_NOQUOTES, 'UTF-8');
+        $text = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $text);
         $text = preg_replace('!<[^>]*?>!u', ' ', $text);
         $text = preg_replace('/\s\s+/u', ' ', $text);
         $text = trim($text);
@@ -1528,7 +1530,7 @@ class sArticles
             $imageData['attribute']['attribute2'] = $image['attribute2'];
         }
 
-        if (!empty($image['attribute1'])) {
+        if (!empty($image['attribute3'])) {
             $imageData['attribute']['attribute3'] = $image['attribute3'];
         }
 

@@ -876,7 +876,6 @@ class Variant extends Resource implements BatchInterface
         return $data;
     }
 
-
     /**
      * Prepares the base variant data to save over doctrine.
      * Resolves the foreign keys for the passed unit data.
@@ -929,7 +928,6 @@ class Variant extends Resource implements BatchInterface
         //to create a new unit, the unit name and unit is required. Otherwise we throw an exception
         if (!$unit && isset($unitData['name']) && isset($unitData['unit'])) {
             $unit = new Unit();
-            $this->getManager()->persist($unit);
         } elseif (!$unit) {
             throw new ApiException\CustomValidationException(sprintf('To create a unit you need to pass `name` and `unit`'));
         }

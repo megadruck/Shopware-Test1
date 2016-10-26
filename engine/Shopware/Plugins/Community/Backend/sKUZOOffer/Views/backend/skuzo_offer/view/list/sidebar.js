@@ -33,7 +33,7 @@ Ext.define('Shopware.apps.sKUZOOffer.view.list.Sidebar', {
                     height:100,
                     items: [me.createButtons(), me.createDocumentsGrid()]
                 })
-        ]
+        ];
 
         me.callParent(arguments);
     },

@@ -45,7 +45,7 @@
   }
 
   function getAttrValue(text, attr) {
-    var match = text.match(getAttrRegexp(attr))
+    var match = text.match(getAttrRegexp(attr));
     return match ? match[2] : ""
   }
 
@@ -85,16 +85,16 @@
       tags.script.unshift(["type", configScript[i].matches, configScript[i].mode])
 
     function html(stream, state) {
-      var style = htmlMode.token(stream, state.htmlState), tag = /\btag\b/.test(style), tagName
+      var style = htmlMode.token(stream, state.htmlState), tag = /\btag\b/.test(style), tagName;
       if (tag && !/[<>\s\/]/.test(stream.current()) &&
           (tagName = state.htmlState.tagName && state.htmlState.tagName.toLowerCase()) &&
           tags.hasOwnProperty(tagName)) {
         state.inTag = tagName + " "
       } else if (state.inTag && tag && />$/.test(stream.current())) {
-        var inTag = /^([\S]+) (.*)/.exec(state.inTag)
-        state.inTag = null
-        var modeSpec = stream.current() == ">" && findMatchingMode(tags[inTag[1]], inTag[2])
-        var mode = CodeMirror.getMode(config, modeSpec)
+        var inTag = /^([\S]+) (.*)/.exec(state.inTag);
+        state.inTag = null;
+        var modeSpec = stream.current() == ">" && findMatchingMode(tags[inTag[1]], inTag[2]);
+        var mode = CodeMirror.getMode(config, modeSpec);
         var endTagA = getTagRegexp(inTag[1], true), endTag = getTagRegexp(inTag[1], false);
         state.token = function (stream, state) {
           if (stream.match(endTagA, false)) {
@@ -107,13 +107,12 @@
         state.localMode = mode;
         state.localState = CodeMirror.startState(mode, htmlMode.indent(state.htmlState, ""));
       } else if (state.inTag) {
-        state.inTag += stream.current()
+        state.inTag += stream.current();
         if (stream.eol()) state.inTag += " "
       }
       return style;
-    };
-
-    return {
+    }
+      return {
       startState: function () {
         var state = CodeMirror.startState(htmlMode);
         return {token: html, inTag: null, localMode: null, localState: null, htmlState: state};

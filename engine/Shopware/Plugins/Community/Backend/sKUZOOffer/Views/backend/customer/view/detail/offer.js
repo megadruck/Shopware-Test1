@@ -73,7 +73,7 @@ Ext.define('Shopware.apps.Customer.view.detail.Offer', {
         me.offerGrid = Ext.create('Shopware.apps.Customer.view.offer.Offer', {
             flex: 1,
             offerStore: gridStore.load()
-        })
+        });
 
         me.offerToolbar = me.createOfferToolbar();
 

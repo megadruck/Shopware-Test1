@@ -261,7 +261,7 @@ autoScroll:true,
     },
 
     createEmailPreviewField: function() {
-        var me = this
+        var me = this;
 
         return Ext.create('Ext.form.field.Checkbox', {
             name: 'emailPreview',

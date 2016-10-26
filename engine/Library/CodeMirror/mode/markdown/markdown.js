@@ -14,7 +14,7 @@
 CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   var htmlMode = CodeMirror.getMode(cmCfg, "text/html");
-  var htmlModeMissing = htmlMode.name == "null"
+  var htmlModeMissing = htmlMode.name == "null";
 
   function getMode(name) {
     if (CodeMirror.findModeByName) {
@@ -129,8 +129,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     state.trailingSpace = 0;
     state.trailingSpaceNewLine = false;
     // Mark this line as blank
-    state.prevLine = state.thisLine
-    state.thisLine = null
+    state.prevLine = state.thisLine;
+    state.thisLine = null;
     return null;
   }
 
@@ -217,13 +217,13 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       if (modeCfg.highlightFormatting) state.formatting = ["list", "list-" + listType];
       return getType(state);
     } else if (modeCfg.fencedCodeBlocks && (match = stream.match(fencedCodeRE, true))) {
-      state.fencedChars = match[1]
+      state.fencedChars = match[1];
       // try switching mode
       state.localMode = getMode(match[2]);
       if (state.localMode) state.localState = CodeMirror.startState(state.localMode);
       state.f = state.block = local;
       if (modeCfg.highlightFormatting) state.formatting = "code-block";
-      state.code = -1
+      state.code = -1;
       return getType(state);
     }
 
@@ -233,7 +233,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   function htmlBlock(stream, state) {
     var style = htmlMode.token(stream, state.htmlState);
     if (!htmlModeMissing) {
-      var inner = CodeMirror.innerMode(htmlMode, state.htmlState)
+      var inner = CodeMirror.innerMode(htmlMode, state.htmlState);
       if ((inner.mode.name == "xml" && inner.state.tagStart === null &&
            (!inner.state.context && inner.state.tokenize.isInText)) ||
           (state.md_inside && stream.current().indexOf(">") > -1)) {
@@ -264,9 +264,9 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     state.f = inlineNormal;
     state.fencedChars = null;
     if (modeCfg.highlightFormatting) state.formatting = "code-block";
-    state.code = 1
+    state.code = 1;
     var returnType = getType(state);
-    state.code = 0
+    state.code = 0;
     return returnType;
   }
 
@@ -411,16 +411,16 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       var previousFormatting = state.formatting;
       if (modeCfg.highlightFormatting) state.formatting = "code";
       stream.eatWhile('`');
-      var count = stream.current().length
+      var count = stream.current().length;
       if (state.code == 0) {
-        state.code = count
+        state.code = count;
         return getType(state)
       } else if (count == state.code) { // Must be exact
-        var t = getType(state)
-        state.code = 0
+        var t = getType(state);
+        state.code = 0;
         return t
       } else {
-        state.formatting = previousFormatting
+        state.formatting = previousFormatting;
         return getType(state)
       }
     } else if (state.code) {
@@ -445,7 +445,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
     if (ch === '[' && state.imageMarker) {
       state.imageMarker = false;
-      state.imageAltText = true
+      state.imageAltText = true;
       if (modeCfg.highlightFormatting) state.formatting = "image";
       return getType(state);
     }
@@ -629,7 +629,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   var linkRE = {
     ")": /^(?:[^\\\(\)]|\\.|\((?:[^\\\(\)]|\\.)*\))*?(?=\))/,
     "]": /^(?:[^\\\[\]]|\\.|\[(?:[^\\\[\\]]|\\.)*\])*?(?=\])/
-  }
+  };
 
   function getLinkHrefInside(endChar) {
     return function(stream, state) {
@@ -643,7 +643,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         return returnState;
       }
 
-      stream.match(linkRE[endChar])
+      stream.match(linkRE[endChar]);
       state.linkHref = true;
       return getType(state);
     };
@@ -776,12 +776,12 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
         if (stream.match(/^\s*$/, true) || forceBlankLine) {
           blankLine(state);
-          if (!forceBlankLine) return null
+          if (!forceBlankLine) return null;
           state.prevLine = null
         }
 
-        state.prevLine = state.thisLine
-        state.thisLine = stream
+        state.prevLine = state.thisLine;
+        state.thisLine = stream;
 
         // Reset state.taskList
         state.taskList = false;

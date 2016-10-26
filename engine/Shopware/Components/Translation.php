@@ -430,17 +430,20 @@ class Shopware_Components_Translation
         $fallbacks = array_column($fallbacks, 'id');
 
         $data = $this->prepareArticleData($data);
-
         $this->addArticleTranslation($articleId, $languageId, $data);
 
-        $existQuery = $connection->prepare("SELECT id FROM s_core_translations WHERE objectlanguage = :language");
+        $existQuery = $connection->prepare("SELECT 1 FROM s_core_translations WHERE objectlanguage = :language AND objecttype = 'article' AND objectkey = :articleId LIMIT 1");
+
         foreach ($fallbacks as $id) {
-            $existQuery->execute([':language' => $id]);
+            //check if fallback ids contains an individual translation
+            $existQuery->execute([':language' => $id, ':articleId' => $articleId]);
             $exist = $existQuery->fetch(PDO::FETCH_COLUMN);
 
+            //if shop translation of fallback exists, skip
             if ($exist) {
                 continue;
             }
+            //add fallback translation to s_articles_translation for search requests.
             $this->addArticleTranslation($articleId, $id, $data);
         }
     }
@@ -457,10 +460,10 @@ class Shopware_Components_Translation
         }
 
         $data = array_merge($data, [
-            'name' => (string)$data['txtArtikel'],
-            'keywords' => (string)$data['txtkeywords'],
-            'description' => (string)$data['txtshortdescription'],
-            'description_long' => (string)$data['txtlangbeschreibung'],
+            'name' => (isset($data['txtArtikel'])) ? (string)$data['txtArtikel'] : '',
+            'keywords' => (isset($data['txtkeywords'])) ? (string)$data['txtkeywords'] : '',
+            'description' => (isset($data['txtshortdescription'])) ? (string)$data['txtshortdescription'] : '',
+            'description_long' => (isset($data['txtlangbeschreibung'])) ? (string)$data['txtlangbeschreibung'] : '',
         ]);
 
         $schemaManager = Shopware()->Container()->get('dbal_connection')->getSchemaManager();

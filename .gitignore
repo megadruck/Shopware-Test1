@@ -1,5 +1,5 @@
 var/*
-/config.php*
+config.*
 web/*
 *.log
 nbproject/*
@@ -8,6 +8,8 @@ nbproject/*
 /admns.php
 /composer.lock
 /databaseSettings.xml
+/databaseDrivers.xml
+/diff.xml
 /ignore.xml
 /web-browsers.xml
 /github_settings.xml
@@ -16,9 +18,6 @@ nbproject/*
 /IntelliLang.xml
 /ui.lnf.xml
 /keyboard.xml
+/ide.general.xml
 /_windows/
 /inspection/
-/vcs.xml
-/diff.xml
-/php.xml
-/ide.general.xml

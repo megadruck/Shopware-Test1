@@ -43,6 +43,7 @@ use Shopware\Bundle\PluginInstallerBundle\Struct\AccessTokenStruct;
 use Shopware\Bundle\PluginInstallerBundle\Struct\BasketStruct;
 use Shopware\Bundle\PluginInstallerBundle\Struct\PluginInformationResultStruct;
 use Shopware\Bundle\PluginInstallerBundle\Struct\PluginInformationStruct;
+use Shopware\Models\Menu\Menu;
 use Shopware\Models\Plugin\Plugin;
 use ShopwarePlugins\PluginManager\Components\PluginCategoryService;
 use ShopwarePlugins\SwagUpdate\Components\Steps\FinishResult;
@@ -54,19 +55,9 @@ class Shopware_Controllers_Backend_PluginManager extends Shopware_Controllers_Ba
 
     public function preDispatch()
     {
-        if (strtolower($this->Request()->getActionName()) == 'index') {
-            $available = $this->checkStoreApi();
-
-            if ($available) {
-                $this->getCategoryService()->synchronize();
-            }
-
-            try {
-                $this->get('shopware_plugininstaller.plugin_manager')->refreshPluginList();
-            } catch (Exception $e) {
-            }
+        if (strtolower($this->Request()->getActionName()) == 'index' && $this->checkStoreApi()) {
+            $this->getCategoryService()->synchronize();
         }
-
         parent::preDispatch();
     }
 
@@ -266,6 +257,8 @@ class Shopware_Controllers_Backend_PluginManager extends Shopware_Controllers_Ba
 
     public function localListingAction()
     {
+        $this->registerShutdown();
+
         $error = null;
         try {
             /** @var InstallerService $pluginManager */
@@ -640,6 +633,24 @@ class Shopware_Controllers_Backend_PluginManager extends Shopware_Controllers_Ba
         $this->View()->assign('success', true);
     }
 
+    public function disableConnectMenuAction()
+    {
+        $em = $this->container->get('models');
+        $repo = $em->getRepository(Menu::class);
+
+        /** @var Menu $menuEntry */
+        $menuEntry = $repo->findOneBy(array('label' => 'Connect'));
+        if ($menuEntry) {
+            $menuEntry->setActive(false);
+            $em->persist($menuEntry);
+            $em->flush();
+        }
+
+        $this->View()->assign([
+            'success' => true
+        ]);
+    }
+
     /**
      * @return null|AccessTokenStruct
      */
@@ -815,5 +826,29 @@ class Shopware_Controllers_Backend_PluginManager extends Shopware_Controllers_Ba
             'message' => $message,
             'authentication' => ($e instanceof AuthenticationException)
         ]);
+    }
+
+    /**
+     * Registers php shutdown function to catch fatal and parse errors which thrown in refreshPluginList
+     */
+    private function registerShutdown()
+    {
+        register_shutdown_function(function () {
+            $lasterror = error_get_last();
+            if (!$lasterror) {
+                return;
+            }
+
+            switch ($lasterror['type']) {
+                case E_ERROR:
+                case E_PARSE:
+                case E_CORE_ERROR:
+                    ob_clean();
+                    ob_flush();
+                    http_response_code(200);
+                    $message = 'Error<br><br>' . $lasterror['message'] . '<br><br>File:' . str_replace('/', '/ ', $lasterror['file']);
+                    echo json_encode(['success' => false, 'error' => $message]);
+            }
+        });
     }
 }

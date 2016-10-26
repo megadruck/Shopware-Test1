@@ -6,6 +6,7 @@ use Shopware\Bundle\AccountBundle\Service\Validator\AddressValidatorInterface;
 use Shopware\Components\Api\Exception\ValidationException;
 use Shopware\Components\DependencyInjection\Container as DIContainer;
 use Shopware\Models\Customer\Address;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 
 class AddressValidator implements AddressValidatorInterface
 {
@@ -45,12 +46,16 @@ class AddressValidator implements AddressValidatorInterface
             $this->innerValidator->validate($address);
         } catch (ValidationException $exception) {
             $violations = $exception->getViolations();
+            $allowedViolations = array('state', 'phone', 'additionalAddressLine1', 'additionalAddressLine2');
 
-            if ($violations->count() === 1 && $violations->get(0)->getPropertyPath() === 'state') {
-                return;
+            /** @var $violation ConstraintViolationInterface */
+            foreach ($violations->getIterator() as $violation) {
+                if (!in_array($violation->getPropertyPath(), $allowedViolations)) {
+                    throw $exception;
+                }
             }
 
-            throw $exception;
+            return;
         }
     }
 

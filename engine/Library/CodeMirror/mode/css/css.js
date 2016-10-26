@@ -12,7 +12,7 @@
 "use strict";
 
 CodeMirror.defineMode("css", function(config, parserConfig) {
-  var inline = parserConfig.inline
+  var inline = parserConfig.inline;
   if (!parserConfig.propertyKeywords) parserConfig = CodeMirror.resolveMode("text/css");
 
   var indentUnit = config.indentUnit,
